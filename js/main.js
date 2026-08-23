@@ -67,26 +67,26 @@
     if (!select || !select.selectedOptions.length) return false;
     if (new URLSearchParams(window.location.search).get("type") === "loan" && !select.value) return true;
     const group = select.selectedOptions[0].parentElement;
-    return group && group.tagName === "OPTGROUP" && /loan/i.test(group.label || "");
+    return group && group.tagName === "OPTGROUP" && /loan|financ/i.test(group.label || "");
   }
 
   function syncQuoteLabels() {
     const loan = isLoanSelection(productField) || params.get("type") === "loan";
-    const title = document.getElementById("quote-title");
-    const lede = document.getElementById("quote-lede");
-    const heading = document.getElementById("quote-heading");
-    const submit = document.getElementById("quote-submit");
+    const title = document.getElementById("started-title");
+    const lede = document.getElementById("started-lede");
+    const heading = document.getElementById("started-heading");
+    const submit = document.getElementById("started-submit");
     if (!title && !heading && !submit) return;
     if (loan) {
       if (title) title.textContent = "Apply for financing.";
-      if (lede) lede.textContent = "Tell us about the business or property. We will review the request and follow up with next steps.";
+      if (lede) lede.textContent = "Tell us about the business or property. We will review the request and follow up.";
       if (heading) heading.textContent = "Apply Now";
       if (submit) submit.textContent = "Apply Now";
     } else {
-      if (title) title.textContent = "Request a quote or financing review.";
-      if (lede) lede.textContent = "Select the coverage or capital solution you have in mind. We will review the inquiry and follow up with next steps.";
-      if (heading) heading.textContent = "Request a Quote";
-      if (submit) submit.textContent = "Request a Quote";
+      if (title) title.textContent = "Get started.";
+      if (lede) lede.textContent = "Tell us what you need. We will review it and follow up with next steps.";
+      if (heading) heading.textContent = "Get Started";
+      if (submit) submit.textContent = "Get Started";
     }
   }
 
@@ -100,6 +100,7 @@
       event.preventDefault();
       const error = form.querySelector(".form-error");
       const required = form.querySelectorAll("[required]");
+      const submitBtn = form.querySelector("[type='submit']");
       let valid = true;
 
       required.forEach(function (field) {
@@ -117,8 +118,34 @@
       }
 
       if (error) error.textContent = "";
-      form.classList.add("is-success");
-      form.reset();
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      })
+        .then(function (response) {
+          return response.json().catch(function () {
+            return { success: response.ok ? "true" : "false" };
+          });
+        })
+        .then(function (data) {
+          const ok = data && (data.success === true || data.success === "true");
+          if (ok) {
+            form.classList.add("is-success");
+            form.reset();
+            return;
+          }
+          throw new Error((data && data.message) || "submit failed");
+        })
+        .catch(function () {
+          if (error) {
+            error.textContent =
+              "We could not send that just now. Please email rasheed@wellesleycollective.com or call 954-295-1210.";
+          }
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   });
 })();

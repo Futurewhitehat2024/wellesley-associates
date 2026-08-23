@@ -1,14 +1,14 @@
-# Wellesley and Associates LLC
+# Wellesley Collective
 
-Professional marketing website for Wellesley and Associates LLC — a licensed firm providing **insurance**, **commercial lending**, and **residential mortgage** solutions in one place.
+Professional marketing website for Wellesley Collective — a licensed firm providing **insurance** and **commercial financing** in one place.
 
 ## Pages
 
 - Home
 - Insurance hub (Personal Lines + Commercial Lines) and individual product pages
-- Commercial Loans hub and individual product pages
-- Residential Mortgages (coming soon)
-- About, Contact, Request a Quote
+- Commercial Financing hub and individual product pages
+- About, Contact, Get Started
+- Blog
 - Privacy Policy and Terms of Use
 
 ## Preview locally
@@ -32,6 +32,6 @@ node scripts/generate.mjs
 
 ## Notes
 
-- Forms validate in the browser and show a confirmation state. They are ready to connect to a form backend (Formspree, Netlify Forms, etc.) when you have an endpoint.
-- Product pages are informational and route inquiries to a quote form.
-- No standalone Real Estate practice is included. Commercial real estate financing lives under Commercial Loans.
+- Forms submit to `rasheed@wellesleycollective.com` via FormSubmit.
+- Product pages are informational and route inquiries to Get Started.
+- No standalone Real Estate practice is included. Commercial real estate financing lives under Commercial Financing.

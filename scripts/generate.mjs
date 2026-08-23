@@ -319,20 +319,32 @@ function esc(value) {
 }
 
 function logoImg(root, variant = "default") {
-  const file = variant === "light" ? "assets/brand/logo-light.png" : "assets/brand/logo.png";
+  const file = variant === "light" ? "assets/brand/logo-light.png?v=3" : "assets/brand/logo.png?v=3";
   const cls = variant === "light" ? "logo-img logo-img-light" : "logo-img";
-  return `<img class="${cls}" src="${root}${file}" alt="Wellesley and Associates" width="196" height="78">`;
+  return `<img class="${cls}" src="${root}${file}" alt="Wellesley Collective" width="196" height="78">`;
 }
+
+const FIRM_EMAIL = "rasheed@wellesleycollective.com";
+const FIRM_PHONE = "954-295-1210";
+const FIRM_TEL = "+19542951210";
 
 function header(root, current) {
   const r = root;
   const active = (id) => (current === id ? " is-active" : "");
   return `
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="topbar">Insurance · Commercial Lending · Residential Mortgages</div>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Insurance · Commercial Financing</span>
+      <span class="topbar-contact">
+        <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
+        <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a>
+      </span>
+    </div>
+  </div>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="${r}index.html" aria-label="Wellesley and Associates home">
+      <a class="logo" href="${r}index.html" aria-label="Wellesley Collective home">
         ${logoImg(r)}
       </a>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
@@ -360,13 +372,13 @@ function header(root, current) {
         </div>
         <div class="nav-item">
           <a class="nav-btn${active("loans")}" href="${r}commercial-loans/index.html">
-            Commercial Loans
+            Commercial Financing
             <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
           <div class="dropdown dropdown-wide">
             <div>
               <p class="dropdown-label">Operating Capital</p>
-              <a href="${r}commercial-loans/index.html"><strong>View all commercial loans</strong></a>
+              <a href="${r}commercial-loans/index.html"><strong>View all commercial financing</strong></a>
               ${loanProducts.slice(0, 5).map((item) => `<a href="${r}commercial-loans/${item.slug}.html">${esc(item.name)}</a>`).join("")}
             </div>
             <div>
@@ -375,12 +387,11 @@ function header(root, current) {
             </div>
           </div>
         </div>
-        <a class="nav-link${active("mortgages")}" href="${r}residential-mortgages.html">Residential Mortgages</a>
         <a class="nav-link${active("blog")}" href="${r}blog/index.html">Blog</a>
         <a class="nav-link${active("about")}" href="${r}about.html">About</a>
         <a class="nav-link${active("contact")}" href="${r}contact.html">Contact</a>
       </nav>
-      <a class="btn btn-gold header-cta" href="${r}quote.html">Request a Quote</a>
+      <a class="btn btn-gold header-cta" href="${r}get-started.html">Get Started</a>
     </div>
   </header>`;
 }
@@ -395,14 +406,13 @@ function footer(root) {
           <a class="logo" href="${r}index.html">
             ${logoImg(r, "light")}
           </a>
-          <p>Insurance, commercial lending, and residential mortgage solutions — together in one place.</p>
+          <p>Insurance and commercial financing — together in one place.</p>
         </div>
         <div>
           <h4>Services</h4>
           <a href="${r}insurance/index.html">Insurance</a>
-          <a href="${r}commercial-loans/index.html">Commercial Loans</a>
-          <a href="${r}residential-mortgages.html">Residential Mortgages</a>
-          <a href="${r}quote.html">Request a Quote</a>
+          <a href="${r}commercial-loans/index.html">Commercial Financing</a>
+          <a href="${r}get-started.html">Get Started</a>
         </div>
         <div>
           <h4>Company</h4>
@@ -413,23 +423,24 @@ function footer(root) {
           <a href="${r}terms.html">Terms of Use</a>
         </div>
         <div>
-          <h4>Get Started</h4>
-          <a href="${r}quote.html">Request a Quote</a>
+          <h4>Contact</h4>
+          <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
+          <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a>
+          <a href="${r}get-started.html">Get Started</a>
           <a href="${r}contact.html">Contact Us</a>
-          <a href="${r}residential-mortgages.html">Mortgage Updates</a>
         </div>
       </div>
       <div class="footer-legal">
-        <p>© ${new Date().getFullYear()} Wellesley and Associates LLC. All rights reserved.</p>
-        <p>Licensed professionals. Personal service. Clear next steps.</p>
+        <p>© ${new Date().getFullYear()} Wellesley Collective. All rights reserved.</p>
+        <p>Insurance · Commercial Financing</p>
       </div>
     </div>
   </footer>`;
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [] }) {
-  const css = `${root}css/styles.css`;
-  const js = `${root}js/main.js`;
+  const css = `${root}css/styles.css?v=5`;
+  const js = `${root}js/main.js?v=5`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -437,7 +448,7 @@ function layout({ title, description, root = "", current, content, extraScripts 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
-  <link rel="icon" href="${root}assets/brand/favicon.png" type="image/png">
+  <link rel="icon" href="${root}assets/brand/favicon.png?v=3" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -465,7 +476,7 @@ function productCards(items, folder, cta, root) {
         <h3>${esc(item.name)}</h3>
         <p>${esc(item.summary)}</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn btn-gold" href="${root}quote.html?product=${item.slug}">${esc(cta)}</a>
+          <a class="btn btn-gold" href="${root}get-started.html?product=${item.slug}">${esc(cta)}</a>
           <a class="btn btn-outline" href="${root}${folder}/${item.slug}.html">Learn More</a>
         </div>
       </article>`
@@ -477,7 +488,7 @@ function interestOptions(selected = "") {
   const groups = [
     ["Personal Insurance", personalLines],
     ["Commercial Insurance", commercialLines],
-    ["Commercial Loans", loanProducts],
+    ["Commercial Financing", loanProducts],
   ];
   let html = `<option value="">Select a service</option>`;
   for (const [label, items] of groups) {
@@ -487,16 +498,20 @@ function interestOptions(selected = "") {
     }
     html += `</optgroup>`;
   }
-  html += `<optgroup label="Other"><option value="residential-mortgages">Residential Mortgages — Updates</option><option value="general">General Inquiry</option></optgroup>`;
+  html += `<optgroup label="Other"><option value="general">General Inquiry</option></optgroup>`;
   return html;
 }
 
 function formBlock({ heading, button, notify = false, selected = "" }) {
   return `
-  <form class="form" data-form novalidate>
+  <form class="form" data-form action="https://formsubmit.co/ajax/${FIRM_EMAIL}" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Wellesley Collective website inquiry">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
     <div class="form-success">Thank you. Your request has been received. A member of our team will follow up shortly.</div>
     <div class="form-fields">
-      ${heading ? `<h3 id="quote-heading" style="font-family:var(--font-serif);font-size:28px;font-weight:500;color:var(--navy);margin-bottom:8px">${heading}</h3>` : ""}
+      ${heading ? `<h3 id="started-heading" style="font-family:var(--font-serif);font-size:28px;font-weight:500;color:var(--navy);margin-bottom:8px">${heading}</h3>` : ""}
       <div class="form-row">
         <div class="field"><label for="firstName">First name</label><input id="firstName" name="firstName" required></div>
         <div class="field"><label for="lastName">Last name</label><input id="lastName" name="lastName" required></div>
@@ -512,8 +527,8 @@ function formBlock({ heading, button, notify = false, selected = "" }) {
       }
       <div class="field"><label for="message">${notify ? "Anything we should know" : "How can we help?"}</label><textarea id="message" name="message" placeholder="${notify ? "Optional notes about your timeline or market." : "Tell us about the property, business, or coverage you need."}"></textarea></div>
       <p class="form-error"></p>
-      <button class="btn btn-gold" type="submit" id="quote-submit">${esc(button)}</button>
-      <p class="form-note">By submitting, you agree to be contacted by Wellesley and Associates LLC about your inquiry.</p>
+      <button class="btn btn-gold" type="submit" id="started-submit">${esc(button)}</button>
+      <p class="form-note">By submitting, you agree to be contacted by Wellesley Collective about your inquiry.</p>
     </div>
   </form>`;
 }
@@ -523,18 +538,18 @@ const pages = [];
 pages.push({
   file: "index.html",
   html: layout({
-    title: "Wellesley and Associates LLC | Insurance, Lending & Mortgages",
-    description: "Wellesley and Associates LLC provides insurance, commercial lending, and residential mortgage solutions in one place.",
+    title: "Wellesley Collective | Insurance & Commercial Financing",
+    description: "Wellesley Collective provides insurance and commercial financing in one place.",
     current: "home",
     content: `
     <section class="hero">
       <div class="hero-media"><img src="assets/images/hero-city.jpg" alt="Evening city skyline"></div>
       <div class="container hero-content">
-        <p class="eyebrow">Wellesley and Associates LLC</p>
+        <p class="eyebrow">Wellesley Collective</p>
         <h1>One relationship for protection and capital.</h1>
-        <p class="lede">We bring insurance, commercial lending, and residential mortgage solutions together in one place — with licensed guidance and a premium, discreet client experience.</p>
+        <p class="lede">Insurance and commercial financing — handled by one licensed team, with a clear path from first conversation to close.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="quote.html">Request a Quote</a>
+          <a class="btn btn-gold" href="get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="contact.html">Contact Us</a>
         </div>
       </div>
@@ -542,10 +557,10 @@ pages.push({
 
     <section class="trust-bar">
       <div class="container trust-row">
-        <div class="trust-item"><strong>One point of contact</strong><span>Insurance, lending, and mortgage inquiries in a single relationship.</span></div>
-        <div class="trust-item"><strong>Licensed professionals</strong><span>A licensed team for the coverage and capital you need.</span></div>
-        <div class="trust-item"><strong>Personal &amp; commercial</strong><span>Household protection and business capital under one roof.</span></div>
-        <div class="trust-item"><strong>Clear next steps</strong><span>Thoughtful intake, honest fit, and a defined path forward.</span></div>
+        <div class="trust-item"><strong>One relationship</strong><span>Insurance and commercial financing with a single point of contact.</span></div>
+        <div class="trust-item"><strong>Licensed team</strong><span>Coverage and capital handled by professionals who know the work.</span></div>
+        <div class="trust-item"><strong>Personal &amp; commercial</strong><span>Household protection and business financing in one firm.</span></div>
+        <div class="trust-item"><strong>Clear next steps</strong><span>A quote, an application, or a conversation — then a defined path forward.</span></div>
       </div>
     </section>
 
@@ -553,10 +568,10 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">What we do</p>
-          <h2>Three practices. One standard of care.</h2>
-          <p>Whether you are protecting a home, insuring a business, or raising capital for operations and commercial property, we help you evaluate options without sending you across disconnected firms.</p>
+          <h2>Two practices. One standard of care.</h2>
+          <p>Insure a business or household, and raise capital for operations and commercial property — without starting over at a different firm each time.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-2">
           <article class="card">
             <div class="card-media"><img src="assets/images/service-insurance.jpg" alt="Commercial building and work fleet, representing commercial insurance"></div>
             <div class="card-body">
@@ -570,18 +585,9 @@ pages.push({
             <div class="card-media"><img src="assets/images/service-commercial-loans.jpg" alt="Capital and loan documents on a conference table, representing commercial funding"></div>
             <div class="card-body">
               <p class="card-tag">Capital</p>
-              <h3>Commercial Loans</h3>
+              <h3>Commercial Financing</h3>
               <p>Working capital, equipment, asset-based lending, commercial real estate, bridge, construction, and SBA financing for operators and investors.</p>
               <a class="btn btn-navy" href="commercial-loans/index.html">Explore Financing</a>
-            </div>
-          </article>
-          <article class="card card-soon">
-            <div class="card-media"><img src="assets/images/service-mortgages.jpg" alt="High-rise condominium living room with a city skyline view"></div>
-            <div class="card-body">
-              <p class="card-tag">Coming Soon</p>
-              <h3>Residential Mortgages</h3>
-              <p>Home purchase, refinance, and cash-out solutions. Join the list for availability updates.</p>
-              <a class="btn btn-outline" href="residential-mortgages.html">Get Updates</a>
             </div>
           </article>
         </div>
@@ -593,12 +599,12 @@ pages.push({
         <img src="assets/images/about-office.jpg" alt="Private conference room">
         <div class="split-copy">
           <p class="kicker">How we work</p>
-          <h2>A boutique firm that handles the work itself.</h2>
-          <p>Wellesley and Associates LLC is built for clients who want a composed, professional process — not a maze of disconnected vendors. We listen first, then quote the coverage or structure the financing that fits.</p>
+          <h2>One firm. Coverage and capital in the same conversation.</h2>
+          <p>Wellesley Collective is built for clients who want a composed, professional process. We listen first, then quote the coverage or structure the financing that fits.</p>
           <p>You stay with one relationship from the first conversation through quote, close, or placement.</p>
           <div class="hero-actions">
             <a class="btn btn-navy" href="about.html">About the Firm</a>
-            <a class="btn btn-outline" href="quote.html">Get Started</a>
+            <a class="btn btn-outline" href="get-started.html">Get Started</a>
           </div>
         </div>
       </div>
@@ -624,7 +630,7 @@ pages.push({
           <div class="step">
             <div class="step-num">03</div>
             <h3>Move with clarity</h3>
-            <p>You receive a defined path — quote, underwriting, or financing next steps — without losing a single point of contact.</p>
+            <p>You receive a defined path — a quote, underwriting, or financing next steps — with the same team throughout.</p>
           </div>
         </div>
       </div>
@@ -659,7 +665,7 @@ pages.push({
         <div class="section-head">
           <p class="kicker">From the blog</p>
           <h2>What this week’s news means for clients.</h2>
-          <p>Live market headlines and Wellesley briefings written for homeowners, business owners, and commercial borrowers.</p>
+          <p>Market headlines and briefings for homeowners, business owners, and commercial borrowers.</p>
         </div>
         <div class="grid-3">
           <article class="product-card">
@@ -691,9 +697,9 @@ pages.push({
       <div class="container">
         <p class="eyebrow" style="justify-content:center">Begin a conversation</p>
         <h2>Ready to protect what you own or fund what you are building?</h2>
-        <p>Request a quote for insurance, ask about commercial financing, or leave your details for residential mortgage updates.</p>
+        <p>Get started on insurance or commercial financing.</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-gold" href="quote.html">Request a Quote</a>
+          <a class="btn btn-gold" href="get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="contact.html">Contact Us</a>
         </div>
       </div>
@@ -704,16 +710,16 @@ pages.push({
 pages.push({
   file: "about.html",
   html: layout({
-    title: "About | Wellesley and Associates LLC",
-    description: "Wellesley and Associates LLC is a licensed firm providing insurance, commercial lending, and forthcoming residential mortgage solutions.",
+    title: "About | Wellesley Collective",
+    description: "Wellesley Collective is a licensed firm providing insurance and commercial financing.",
     current: "about",
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="assets/images/about-office.jpg" alt="Conference room"></div>
+      <div class="page-hero-media"><img src="assets/images/about-office.jpg?v=5" alt="Private client office overlooking the city"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">The firm</p>
         <h1>Built for clients who value judgment as much as access.</h1>
-        <p class="lede">Wellesley and Associates LLC brings insurance, commercial lending, and forthcoming residential mortgage solutions into a single, composed relationship.</p>
+        <p class="lede">Wellesley Collective brings insurance and commercial financing into a single relationship.</p>
       </div>
     </section>
     <section class="section">
@@ -722,7 +728,7 @@ pages.push({
           <p class="kicker">Our approach</p>
           <h2>One licensed team for protection and capital.</h2>
           <p>Households and businesses rarely experience risk and capital as separate problems. A growing company needs liability coverage and a line of credit. A property owner needs the building insured and the financing structured. We were formed to sit at that intersection.</p>
-          <p>Wellesley and Associates LLC is a licensed firm. We quote insurance, structure commercial financing, and stay with the client from first conversation through close or placement.</p>
+          <p>We quote insurance, structure commercial financing, and stay with you from first conversation through close.</p>
         </div>
         <img src="assets/images/texture-stone.jpg" alt="Architectural stone and bronze detail">
       </div>
@@ -754,9 +760,9 @@ pages.push({
     </section>
     <section class="section">
       <div class="container" style="max-width:760px">
-        <p class="kicker">How we serve</p>
-        <h2>Licensed for the work we take on.</h2>
-        <p class="mt-16" style="color:var(--slate)">Wellesley and Associates LLC provides personal and commercial insurance and commercial financing. Residential mortgage services are in development and not yet available. Availability, eligibility, pricing, and coverage terms vary by state and underwriting.</p>
+        <p class="kicker">The work</p>
+        <h2>Insurance and commercial financing under one roof.</h2>
+        <p class="mt-16" style="color:var(--slate)">Wellesley Collective provides personal and commercial insurance and commercial financing. Products, pricing, and terms vary by state and underwriting.</p>
         <a class="btn btn-navy mt-32" href="contact.html">Contact the Firm</a>
       </div>
     </section>`,
@@ -766,8 +772,8 @@ pages.push({
 pages.push({
   file: "contact.html",
   html: layout({
-    title: "Contact | Wellesley and Associates LLC",
-    description: "Contact Wellesley and Associates LLC to request a quote, discuss commercial financing, or ask about residential mortgage updates.",
+    title: "Contact | Wellesley Collective",
+    description: "Contact Wellesley Collective about insurance or commercial financing.",
     current: "contact",
     content: `
     <section class="page-hero">
@@ -775,21 +781,25 @@ pages.push({
       <div class="container page-hero-content">
         <p class="eyebrow">Contact</p>
         <h1>Tell us what you need. We will take it from there.</h1>
-        <p class="lede">Share a few details and a member of the Wellesley team will follow up. For faster routing, use Request a Quote and select the specific product.</p>
+        <p class="lede">Share a few details and a member of the Wellesley team will follow up.</p>
       </div>
     </section>
     <section class="section">
       <div class="container quote-layout">
         <div>
           <p class="kicker">Reach the firm</p>
-          <h2>A considered response, not an automated queue.</h2>
-          <p class="subhead">Use this form for general questions or to discuss which practice is the right starting point.</p>
+          <h2>We’ll get back to you promptly.</h2>
+          <p class="subhead">Call, email, or use this form for general questions or to decide where to start.</p>
+          <div class="contact-direct mt-32">
+            <p class="card-tag">Call or email</p>
+            <p class="contact-phone"><a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a></p>
+            <p class="contact-email"><a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a></p>
+          </div>
           <div class="mt-32">
             <p class="card-tag">Typical inquiries</p>
             <ul class="feature-list">
               <li>Personal or commercial insurance quotes</li>
               <li>Working capital and commercial real estate financing</li>
-              <li>Residential mortgage availability updates</li>
               <li>Existing-client service and document coordination</li>
             </ul>
           </div>
@@ -802,32 +812,49 @@ pages.push({
 
 pages.push({
   file: "quote.html",
+  html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0;url=get-started.html">
+  <title>Get Started</title>
+  <script>location.replace("get-started.html" + location.search + location.hash);</script>
+</head>
+<body>
+  <p><a href="get-started.html">Continue to Get Started</a></p>
+</body>
+</html>
+`,
+});
+
+pages.push({
+  file: "get-started.html",
   html: layout({
-    title: "Request a Quote | Wellesley and Associates LLC",
-    description: "Request an insurance quote or commercial financing information from Wellesley and Associates LLC.",
+    title: "Get Started | Wellesley Collective",
+    description: "Get started with Wellesley Collective for insurance or commercial financing.",
     current: "contact",
     content: `
     <section class="page-hero">
       <div class="page-hero-media"><img src="assets/images/hero-commercial.jpg" alt="Commercial building"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Get started</p>
-        <h1 id="quote-title">Request a quote or financing review.</h1>
-        <p class="lede" id="quote-lede">Select the coverage or capital solution you have in mind. We will review the inquiry and follow up with next steps.</p>
+        <h1 id="started-title">Get started.</h1>
+        <p class="lede" id="started-lede">Tell us what you need. We will review it and follow up with next steps.</p>
       </div>
     </section>
     <section class="section">
       <div class="container quote-layout">
         <div>
           <p class="kicker">What happens next</p>
-          <h2>A short intake. A clear next step.</h2>
+          <h2>What happens next</h2>
           <ul class="feature-list">
-            <li>We confirm the product, location, and basic facts.</li>
-            <li>If the request is a fit, we prepare a quote or a financing path.</li>
+            <li>We confirm the product, location, and a few basic facts.</li>
+            <li>We review what you need and outline next steps.</li>
             <li>You stay with our team if questions come up along the way.</li>
           </ul>
-          <p class="disclaimer mt-32">Submitting this form is not an application for insurance or credit and does not bind coverage or guarantee financing.</p>
+          <p class="disclaimer mt-32">Submitting this form does not bind coverage or guarantee financing.</p>
         </div>
-        <div class="panel">${formBlock({ heading: "Request a Quote", button: "Request a Quote" })}</div>
+        <div class="panel">${formBlock({ heading: "Get Started", button: "Get Started" })}</div>
       </div>
     </section>`,
   }),
@@ -835,57 +862,35 @@ pages.push({
 
 pages.push({
   file: "residential-mortgages.html",
-  html: layout({
-    title: "Residential Mortgages — Coming Soon | Wellesley and Associates LLC",
-    description: "Wellesley and Associates LLC is expanding to include residential mortgage solutions. Notify us to receive updates.",
-    current: "mortgages",
-    content: `
-    <section class="section" style="padding-top:72px">
-      <div class="container coming-soon">
-        <div>
-          <span class="soon-badge">Coming Soon</span>
-          <h1>Residential Mortgages — Coming Soon</h1>
-          <p class="subhead">We are expanding our services to include residential mortgage solutions, including home purchase loans, refinancing, and cash-out options.</p>
-          <p class="mt-16" style="color:var(--slate)">When the practice opens, clients will be able to explore purchase, rate-and-term refinance, and cash-out conversations in the same professional setting they already use for insurance and commercial lending.</p>
-          <div class="hero-actions">
-            <a class="btn btn-outline" href="contact.html">Contact Us for Updates</a>
-          </div>
-        </div>
-        <div class="panel">
-          ${formBlock({ heading: "Notify Me When Available", button: "Notify Me When Available", notify: true })}
-        </div>
-      </div>
-    </section>
-    <section class="section section-cream">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker">What we are preparing</p>
-          <h2>Home lending, introduced with the same standard.</h2>
-        </div>
-        <div class="grid-3">
-          <article class="product-card"><h3>Home purchase</h3><p>A composed path for buyers from pre-qualification conversations through closing.</p></article>
-          <article class="product-card"><h3>Refinancing</h3><p>Rate-and-term conversations for homeowners who want to revisit an existing loan when the market or their plans change.</p></article>
-          <article class="product-card"><h3>Cash-out options</h3><p>Discussions around accessing home equity for planned uses, subject to guidelines and borrower qualification.</p></article>
-        </div>
-      </div>
-    </section>`,
-  }),
+  html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0;url=index.html">
+  <title>Wellesley Collective</title>
+  <script>location.replace("index.html" + location.search + location.hash);</script>
+</head>
+<body>
+  <p><a href="index.html">Continue to Wellesley Collective</a></p>
+</body>
+</html>
+`,
 });
 
 pages.push({
   file: "privacy.html",
   html: layout({
-    title: "Privacy Policy | Wellesley and Associates LLC",
-    description: "Privacy practices for Wellesley and Associates LLC.",
+    title: "Privacy Policy | Wellesley Collective",
+    description: "Privacy practices for Wellesley Collective.",
     current: "",
     content: `
     <section class="section">
       <div class="container" style="max-width:760px">
         <p class="kicker">Legal</p>
         <h1>Privacy Policy</h1>
-        <p class="subhead">This website is operated by Wellesley and Associates LLC. We collect only the information you choose to submit through our forms — typically your name, email, phone number, and a description of your inquiry.</p>
-        <p class="mt-16" style="color:var(--slate)">We use that information to respond to you and to quote or discuss the services you requested. We do not sell personal information. Inquiry details may be stored locally in your browser as part of the form confirmation experience and are not transmitted to a third-party processor unless you later connect a form service.</p>
-        <p class="mt-16" style="color:var(--slate)">For privacy questions, use the contact form on this website.</p>
+        <p class="subhead">This website is operated by Wellesley Collective. We collect the information you submit through our forms — typically your name, email, phone number, and a description of your inquiry.</p>
+        <p class="mt-16" style="color:var(--slate)">We use that information to respond to you and to quote or discuss the services you requested. We do not sell personal information.</p>
+        <p class="mt-16" style="color:var(--slate)">For privacy questions, email <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a> or use the contact form on this website.</p>
       </div>
     </section>`,
   }),
@@ -894,8 +899,8 @@ pages.push({
 pages.push({
   file: "terms.html",
   html: layout({
-    title: "Terms of Use | Wellesley and Associates LLC",
-    description: "Terms of use for the Wellesley and Associates LLC website.",
+    title: "Terms of Use | Wellesley Collective",
+    description: "Terms of use for the Wellesley Collective website.",
     current: "",
     content: `
     <section class="section">
@@ -903,8 +908,8 @@ pages.push({
         <p class="kicker">Legal</p>
         <h1>Terms of Use</h1>
         <p class="subhead">The materials on this website are for general information. They do not constitute an offer of insurance, a commitment to lend, legal advice, or a guarantee of any product, rate, or coverage term.</p>
-        <p class="mt-16" style="color:var(--slate)">Any insurance policy or loan is subject to eligibility, underwriting, and documentation. Residential mortgage services described on this site are not yet available.</p>
-        <p class="mt-16" style="color:var(--slate)">Content may change without notice. Use of this website is at your own discretion. For a specific request, submit a quote or contact form and speak with our team.</p>
+        <p class="mt-16" style="color:var(--slate)">Any insurance policy or loan is subject to eligibility, underwriting, and documentation.</p>
+        <p class="mt-16" style="color:var(--slate)">Content may change without notice. For a specific request, get started or contact us and speak with our team.</p>
       </div>
     </section>`,
   }),
@@ -913,8 +918,8 @@ pages.push({
 pages.push({
   file: "insurance/index.html",
   html: layout({
-    title: "Insurance | Wellesley and Associates LLC",
-    description: "Personal and commercial insurance solutions from Wellesley and Associates LLC.",
+    title: "Insurance | Wellesley Collective",
+    description: "Personal and commercial insurance solutions from Wellesley Collective.",
     root: "../",
     current: "insurance",
     content: `
@@ -922,10 +927,10 @@ pages.push({
       <div class="page-hero-media"><img src="../assets/images/hero-home.jpg" alt="Private home"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Insurance</p>
-        <h1>Personal and commercial coverage, clearly organized.</h1>
-        <p class="lede">From households to operating companies, we help clients review protection needs and request a quote.</p>
+        <h1>Personal and commercial coverage.</h1>
+        <p class="lede">From households to operating companies, we review the risk and quote the coverage that fits.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="../quote.html">Request a Quote</a>
+          <a class="btn btn-gold" href="../get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="#personal">Personal Lines</a>
           <a class="btn btn-ghost" href="#commercial">Commercial Lines</a>
         </div>
@@ -936,9 +941,9 @@ pages.push({
         <div class="section-head">
           <p class="kicker">Personal Lines</p>
           <h2>Protection for homes, vehicles, and personal liability.</h2>
-          <p>These programs are designed for individuals and families. Open any product for a plain-English explanation of what it is, who it is for, and how it works.</p>
+          <p>Coverage for individuals and families. Open a product to see who it is for, what it covers, and how it works.</p>
         </div>
-        <div class="grid-3">${productCards(personalLines, "insurance", "Request a Quote", "../")}</div>
+        <div class="grid-3">${productCards(personalLines, "insurance", "Get Started", "../")}</div>
       </div>
     </section>
     <section class="section section-cream anchor" id="commercial">
@@ -946,9 +951,9 @@ pages.push({
         <div class="section-head">
           <p class="kicker">Commercial Lines</p>
           <h2>Coverage for operations, property, people, and professional risk.</h2>
-          <p>Commercial programs can be quoted individually or reviewed as a coordinated business insurance conversation.</p>
+          <p>Quoted on their own or as a coordinated program for the business.</p>
         </div>
-        <div class="grid-3">${productCards(commercialLines, "insurance", "Request a Quote", "../")}</div>
+        <div class="grid-3">${productCards(commercialLines, "insurance", "Get Started", "../")}</div>
       </div>
     </section>
     <section class="cta-band">
@@ -964,7 +969,7 @@ pages.push({
 pages.push({
   file: "commercial-loans/index.html",
   html: layout({
-    title: "Commercial Loans | Wellesley and Associates LLC",
+    title: "Commercial Financing | Wellesley Collective",
     description: "Commercial lending solutions including working capital, equipment, ABL, CRE, bridge, construction, and SBA financing.",
     root: "../",
     current: "loans",
@@ -972,11 +977,11 @@ pages.push({
     <section class="page-hero">
       <div class="page-hero-media"><img src="../assets/images/hero-commercial.jpg" alt="Commercial campus"></div>
       <div class="container page-hero-content">
-        <p class="eyebrow">Commercial Loans</p>
+        <p class="eyebrow">Commercial Financing</p>
         <h1>Capital solutions for operators and commercial property investors.</h1>
         <p class="lede">We help business owners and CRE investors with working capital, equipment, asset-based, real estate, bridge, construction, and SBA financing.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="../quote.html?type=loan">Apply Now</a>
+          <a class="btn btn-gold" href="../get-started.html?type=loan">Apply Now</a>
           <a class="btn btn-ghost" href="../contact.html">Contact Us</a>
         </div>
       </div>
@@ -985,8 +990,8 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">Financing offerings</p>
-          <h2>A focused set of commercial capital solutions.</h2>
-          <p>Each product is explained in everyday language — what it is, who uses it, and when it is the right tool. Open a page or apply from here.</p>
+          <h2>Commercial capital, by need.</h2>
+          <p>Working capital, equipment, real estate, construction, and SBA. Open a product or apply from here.</p>
         </div>
         <div class="grid-3">${productCards(loanProducts, "commercial-loans", "Apply Now", "../")}</div>
       </div>
@@ -995,7 +1000,7 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">How we finance</p>
-          <h2>A focused set of options — not a single-credit box.</h2>
+          <h2>Operating capital, equipment, and commercial property.</h2>
         </div>
         <div class="pillars">
           <div class="pillar"><h3>Operating capital</h3><p>Working capital, lines of credit, unsecured term, and ABL conversations for day-to-day and growth needs.</p></div>
@@ -1011,7 +1016,7 @@ pages.push({
 function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, image }) {
   const root = "../";
   return layout({
-    title: `${item.name} | Wellesley and Associates LLC`,
+    title: `${item.name} | Wellesley Collective`,
     description: item.summary,
     root,
     current,
@@ -1035,7 +1040,7 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
             <span>${esc(item.name)}</span>
           </div>
           <p class="plain-callout">${esc(item.simple)}</p>
-          <h2>In plain English</h2>
+          <h2>How it works</h2>
           <p class="mt-16 product-prose">${esc(item.details)}</p>
           <div class="explain-grid">
             <div class="explain-card">
@@ -1055,13 +1060,13 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
             <p class="card-tag">Good to know</p>
             <ul class="feature-list">${item.notes.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
           </div>
-          <p class="disclaimer mt-32">Products, eligibility, and terms vary by location and underwriting. This page is informational and is not a binder, commitment, or offer.</p>
+          <p class="disclaimer mt-32">Coverage, eligibility, and terms vary by location and underwriting.</p>
         </div>
         <aside class="panel sticky-card">
           <p class="card-tag">Next step</p>
           <h3 style="font-family:var(--font-serif);font-size:30px;font-weight:500;color:var(--navy);margin:8px 0 12px">${esc(item.name)}</h3>
-          <p style="color:var(--slate);margin-bottom:20px">Share a few details and we will review the inquiry and follow up with next steps.</p>
-          <a class="btn btn-gold btn-block" href="${root}quote.html?product=${item.slug}">${esc(cta)}</a>
+          <p style="color:var(--slate);margin-bottom:20px">Share a few details and we will follow up.</p>
+          <a class="btn btn-gold btn-block" href="${root}get-started.html?product=${item.slug}">${esc(cta)}</a>
           <a class="btn btn-outline btn-block mt-8" href="${root}contact.html">Contact Us</a>
         </aside>
       </div>
@@ -1136,7 +1141,7 @@ const archivePosts = [
     description: "What the Federal Reserve’s January 28, 2026 rate hold meant for mortgages, credit cards, and business loans.",
     lede: "The first Fed meeting of 2026 did not deliver another cut. After three reductions at the end of 2025, the Committee held the federal funds rate at 3.50% to 3.75%.",
     ctaLabel: "Discuss financing",
-    ctaHref: "../quote.html",
+    ctaHref: "../get-started.html",
     body: `
       <p>On January 28, <a href="https://www.cnbc.com/2026/01/28/fed-decision-mortgage-rates-credit-cards-loans.html" target="_blank" rel="noopener">CNBC reported</a> that the Federal Reserve left its benchmark rate unchanged at the first policy decision of the year. That followed 75 basis points of cuts in September, October, and December 2025.</p>
       <p>A hold does not freeze household or business borrowing costs. Credit cards, auto loans, and many commercial facilities still reprice off prime and market yields. Mortgage rates had already started the year lower than a year earlier — around 6.15% on a 30-year fixed, versus more than 7% in early 2025 — but they were not falling just because the Fed sat still.</p>
@@ -1154,8 +1159,8 @@ const archivePosts = [
     summary: "A January directive for Fannie Mae and Freddie Mac to buy mortgage-backed securities briefly pulled 30-year rates lower.",
     description: "How the January 2026 Fannie Mae and Freddie Mac MBS purchase directive affected mortgage rates.",
     lede: "To pressure home-loan rates lower, the administration directed Fannie Mae and Freddie Mac to buy $200 billion in mortgage-backed bonds. Rates dipped. Most existing borrowers still had no reason to refinance.",
-    ctaLabel: "Ask about home financing",
-    ctaHref: "../residential-mortgages.html",
+    ctaLabel: "Review homeowners coverage",
+    ctaHref: "../get-started.html?product=homeowners-insurance",
     body: `
       <p>In early January, President Trump said Fannie Mae and Freddie Mac should buy $200 billion in mortgage-backed bonds to help lower home-loan rates. <a href="https://www.cnbc.com/2026/01/28/fed-decision-mortgage-rates-credit-cards-loans.html" target="_blank" rel="noopener">CNBC noted</a> that the average 30-year fixed rate sank briefly on the news and was near 6.15% later that month, down from more than 7% a year earlier.</p>
       <p>The Fed’s January minutes later confirmed the market reaction: MBS yields fell relative to Treasuries after the announcement. Policymakers also observed that the move was unlikely to produce a refinance wave, because most outstanding mortgages still carried rates well below the new market rate.</p>
@@ -1173,8 +1178,8 @@ const archivePosts = [
     summary: "The 30-year fixed briefly touched the high-5s to low-6s in February before inflation and geopolitics pushed rates back up.",
     description: "February 2026 mortgage rates hit a yearly low near 6%, then reversed as inflation and geopolitical risk returned.",
     lede: "February was the cheapest money of the year for many buyers. The 30-year fixed dipped as low as about 5.98%–6.09%, then the window started to close.",
-    ctaLabel: "Get mortgage updates",
-    ctaHref: "../residential-mortgages.html",
+    ctaLabel: "Get Started",
+    ctaHref: "../get-started.html",
     body: `
       <p>After the late-2025 Fed cuts and the January MBS announcement, 30-year fixed rates drifted to their 2026 low in February. <a href="https://www.forbes.com/advisor/mortgages/mortgage-interest-rates-forecast/" target="_blank" rel="noopener">Forbes Advisor</a> later put that low at 5.98%. Bankrate recorded a February dip to about 6.09% before rates moved back above 6.25% in March.</p>
       <p>That low did not last. By spring, energy prices and the Middle East conflict were pushing inflation expectations — and mortgage spreads — the other way. Wells Fargo later argued that rates likely bottomed in the first quarter near 6.18% and would drift slightly higher from there.</p>
@@ -1230,7 +1235,7 @@ const archivePosts = [
     description: "The Federal Reserve’s March 2026 hold and Summary of Economic Projections calling for one cut.",
     lede: "The second Fed meeting of the year was another hold. The first 2026 Summary of Economic Projections still showed a median of one cut — even as inflation refused to settle at 2%.",
     ctaLabel: "Discuss rates and timing",
-    ctaHref: "../quote.html",
+    ctaHref: "../get-started.html",
     body: `
       <p>At the March meeting, the Fed kept the funds rate at 3.50%–3.75%. <a href="https://finance.yahoo.com/news/live/fed-meeting-live-updates-federal-reserve-holds-rates-steady-forecasts-1-rate-cut-in-2026-180216872.html" target="_blank" rel="noopener">Yahoo Finance’s live coverage</a> noted that the first 2026 SEP maintained a median forecast for one cut during the year, matching the December projection.</p>
       <p>That forecast was a snapshot, not a promise. Mortgage rates had already begun to climb from the February low as inflation and geopolitical risk returned. A “one cut later” dots plot does not refinance a building or a house by itself.</p>
@@ -1248,7 +1253,7 @@ const archivePosts = [
     description: "April 29, 2026 FOMC hold at 3.50%–3.75% and an unusually divided Committee ahead of the Warsh transition.",
     lede: "The April 28–29 meeting held the funds rate at 3.50% to 3.75% again. The story was not the hold. It was how split the Committee had become.",
     ctaLabel: "Talk through your financing",
-    ctaHref: "../quote.html",
+    ctaHref: "../get-started.html",
     body: `
       <p>On April 29 the Fed <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm" target="_blank" rel="noopener">issued a standard hold</a>: activity expanding at a solid pace, the Committee attentive to both sides of the mandate, funds rate unchanged at 3-1/2 to 3-3/4 percent.</p>
       <p><a href="https://www.cnbc.com/2026/04/29/fed-interest-rate-decision-april-2026.html" target="_blank" rel="noopener">CNBC</a> described it as the highest level of dissent since 1992 and, potentially, Chair Jerome Powell’s final meeting before the leadership transition. Markets had fully priced a hold. What they could not price was how a more divided Fed would talk about the next hike — or cut — once a new chair took the gavel.</p>
@@ -1303,7 +1308,7 @@ const archivePosts = [
     description: "FHFA’s May 2026 house-price report and what slower appreciation means for owners and buyers.",
     lede: "Home values did not crack. They cooled. FHFA’s first-quarter House Price Index was up 1.7% year over year — a far cry from the double-digit run of the early 2020s.",
     ctaLabel: "Review homeowners coverage",
-    ctaHref: "../quote.html?product=homeowners-insurance",
+    ctaHref: "../get-started.html?product=homeowners-insurance",
     body: `
       <p>On May 26 the <a href="https://www.fhfa.gov/" target="_blank" rel="noopener">Federal Housing Finance Agency</a> reported that U.S. house prices rose 1.7% between the first quarter of 2025 and the first quarter of 2026, and 0.5% from the prior quarter. Later monthly prints showed a slight April dip and a 0.3% May rebound, with May still up 2.2% year over year.</p>
       <p>Slower appreciation is not a crash. It is a market where equity still exists but does not bail out a bad purchase. For buyers, it means you cannot assume the house will “grow into” an uncomfortable payment. For owners, it means insurance rebuild cost and market value are still diverging — replacement cost has been rising even where sale prices are only inching up.</p>
@@ -1321,7 +1326,7 @@ const archivePosts = [
     description: "The June 2026 FOMC — Kevin Warsh’s first rate vote — held the federal funds rate unchanged.",
     lede: "June 16–17 was billed as the start of a Fed “regime change.” The first vote under Chairman Kevin Warsh was still a hold.",
     ctaLabel: "Discuss your rate exposure",
-    ctaHref: "../quote.html",
+    ctaHref: "../get-started.html",
     body: `
       <p><a href="https://www.realtor.com/news/trends/kevin-warsh-fed-meeting-interest-rate-decision-june-2026/" target="_blank" rel="noopener">Realtor.com</a> framed the June meeting as Warsh’s first as the new chairman. He had called for “regime change” at the central bank. The <a href="https://www.federalreserve.gov/monetarypolicy/fomcminutes20260617.htm" target="_blank" rel="noopener">June minutes</a> show the Committee still directed the Desk to keep the funds rate in a 3-1/2 to 3-3/4 percent range, with interest on reserves at 3.65% and the primary credit rate at 3.75%.</p>
       <p>HousingWire’s recap of the same period noted this was the fourth straight pause, with May CPI at 4.2% and payrolls still adding jobs. Nine officials saw a hike by year-end in the June projections, and the median funds-rate dot moved up to 3.8%.</p>
@@ -1338,8 +1343,8 @@ const archivePosts = [
     summary: "May CPI at 4.2% and energy prices tied to the Middle East conflict kept 30-year rates in the mid-6s after the February low.",
     description: "How June 2026 inflation data and geopolitical energy prices affected mortgage and commercial borrowing costs.",
     lede: "By mid-June the February rate low was a memory. Inflation was running more than double the Fed’s target, energy prices were in the story, and mortgage rates had moved back into the mid-6% range.",
-    ctaLabel: "Get mortgage updates",
-    ctaHref: "../residential-mortgages.html",
+    ctaLabel: "Get Started",
+    ctaHref: "../get-started.html",
     body: `
       <p><a href="https://www.housingwire.com/articles/fed-holds-rates-inflation-mortgage/" target="_blank" rel="noopener">HousingWire reported</a> that the Fed held at 3.5%–3.75% as CPI ran at 4.2% and May payrolls rose by 172,000. Analysts said mortgage rates would keep tracking inflation expectations and Treasury yields more than the policy rate itself.</p>
       <p>NerdWallet later summarized the path: rates climbed sharply from early March as the Iran conflict lifted oil-price fears, dipped briefly in April, then stayed elevated. MBA economists have been explicit that the war, oil disruption, and inflation are why they see 30-year rates averaging about 6.5% through 2026–2028.</p>
@@ -1427,18 +1432,18 @@ function archiveByMonthHtml() {
 pages.push({
   file: "blog/index.html",
   html: layout({
-    title: "Blog | Wellesley and Associates LLC",
+    title: "Blog | Wellesley Collective",
     description: "Live financial updates and Wellesley briefings for homeowners, business owners, and commercial borrowers.",
     root: "../",
     current: "blog",
-    extraScripts: ["js/blog.js"],
+    extraScripts: ["js/blog.js?v=4"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media"><img src="../assets/images/hero-city.jpg" alt="City skyline"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Wellesley Insights</p>
-        <h1>Financial news that actually affects your coverage and capital.</h1>
-        <p class="lede">A finance-only desk: rates, housing, insurance, and commercial credit. No crime, celebrity, or off-topic headlines — the same lane as a markets broadcast.</p>
+        <h1>News that affects your coverage and capital.</h1>
+        <p class="lede">Rates, housing, insurance, and commercial credit — the headlines that move premiums, payments, and deal terms.</p>
       </div>
     </section>
 
@@ -1446,9 +1451,9 @@ pages.push({
       <div class="container">
         <div class="live-head">
           <div>
-            <p class="kicker"><span class="live-dot" aria-hidden="true"></span> Live desk</p>
+            <p class="kicker"><span class="live-dot" aria-hidden="true"></span> Live</p>
             <h2>Today’s market headlines</h2>
-            <p class="subhead">Live from the Fed, CNBC markets, HousingWire, and Insurance Journal. Only finance headlines are shown. Crime and off-topic stories are filtered out.</p>
+            <p class="subhead">From the Fed, CNBC, HousingWire, and Insurance Journal.</p>
           </div>
           <div class="live-actions">
             <p class="form-note" id="news-updated">Checking feeds…</p>
@@ -1464,7 +1469,7 @@ pages.push({
           <button class="filter-btn" type="button" data-filter="cre">Commercial Property</button>
         </div>
         <div id="news-grid" class="news-grid" aria-live="polite"></div>
-        <p class="disclaimer mt-24">This desk publishes markets, rates, insurance, and credit news only. It is general information, not investment, insurance, or lending advice. Confirm details with the original source.</p>
+        <p class="disclaimer mt-24">Headlines open on the original publisher. This is news, not a quote or a commitment to lend.</p>
       </div>
     </section>
 
@@ -1473,7 +1478,7 @@ pages.push({
         <div class="section-head">
           <p class="kicker">Wellesley briefings</p>
           <h2>What the news means for our clients.</h2>
-          <p>We read the same markets you feel in premiums, payments, and credit terms — then translate them into a next step.</p>
+          <p>What this week’s numbers mean for premiums, payments, and credit.</p>
         </div>
         <div class="grid-2">
           <article class="card">
@@ -1516,8 +1521,8 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">2026 archive</p>
-          <h2>Two important developments each month.</h2>
-          <p>Not every headline. The items that actually moved rates, premiums, housing, or business credit from January through now.</p>
+          <h2>January through August.</h2>
+          <p>The developments that moved rates, premiums, housing, and business credit this year.</p>
         </div>
         ${archiveByMonthHtml()}
       </div>
@@ -1535,7 +1540,7 @@ pages.push({
     date: "August 17, 2026",
     lede: "The Federal Reserve has kept the federal funds rate at 3.50% to 3.75%. July consumer prices rose 3.4% from a year earlier, and markets pulled back on the chance of a September hike. That is useful news. It is not the same thing as cheaper money.",
     ctaLabel: "Discuss financing",
-    ctaHref: "../quote.html",
+    ctaHref: "../get-started.html",
     body: `
       <p>At its July 29 meeting, the Federal Open Market Committee left the policy rate unchanged, a pause investors largely expected. <a href="https://www.usbank.com/investing/financial-perspectives/market-news/federal-reserve-tapering-asset-purchases.html" target="_blank" rel="noopener">U.S. Bank’s recap</a> noted that core PCE inflation was still running at 3.3% in June — well above the Fed’s 2% target — even as the labor market stayed firm.</p>
       <p>The newer data point is July CPI. <a href="https://www.reuters.com/business/traders-stick-narrow-bets-september-fed-hold-after-inflation-data-2026-08-12/" target="_blank" rel="noopener">Reuters reported on August 12</a> that the Consumer Price Index rose 3.4% year over year, down from 3.5% in June, while core CPI slowed to 2.5%. Traders added to bets that the Fed will hold again in September. A softer print also eased rate-hike anxiety in global markets later that week.</p>
@@ -1560,8 +1565,8 @@ pages.push({
     kicker: "For Homeowners",
     date: "August 17, 2026",
     lede: "Premiums have outpaced inflation for years, and a new industry report says keeping a policy is getting harder — not just more expensive. That matters for anyone who owns a home, a rental, or a condo.",
-    ctaLabel: "Request a homeowners review",
-    ctaHref: "../quote.html?product=homeowners-insurance",
+    ctaLabel: "Get Started",
+    ctaHref: "../get-started.html?product=homeowners-insurance",
     body: `
       <p>On August 6, <a href="https://www.cnbc.com/2026/08/06/homeowners-insurance-costs-soar-naic-report.html" target="_blank" rel="noopener">CNBC reported</a> on National Association of Insurance Commissioners findings: homeowners insurance premiums have risen faster than inflation nationwide, and insurers are dropping customers at a higher rate. After adjusting for inflation, consumers saw average premium increases of 18% in the Northeast, 25% in the Midwest, 27% in the Southeast, and 43% in the West over a seven-year window.</p>
       <p>That tracks a longer Treasury finding: from 2018 to 2022, average premiums per policy rose 8.7% faster than inflation, with the highest-risk ZIP codes paying far more than the lowest-risk ones. The Zebra’s 2026 home-trend work put the average homeowner near $2,966 a year — and found that nearly half of owners said they would struggle to pay the mortgage if premiums rose again.</p>
@@ -1588,8 +1593,8 @@ pages.push({
     kicker: "For Business Owners",
     date: "August 17, 2026",
     lede: "Credit is not wide open, but it is moving again. The Mortgage Bankers Association says commercial and multifamily originations were 16% higher in the second quarter than a year earlier — and 12% higher than the first quarter.",
-    ctaLabel: "Request financing information",
-    ctaHref: "../quote.html",
+    ctaLabel: "Apply Now",
+    ctaHref: "../get-started.html",
     body: `
       <p>On August 6, the <a href="https://www.mba.org/news-and-research/newsroom/news/2026/08/06/commercial-multifamily-borrowing-increased-16-percent-in-the-second-quarter-of-2026" target="_blank" rel="noopener">Mortgage Bankers Association</a> reported that commercial and multifamily mortgage originations rose 16% year over year in the second quarter of 2026. MBA’s Reggie Booker pointed to improving capital markets and stronger transaction activity. Office lending rose on both an annual and quarterly basis — a notable change for a sector that has spent years under pressure.</p>
       <p>The mix matters. Year over year, loan volume was up 61% for retail, 47% for office, 19% for hotels, 8% for multifamily, and 6% for industrial. Health care originations fell 19%. On the capital-source side, CMBS volume jumped 68% and bank/depository loans rose 61%, while GSE and life-company originations declined.</p>
@@ -1613,8 +1618,8 @@ pages.push({
     kicker: "Insurance",
     date: "August 17, 2026",
     lede: "Every hurricane season and spring melt, the same surprise shows up: the homeowners policy does not pay for flood. FEMA’s guidance has not changed. The risk has not gone away either.",
-    ctaLabel: "Request a flood quote",
-    ctaHref: "../quote.html?product=flood-insurance",
+    ctaLabel: "Get Started",
+    ctaHref: "../get-started.html?product=flood-insurance",
     body: `
       <p><a href="https://www.fema.gov/flood-insurance" target="_blank" rel="noopener">FEMA is direct about it</a>: most homeowners insurance does not cover flood damage. Flood insurance is a separate policy for the building, the contents, or both. It is available in participating National Flood Insurance Program communities, and it is required for many homes in high-risk zones that carry a government-backed mortgage.</p>
       <p>That requirement is the floor, not the full picture. Floods happen outside mapped high-risk zones. Updated flood maps and heavier rainfall have pulled more properties into a conversation they did not have five years ago. Industry notes heading into 2026 also flagged that many flood premiums are running 10% or more above the prior year, especially for homes newly added to flood zones.</p>
@@ -1657,7 +1662,7 @@ for (const item of personalLines) {
       folder: "insurance",
       current: "insurance",
       eyebrow: "Personal Lines",
-      cta: "Request a Quote",
+      cta: "Get Started",
       siblingLabel: "Insurance",
       siblings: personalLines,
       image: "hero-home.jpg",
@@ -1673,7 +1678,7 @@ for (const item of commercialLines) {
       folder: "insurance",
       current: "insurance",
       eyebrow: "Commercial Lines",
-      cta: "Request a Quote",
+      cta: "Get Started",
       siblingLabel: "Insurance",
       siblings: commercialLines,
       image: "hero-commercial.jpg",
@@ -1688,9 +1693,9 @@ for (const item of loanProducts) {
       item,
       folder: "commercial-loans",
       current: "loans",
-      eyebrow: "Commercial Loans",
+      eyebrow: "Commercial Financing",
       cta: "Apply Now",
-      siblingLabel: "Commercial Loans",
+      siblingLabel: "Commercial Financing",
       siblings: loanProducts,
       image: "hero-city.jpg",
     }),

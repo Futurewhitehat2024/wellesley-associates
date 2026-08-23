@@ -1,7 +1,7 @@
 {
   "name": "wellesley-associates",
   "private": true,
-  "description": "Website for Wellesley and Associates LLC",
+  "description": "Website for Wellesley Collective",
   "scripts": {
     "build": "node scripts/generate.mjs",
     "start": "npx --yes serve ."

@@ -1,15 +1,15 @@
 /* ==========================================================================
-   Wellesley & Associates LLC
+   Wellesley Collective
    ========================================================================== */
 
 :root {
-  --navy: #1b3267;
-  --navy-deep: #0d1a38;
-  --navy-mid: #243e73;
-  --navy-soft: #2c4a82;
-  --gold: #c9a76c;
-  --gold-light: #e0c992;
-  --gold-dark: #9a7b3c;
+  --navy: #122345;
+  --navy-deep: #0a1b44;
+  --navy-mid: #1a3358;
+  --navy-soft: #243e68;
+  --gold: #dbab56;
+  --gold-light: #e8c57a;
+  --gold-dark: #ad7427;
   --cream: #f6f3ec;
   --cream-dark: #ebe4d6;
   --ivory: #fbf9f5;
@@ -25,7 +25,7 @@
   --shadow-sm: 0 8px 24px rgba(11, 28, 45, 0.08);
   --radius: 14px;
   --header-h: 84px;
-  --topbar-h: 36px;
+  --topbar-h: 40px;
   --max: 1180px;
   --font-serif: "Cormorant Garamond", "Times New Roman", serif;
   --font-sans: "Outfit", "Segoe UI", sans-serif;
@@ -111,10 +111,36 @@ ul {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  height: var(--topbar-h);
+  min-height: var(--topbar-h);
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: var(--topbar-h);
+}
+
+.topbar-contact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-size: 13px;
+}
+
+.topbar-contact a {
+  color: var(--gold-light);
+  white-space: nowrap;
+}
+
+.topbar-contact a:hover {
+  color: var(--cream);
 }
 
 .site-header {
@@ -140,13 +166,13 @@ ul {
 }
 
 .logo-img {
-  height: 52px;
+  height: 58px;
   width: auto;
   display: block;
 }
 
 .logo-img-light {
-  height: 56px;
+  height: 62px;
 }
 
 .nav {
@@ -860,6 +886,34 @@ h2 {
   color: var(--muted);
 }
 
+.hp-field {
+  display: none !important;
+}
+
+.contact-direct {
+  padding: 18px 0 4px;
+}
+
+.contact-phone a,
+.contact-email a {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.contact-phone a {
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+.contact-email a {
+  font-size: 16px;
+}
+
+.contact-phone a:hover,
+.contact-email a:hover {
+  color: var(--gold-dark);
+}
+
 .form-success {
   display: none;
   padding: 22px;
@@ -1466,15 +1520,25 @@ h2 {
   .topbar {
     font-size: 10px;
     letter-spacing: 0.1em;
-    padding: 0 12px;
+    padding: 8px 0;
     text-align: center;
   }
 
+  .topbar-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .topbar-contact {
+    font-size: 12px;
+    gap: 14px;
+  }
+
   .logo-img {
-    height: 40px;
+    height: 44px;
   }
 
   .logo-img-light {
-    height: 48px;
+    height: 50px;
   }
 }
