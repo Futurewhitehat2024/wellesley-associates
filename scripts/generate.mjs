@@ -438,9 +438,23 @@ function footer(root) {
   </footer>`;
 }
 
-function layout({ title, description, root = "", current, content, extraScripts = [] }) {
-  const css = `${root}css/styles.css?v=6`;
+const SITE = "https://wellesleycollective.com";
+
+function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
+  const css = `${root}css/styles.css?v=7`;
   const js = `${root}js/main.js?v=6`;
+  const url = path ? `${SITE}/${path}` : SITE;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Wellesley Collective",
+    url: SITE,
+    email: FIRM_EMAIL,
+    telephone: FIRM_PHONE,
+    description: "Licensed firm providing personal and commercial insurance and commercial financing.",
+    areaServed: "US",
+    sameAs: [SITE],
+  };
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -448,11 +462,18 @@ function layout({ title, description, root = "", current, content, extraScripts 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
+  <link rel="canonical" href="${url}">
+  <meta property="og:site_name" content="Wellesley Collective">
+  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:description" content="${esc(description)}">
+  <meta property="og:url" content="${url}">
+  <meta property="og:type" content="website">
   <link rel="icon" href="${root}assets/brand/favicon.png?v=3" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="${css}">
+  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body>
 ${header(root, current)}
@@ -589,6 +610,32 @@ function leadForm({ root = "", product = "", need = "" }) {
   </form>`;
 }
 
+function relatedReading(items, root) {
+  if (!items || !items.length) return "";
+  return `
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Guides</p>
+          <h2>Read this before you quote or apply.</h2>
+        </div>
+        <div class="grid-3">
+          ${items
+            .map(
+              (g) => `
+            <article class="product-card">
+              <p class="card-tag">Guide</p>
+              <h3>${esc(g.title)}</h3>
+              <p>${esc(g.summary)}</p>
+              <a class="btn btn-outline" href="${root}blog/${g.slug}.html">Read guide</a>
+            </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>`;
+}
+
 function convertBand({ root, product = "", need = "" }) {
   return `
     <section class="section lead-band">
@@ -652,6 +699,224 @@ function formBlock({ heading, button, notify = false, selected = "" }) {
   </form>`;
 }
 
+const guides = [
+  {
+    slug: "renewing-commercial-liability",
+    title: "What to review before renewing commercial liability",
+    summary: "Limits, additional insureds, class codes, and the claims that actually blow through a $1 million GL policy.",
+    description: "A practical renewal checklist for general liability, BOP, and commercial umbrella from Wellesley Collective.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "A commercial liability renewal is not a rubber stamp. The policy that fit last year can be the wrong limit, the wrong class, or the wrong additional-insured setup for the work you are doing now.",
+    ctaLabel: "Review general liability",
+    ctaHref: "../insurance/general-liability.html",
+    body: `
+      <p>Most businesses carry <a href="../insurance/general-liability.html">general liability</a> because a landlord, a general contractor, or a client asked for a certificate. That is a reason to buy it. It is not a reason to renew it on autopilot.</p>
+      <p>Start with the work, not the expiring binder. If you added employees, a new service, a second location, or vehicles, the expiring <abbr title="General Liability">GL</abbr> form may still say “office” while you are on job sites. Class codes and descriptions that lag the operation are how claims get argued later.</p>
+      <h2>Limits and the layer above them</h2>
+      <p>One million dollars still shows up on a lot of certificates. Contracts increasingly ask for two, five, or more. If a job-site injury or a serious auto claim would not finish inside the primary limit, price a <a href="../insurance/commercial-umbrella.html">commercial umbrella</a> instead of hoping the primary policy stretches.</p>
+      <h2>Certificates, additional insureds, and waivers</h2>
+      <p>The certificate is not the policy. If a GC wants additional-insured wording, a waiver of subrogation, or primary-and-noncontributory language, those have to live on the form — not only on the PDF you email. Review the last six certificates you issued. If they all request something your policy does not actually grant, fix the policy before the next bid.</p>
+      <h2>What else should sit next to GL</h2>
+      <ul>
+        <li>Employees on payroll almost always mean <a href="../insurance/workers-compensation.html">workers’ compensation</a>, not a GL endorsement.</li>
+        <li>Work trucks and employee errands belong on <a href="../insurance/commercial-auto.html">commercial auto</a>, including hired and non-owned coverage when it fits.</li>
+        <li>A small office or shop may still be better in a <a href="../insurance/business-owners-policy.html">BOP</a> than in a standalone GL plus a thin property form. See our guide on <a href="bop-vs-gl-and-property.html">BOP vs. separate GL and property</a>.</li>
+        <li>Tools and machines that leave the shop need <a href="../insurance/inland-marine.html">inland marine</a>, not a building limit at the warehouse address.</li>
+      </ul>
+      <p>Bring last year’s policy, this year’s contracts, payroll, and a plain list of what you actually do. Wellesley Collective will tell you whether to renew, restructure, or add a layer — and follow up within one business day.</p>
+    `,
+  },
+  {
+    slug: "bridge-vs-permanent-cre",
+    title: "Bridge loan vs. permanent CRE financing",
+    summary: "When speed is the product, when a 10-year mortgage is the product, and what a clean exit looks like.",
+    description: "How Wellesley Collective compares bridge financing and permanent commercial real estate loans for acquisitions, renovations, and maturities.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "A bridge loan is not a cheaper commercial mortgage. It is a short-term tool for a defined gap. Permanent CRE debt is what you take out when the story is stable.",
+    ctaLabel: "Compare CRE options",
+    ctaHref: "../commercial-loans/commercial-real-estate.html",
+    body: `
+      <p>Borrowers mix these up because both can fund a building. They are not interchangeable.</p>
+      <p><a href="../commercial-loans/bridge-financing.html">Bridge financing</a> exists for the messy middle: you won a property on a 30-day clock, you are renovating, a loan is maturing before the take-out is ready, or occupancy is not yet where a permanent lender wants it. The term is short on purpose. Cost is higher on purpose. The file has to answer one question on day one: how do we get off this loan?</p>
+      <p>A <a href="../commercial-loans/commercial-real-estate.html">commercial real estate loan</a> is the longer hold — purchase, refinance, or recapitalization on multifamily, industrial, retail, office, hotel, or self-storage that already underwrites. Rent rolls, occupancy, sponsorship, and a capital stack that makes sense at today’s rates matter more than speed.</p>
+      <h2>Use a bridge when</h2>
+      <ul>
+        <li>Closing has to happen before permanent underwriting can finish.</li>
+        <li>You are executing a value-add plan and the exit is a refinance or sale you can describe in one sentence.</li>
+        <li>A 2026 or 2027 maturity is close and you need time, not a 10-year story you do not have yet.</li>
+      </ul>
+      <h2>Use permanent CRE when</h2>
+      <ul>
+        <li>The asset is leased or owner-occupied and the cash flow is the story.</li>
+        <li>You want duration, not a 12-month fuse.</li>
+        <li>You occupy the building and <a href="../commercial-loans/sba-loans.html">SBA 504</a> may be the cleaner owner-user path.</li>
+      </ul>
+      <p>If the project is still in the ground, start with <a href="../commercial-loans/construction-development.html">construction financing</a>, not a bridge labeled as construction. Draws, inspections, and a take-out are a different file. Wellesley Collective will say which structure fits before you spend a month in the wrong box.</p>
+    `,
+  },
+  {
+    slug: "bop-vs-gl-and-property",
+    title: "BOP vs. separate general liability and property",
+    summary: "When a packaged business owners policy is enough, and when a contractor or manufacturer has already outgrown it.",
+    description: "How Wellesley Collective decides between a BOP and standalone general liability plus commercial property.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "A BOP is a bundle: liability and property in one policy. It is the right starting point for many offices and shops. It is the wrong box for a lot of contractors and anything that looks like heavy operations.",
+    ctaLabel: "Review a BOP",
+    ctaHref: "../insurance/business-owners-policy.html",
+    body: `
+      <p>A <a href="../insurance/business-owners-policy.html">business owners policy</a> exists because small firms keep buying the same two things: protect the stuff, and protect the business if someone gets hurt. Packaging <a href="../insurance/general-liability.html">general liability</a> with <a href="../insurance/commercial-property.html">commercial property</a> can be simpler and cheaper than two custom forms.</p>
+      <p>Eligibility is the catch. Carriers write BOPs for offices, retail, and light service. They do not write them for every trade, every manufacturer, or every risk that lives on job sites all day. If the operation has already outgrown the box, forcing a BOP is how you get a non-renewal or a denied class.</p>
+      <h2>Stay in a BOP when</h2>
+      <ul>
+        <li>You have a defined location, modest payroll, and customers who come to you.</li>
+        <li>You want one policy for contents, the suite, and slip-and-fall liability.</li>
+        <li>Business income can be added without building a custom package.</li>
+      </ul>
+      <h2>Split GL and property when</h2>
+      <ul>
+        <li>You are an <a href="../insurance/artisan-contractors.html">artisan contractor</a> whose real exposure is on other people’s property.</li>
+        <li>The building, inventory, or equipment limit is larger than a BOP appetite.</li>
+        <li>You need a <a href="../insurance/commercial-umbrella.html">commercial umbrella</a>, <a href="../insurance/workers-compensation.html">workers’ compensation</a>, and <a href="../insurance/commercial-auto.html">commercial auto</a> as a coordinated program, not as afterthoughts on a package.</li>
+      </ul>
+      <p>Either way, a BOP is not cyber, not E&amp;O, and not flood. Read <a href="renewing-commercial-liability.html">what to review before renewing commercial liability</a> before you treat the anniversary as automatic.</p>
+    `,
+  },
+  {
+    slug: "sba-7a-what-lenders-review",
+    title: "What a lender reviews on an SBA 7(a) or 504 file",
+    summary: "Use of proceeds, occupancy, cash flow, and the documents that keep an SBA file moving after SBSS scoring went away.",
+    description: "A plain-English list of what SBA 7(a) and 504 underwriting looks at, from Wellesley Collective.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "SBA loans are still one of the better tools for owner-occupied real estate, equipment, and certain acquisitions. They are not grants, and they are no longer a FICO-shortcut product.",
+    ctaLabel: "Ask about SBA financing",
+    ctaHref: "../commercial-loans/sba-loans.html",
+    body: `
+      <p>Wellesley Collective treats <a href="../commercial-loans/sba-loans.html">SBA loans</a> as regular commercial credit with a government guarantee behind part of the note. That guarantee can mean a longer term or a lower down payment. It does not mean thin files get a yes.</p>
+      <p>7(a) is the flexible program: working capital, equipment, some acquisitions, and some real estate. 504 is the owner-occupied real estate and long-life equipment program. You generally cannot use 504 to buy a purely investment building. Occupancy rules are real.</p>
+      <h2>What belongs in the package</h2>
+      <ul>
+        <li>Business and personal tax returns, plus an interim financial statement.</li>
+        <li>A sentence on use of proceeds that matches the bank statements.</li>
+        <li>For real estate, who will occupy the building and at what percentage.</li>
+        <li>Debt schedule, ownership, and any affiliate companies.</li>
+      </ul>
+      <p>After SBA ended SBSS scoring for 7(a) small loans in 2026, more files are underwritten the old way: cash flow, time in business, and documentation. A complete package still clears. A score-era shortcut often stalls. See our briefing on <a href="march-sba-7a-underwriting.html">the March 2026 7(a) underwriting change</a>.</p>
+      <p>If SBA is the wrong tool, say so early and look at <a href="../commercial-loans/commercial-real-estate.html">conventional CRE</a>, <a href="../commercial-loans/equipment-financing.html">equipment financing</a>, or <a href="../commercial-loans/working-capital.html">working capital</a> instead of forcing a 504 onto an investment story.</p>
+    `,
+  },
+  {
+    slug: "homeowners-renewal-checklist",
+    title: "What to review before a homeowners insurance renewal",
+    summary: "Rebuild cost, roof, water, deductibles, and the flood gap that a standard HO-3 never fills.",
+    description: "A homeowners renewal checklist from Wellesley Collective covering dwelling limits, endorsements, and flood.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "Premiums have been rising faster than inflation, and more policies are being non-renewed. The worst time to notice a gap is after the letter arrives — or after the loss.",
+    ctaLabel: "Review homeowners coverage",
+    ctaHref: "../insurance/homeowners-insurance.html",
+    body: `
+      <p><a href="../insurance/homeowners-insurance.html">Homeowners insurance</a> is supposed to rebuild the house you live in, not honor the price you paid in 2017. Start the renewal with rebuild cost, not Zillow.</p>
+      <h2>Five items that actually change the claim</h2>
+      <ul>
+        <li><strong>Dwelling limit.</strong> Construction and labor have outrun sale prices in a lot of ZIP codes. A cheap limit is a coinsurance problem.</li>
+        <li><strong>Roof and water.</strong> Age, material, water backup, and ordinance-or-law coverage decide more claims than the marketing brochure.</li>
+        <li><strong>Wind, hail, and hurricane deductibles.</strong> A percentage deductible on a coastal or hail-exposed house is a different product than a $2,500 flat.</li>
+        <li><strong>Liability.</strong> Teen drivers, a pool, a rental unit, or a boat are why people add a <a href="../insurance/personal-umbrella.html">personal umbrella</a>.</li>
+        <li><strong>Flood.</strong> It is still not in the homeowners form. Price <a href="../insurance/flood-insurance.html">flood insurance</a> as its own policy. We keep a standing reminder: <a href="flood-coverage-reminder.html">flood is still not in a standard homeowners policy</a>.</li>
+      </ul>
+      <p>Condo owners should match the HO-6 to the association master policy, including loss assessment. Landlords should not assume a tenant’s renters policy protects the building. If a non-renewal letter already went out, do not wait out the remaining days. Replacement markets move while you still have coverage in force.</p>
+      <p>Wellesley Collective will review the declaration page against the house you actually occupy and follow up within one business day.</p>
+    `,
+  },
+  {
+    slug: "working-capital-vs-line-of-credit",
+    title: "Working capital vs. a business line of credit",
+    summary: "A lump sum for a defined gap, or a reusable facility you draw and repay. Which one matches the cash-flow problem.",
+    description: "How Wellesley Collective chooses between short-term working capital and a revolving business line of credit.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "Both products put cash into operations. One is a closed-end advance. The other is a reusable pool. Mixing them up is how you pay for the wrong structure.",
+    ctaLabel: "Discuss business credit",
+    ctaHref: "../commercial-loans/working-capital.html",
+    body: `
+      <p><a href="../commercial-loans/working-capital.html">Working capital</a> is usually a short-term lump sum for a defined use: payroll through a slow month, a seasonal inventory build, a supplier deposit. You take the money, you pay it back, you are done. It is a poor fit for buying a building and a poor fit for a need that repeats every month forever.</p>
+      <p>A <a href="../commercial-loans/business-lines-of-credit.html">business line of credit</a> is a reusable limit. You draw, repay, and draw again. Interest typically sits on the outstanding balance, not the full commitment. That is the right tool when inventory and receivables move in a cycle and you are tired of opening a new short-term loan every quarter.</p>
+      <h2>Pick working capital when</h2>
+      <ul>
+        <li>The use is one-time and you can point to the repayment.</li>
+        <li>You would rather have a known payoff date than an open facility.</li>
+      </ul>
+      <h2>Pick a line when</h2>
+      <ul>
+        <li>The same gap keeps showing up — suppliers, invoices, seasonality.</li>
+        <li>You want the facility in place before you need it.</li>
+      </ul>
+      <p>If unpaid invoices and inventory are the real collateral story, look at <a href="../commercial-loans/asset-based-lending.html">asset-based lending</a> instead of stretching an unsecured line. If the money is for a machine, use <a href="../commercial-loans/equipment-financing.html">equipment financing</a>. Wellesley Collective will match the facility to the cash-flow problem, not to the largest number someone will quote.</p>
+    `,
+  },
+  {
+    slug: "commercial-auto-vs-personal-auto",
+    title: "When a work vehicle needs commercial auto, not a personal policy",
+    summary: "Title, use, deliveries, and hired/non-owned coverage — the points where a personal auto policy usually stops.",
+    description: "How Wellesley Collective decides between personal auto and commercial auto for work trucks, vans, and employee driving.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "If the vehicle is titled to the business, or used mainly for work, a personal auto policy is usually the wrong policy. Commercial auto is the form written for that use.",
+    ctaLabel: "Review commercial auto",
+    ctaHref: "../insurance/commercial-auto.html",
+    body: `
+      <p><a href="../insurance/auto-insurance.html">Personal auto</a> is built for household driving. <a href="../insurance/commercial-auto.html">Commercial auto</a> is built for vehicles the business owns, rents, or sends employees out in. Insurers care about title, use, and radius — not what you call the truck in conversation.</p>
+      <p>A service van, a contractor fleet, or a car that does deliveries all day is commercial use even if it comes home at night. Putting that unit on a personal policy is how a claim gets delayed or denied. The same gap shows up when staff run errands in their own cars on company business. That is hired and non-owned auto, and it belongs on the commercial form when the exposure is real.</p>
+      <h2>Move it to commercial auto if</h2>
+      <ul>
+        <li>The title is in the company name.</li>
+        <li>The vehicle carries tools, inventory, or customers as a regular part of the job.</li>
+        <li>You rent vans or have employees driving personal cars for work.</li>
+        <li>A personal insurer has already said the use is commercial.</li>
+      </ul>
+      <p>Liability limits on the auto policy should match the rest of the program. If GL and auto are $1 million and a contract wants $5 million, the next conversation is a <a href="../insurance/commercial-umbrella.html">commercial umbrella</a>, not a hope that the auto policy will be enough. Pair this with <a href="renewing-commercial-liability.html">the commercial liability renewal checklist</a> before the next certificate request.</p>
+    `,
+  },
+];
+
+function guidesFor(...slugs) {
+  return slugs.map((slug) => guides.find((g) => g.slug === slug)).filter(Boolean);
+}
+
+const PRODUCT_GUIDES = {
+  "homeowners-insurance": ["homeowners-renewal-checklist", "renewing-commercial-liability"],
+  "auto-insurance": ["commercial-auto-vs-personal-auto", "homeowners-renewal-checklist"],
+  "renters-insurance": ["homeowners-renewal-checklist"],
+  "condo-insurance": ["homeowners-renewal-checklist"],
+  "personal-umbrella": ["homeowners-renewal-checklist"],
+  "watercraft-insurance": ["homeowners-renewal-checklist"],
+  "flood-insurance": ["homeowners-renewal-checklist"],
+  "general-liability": ["renewing-commercial-liability", "bop-vs-gl-and-property"],
+  "commercial-property": ["bop-vs-gl-and-property", "renewing-commercial-liability"],
+  "commercial-auto": ["commercial-auto-vs-personal-auto", "renewing-commercial-liability"],
+  "workers-compensation": ["renewing-commercial-liability"],
+  "business-owners-policy": ["bop-vs-gl-and-property", "renewing-commercial-liability"],
+  "artisan-contractors": ["renewing-commercial-liability", "commercial-auto-vs-personal-auto"],
+  "professional-liability": ["renewing-commercial-liability"],
+  "inland-marine": ["renewing-commercial-liability"],
+  "commercial-umbrella": ["renewing-commercial-liability", "bop-vs-gl-and-property"],
+  "cyber-liability": ["renewing-commercial-liability"],
+  "commercial-flood": ["homeowners-renewal-checklist", "renewing-commercial-liability"],
+  "working-capital": ["working-capital-vs-line-of-credit", "sba-7a-what-lenders-review"],
+  "equipment-financing": ["working-capital-vs-line-of-credit", "sba-7a-what-lenders-review"],
+  "asset-based-lending": ["working-capital-vs-line-of-credit"],
+  "business-lines-of-credit": ["working-capital-vs-line-of-credit"],
+  "unsecured-term-loans": ["working-capital-vs-line-of-credit"],
+  "commercial-real-estate": ["bridge-vs-permanent-cre", "sba-7a-what-lenders-review"],
+  "bridge-financing": ["bridge-vs-permanent-cre"],
+  "construction-development": ["bridge-vs-permanent-cre"],
+  "sba-loans": ["sba-7a-what-lenders-review", "bridge-vs-permanent-cre"],
+};
+
 const pages = [];
 
 pages.push({
@@ -659,6 +924,7 @@ pages.push({
   html: layout({
     title: "Wellesley Collective | Insurance & Commercial Financing",
     description: "Wellesley Collective provides insurance and commercial financing in one place.",
+    path: "index.html",
     current: "home",
     content: `
     <section class="hero">
@@ -782,32 +1048,32 @@ pages.push({
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">From the blog</p>
-          <h2>What this week’s news means for clients.</h2>
-          <p>Market headlines and briefings for homeowners, business owners, and commercial borrowers.</p>
+          <p class="kicker">Guides from Wellesley Collective</p>
+          <h2>Practical reading before you quote or apply.</h2>
+          <p>Evergreen explainers on the products people actually search — plus this week’s market briefings.</p>
         </div>
         <div class="grid-3">
           <article class="product-card">
-            <p class="card-tag">Rates &amp; Economy</p>
-            <h3>The Fed is holding. Borrowing costs are not standing still.</h3>
-            <p>July CPI cooled to 3.4%, and traders pulled back on a September hike. Here is what that means for commercial loans and home financing.</p>
-            <a class="btn btn-outline" href="blog/fed-holds-rates.html">Read briefing</a>
+            <p class="card-tag">Guide</p>
+            <h3>What to review before renewing commercial liability</h3>
+            <p>Limits, additional insureds, class codes, and the layer above a $1 million GL policy.</p>
+            <a class="btn btn-outline" href="blog/renewing-commercial-liability.html">Read guide</a>
           </article>
           <article class="product-card">
-            <p class="card-tag">For Homeowners</p>
-            <h3>Home insurance costs are still climbing.</h3>
-            <p>A new NAIC-based report shows premiums rising far faster than inflation — and more policies being non-renewed. What to review before your next renewal.</p>
-            <a class="btn btn-outline" href="blog/homeowners-insurance-costs.html">Read briefing</a>
+            <p class="card-tag">Guide</p>
+            <h3>Bridge loan vs. permanent CRE financing</h3>
+            <p>When speed is the product, when a 10-year mortgage is the product, and what a clean exit looks like.</p>
+            <a class="btn btn-outline" href="blog/bridge-vs-permanent-cre.html">Read guide</a>
           </article>
           <article class="product-card">
-            <p class="card-tag">For Business Owners</p>
-            <h3>Commercial lending picked up in the second quarter.</h3>
-            <p>MBA data shows commercial and multifamily originations up 16% year over year, including a rebound in office financing.</p>
-            <a class="btn btn-outline" href="blog/commercial-lending-rebounds.html">Read briefing</a>
+            <p class="card-tag">Guide</p>
+            <h3>What to review before a homeowners insurance renewal</h3>
+            <p>Rebuild cost, roof, deductibles, and the flood gap a standard policy never fills.</p>
+            <a class="btn btn-outline" href="blog/homeowners-renewal-checklist.html">Read guide</a>
           </article>
         </div>
         <div class="hero-actions mt-32">
-          <a class="btn btn-navy" href="blog/index.html">Visit the Blog</a>
+          <a class="btn btn-navy" href="blog/index.html">All guides and briefings</a>
         </div>
       </div>
     </section>
@@ -831,6 +1097,7 @@ pages.push({
   html: layout({
     title: "About | Wellesley Collective",
     description: "Wellesley Collective is a licensed firm providing insurance and commercial financing.",
+    path: "about.html",
     current: "about",
     content: `
     <section class="page-hero">
@@ -892,6 +1159,7 @@ pages.push({
   file: "contact.html",
   html: layout({
     title: "Contact | Wellesley Collective",
+    path: "contact.html",
     description: "Contact Wellesley Collective about insurance or commercial financing.",
     current: "contact",
     content: `
@@ -950,6 +1218,7 @@ pages.push({
   file: "get-started.html",
   html: layout({
     title: "Get Started | Wellesley Collective",
+    path: "get-started.html",
     description: "Get started with Wellesley Collective for insurance or commercial financing.",
     current: "contact",
     content: `
@@ -1040,6 +1309,7 @@ pages.push({
     title: "Insurance | Wellesley Collective",
     description: "Quote GL, BOP, workers’ comp, commercial auto, cyber, inland marine, homeowners, auto, umbrella, and flood with Wellesley Collective.",
     root: "../",
+    path: "insurance/index.html",
     current: "insurance",
     content: `
     <section class="page-hero">
@@ -1091,7 +1361,11 @@ pages.push({
         ${productIndex(commercialLines, "insurance", "../")}
       </div>
     </section>
-    <div id="start">${convertBand({ root: "../", product: "Insurance", need: "insurance" })}</div>`,
+    ${relatedReading(
+      guidesFor("renewing-commercial-liability", "bop-vs-gl-and-property", "homeowners-renewal-checklist"),
+      "../"
+    )}
+    <div id="start">${convertBand({ root: "../", product: "Insurance", need: "insurance" })}</div>`
   }),
 });
 
@@ -1101,6 +1375,7 @@ pages.push({
     title: "Commercial Financing | Wellesley Collective",
     description: "Apply for working capital, equipment, ABL, lines of credit, CRE, bridge, construction, and SBA financing with Wellesley Collective.",
     root: "../",
+    path: "commercial-loans/index.html",
     current: "loans",
     content: `
     <section class="page-hero">
@@ -1148,17 +1423,22 @@ pages.push({
         <p class="disclaimer mt-32">Any loan is subject to credit approval, eligibility, and documentation.</p>
       </div>
     </section>
-    <div id="start">${convertBand({ root: "../", product: "Commercial Financing", need: "financing" })}</div>`,
+    ${relatedReading(
+      guidesFor("bridge-vs-permanent-cre", "sba-7a-what-lenders-review", "working-capital-vs-line-of-credit"),
+      "../"
+    )}
+    <div id="start">${convertBand({ root: "../", product: "Commercial Financing", need: "financing" })}</div>`
   }),
 });
 
-function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "" }) {
+function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "", guides = [] }) {
   const root = "../";
   const related = pickRelated(item, siblings, relatedExtra, 6);
   return layout({
     title: `${item.name} | Wellesley Collective`,
     description: item.summary,
     root,
+    path: `${folder}/${item.slug}.html`,
     current,
     content: `
     <section class="page-hero">
@@ -1232,15 +1512,17 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
             .join("")}
         </div>
       </div>
-    </section>`,
+    </section>
+    ${relatedReading(guides, root)}`,
   });
 }
 
 function insightPage({ slug, title, description, kicker, date, lede, body, ctaLabel, ctaHref }) {
   return layout({
-    title: `${title} | Wellesley Insights`,
+    title: `${title} | Wellesley Collective`,
     description,
     root: "../",
+    path: `blog/${slug}.html`,
     current: "blog",
     content: `
     <section class="section" style="padding-top:56px">
@@ -1573,8 +1855,9 @@ pages.push({
   file: "blog/index.html",
   html: layout({
     title: "Blog | Wellesley Collective",
-    description: "Live financial updates and Wellesley briefings for homeowners, business owners, and commercial borrowers.",
+    description: "Guides and briefings from Wellesley Collective on insurance, commercial financing, rates, and commercial real estate.",
     root: "../",
+    path: "blog/index.html",
     current: "blog",
     extraScripts: ["js/blog.js?v=4"],
     content: `
@@ -1583,7 +1866,30 @@ pages.push({
       <div class="container page-hero-content">
         <p class="eyebrow">Wellesley Insights</p>
         <h1>News that affects your coverage and capital.</h1>
-        <p class="lede">Rates, housing, insurance, and commercial credit — the headlines that move premiums, payments, and deal terms.</p>
+        <p class="lede">Guides you can use at renewal or application, plus the headlines that move premiums, payments, and deal terms — from Wellesley Collective.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Guides</p>
+          <h2>Evergreen reading for coverage and capital.</h2>
+          <p>Named products, written so you can act — then a form if you want Wellesley Collective to review the file.</p>
+        </div>
+        <div class="grid-3">
+          ${guides
+            .map(
+              (g) => `
+            <article class="product-card">
+              <p class="card-tag">Guide</p>
+              <h3>${esc(g.title)}</h3>
+              <p>${esc(g.summary)}</p>
+              <a class="btn btn-outline" href="${g.slug}.html">Read guide</a>
+            </article>`
+            )
+            .join("")}
+        </div>
       </div>
     </section>
 
@@ -1776,6 +2082,23 @@ pages.push({
   }),
 });
 
+for (const post of guides) {
+  pages.push({
+    file: `blog/${post.slug}.html`,
+    html: insightPage({
+      slug: post.slug,
+      title: post.title,
+      description: post.description,
+      kicker: post.kicker,
+      date: post.date,
+      lede: post.lede,
+      body: post.body,
+      ctaLabel: post.ctaLabel,
+      ctaHref: post.ctaHref,
+    }),
+  });
+}
+
 for (const post of archivePosts) {
   if (post.existing) continue;
   pages.push({
@@ -1808,6 +2131,7 @@ for (const item of personalLines) {
       relatedExtra: commercialLines,
       image: "hero-home.jpg",
       need: "insurance",
+      guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
 }
@@ -1826,6 +2150,7 @@ for (const item of commercialLines) {
       relatedExtra: personalLines,
       image: "hero-commercial.jpg",
       need: "insurance",
+      guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
 }
@@ -1843,6 +2168,7 @@ for (const item of loanProducts) {
       siblings: loanProducts,
       image: "hero-city.jpg",
       need: "financing",
+      guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
 }
@@ -1855,3 +2181,18 @@ for (const page of pages) {
 }
 
 console.log(`Generated ${pages.length} pages.`);
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages
+  .filter((page) => page.file.endsWith(".html") && page.file !== "quote.html" && page.file !== "residential-mortgages.html")
+  .map((page) => `  <url><loc>${SITE}/${page.file}</loc></url>`)
+  .join("\n")}
+</urlset>
+`;
+fs.writeFileSync(path.join(rootDir, "sitemap.xml"), sitemap);
+fs.writeFileSync(
+  path.join(rootDir, "robots.txt"),
+  `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`
+);
+console.log("wrote sitemap.xml and robots.txt");
