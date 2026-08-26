@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=5">
+  <link rel="stylesheet" href="../css/styles.css?v=6">
 </head>
 <body>
 
@@ -83,6 +83,17 @@
         <p class="eyebrow">Commercial Financing</p>
         <h1>Working Capital / Short-Term Financing</h1>
         <p class="lede">Flexible funding to support day-to-day operations and cash flow needs.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#start">Apply Now</a>
+          <a class="btn btn-ghost" href="#related">Related products</a>
+        </div>
+      </div>
+    </section>
+    
+    <section class="who-bar">
+      <div class="container">
+        <p class="card-tag">Who this is for</p>
+        <p>Owners with lumpy or seasonal sales · Companies waiting on customer invoices · Businesses stocking up before a busy season · Operators who need payroll or supplier coverage without selling equity</p>
       </div>
     </section>
     <section class="section">
@@ -100,7 +111,7 @@
           <p class="mt-16 product-prose">Most businesses do not get paid the same day they spend. You buy inventory in March, pay staff every two weeks, and collect from customers in April or May. Working capital and other short-term facilities exist to cover that gap. They are a poor fit for buying real estate or making a 10-year bet. They are a good fit for a seasonal build, a large purchase order, or a stretch of slow collections. We look at revenue, bank statements, and what the money will actually be used for, then match the term to the need instead of putting a long loan on a short problem.</p>
           <div class="explain-grid">
             <div class="explain-card">
-              <p class="card-tag">Who it’s for</p>
+              <p class="card-tag">Who this is for</p>
               <ul class="feature-list"><li>Owners with lumpy or seasonal sales</li><li>Companies waiting on customer invoices</li><li>Businesses stocking up before a busy season</li><li>Operators who need payroll or supplier coverage without selling equity</li></ul>
             </div>
             <div class="explain-card">
@@ -118,37 +129,81 @@
           </div>
           <p class="disclaimer mt-32">Coverage, eligibility, and terms vary by location and underwriting.</p>
         </div>
-        <aside class="panel sticky-card">
-          <p class="card-tag">Next step</p>
-          <h3 style="font-family:var(--font-serif);font-size:30px;font-weight:500;color:var(--navy);margin:8px 0 12px">Working Capital / Short-Term Financing</h3>
-          <p style="color:var(--slate);margin-bottom:20px">Share a few details and we will follow up.</p>
-          <a class="btn btn-gold btn-block" href="../get-started.html?product=working-capital">Apply Now</a>
-          <a class="btn btn-outline btn-block mt-8" href="../contact.html">Contact Us</a>
+        <aside class="panel sticky-card" id="start">
+          
+  <form class="form form-lead" data-form action="https://formsubmit.co/ajax/rasheed@wellesleycollective.com" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Wellesley Collective website inquiry">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="page" value="Working Capital / Short-Term Financing">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
+    <div class="form-success">Thank you. We will follow up within one business day.</div>
+    <div class="form-fields">
+      <h3 class="lead-heading">Tell us what you need.</h3>
+      <div class="form-row">
+        <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" required></div>
+        <div class="field"><label for="lead-phone">Phone</label><input id="lead-phone" name="phone" type="tel" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" required></div>
+        <div class="field"><label for="lead-need">Need</label>
+          <select id="lead-need" name="need" required>
+            <option value="">Insurance / Financing / Both</option>
+            <option value="insurance">Insurance</option><option value="financing" selected>Financing</option><option value="both">Both</option>
+          </select>
+        </div>
+      </div>
+      <p class="form-error"></p>
+      <button class="btn btn-gold" type="submit">Get Started</button>
+      <p class="form-note">We’ll follow up within one business day.</p>
+    </div>
+  </form>
         </aside>
       </div>
     </section>
-    <section class="section section-cream">
+    <section class="section section-cream" id="related">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Related</p>
-          <h2>Continue exploring commercial financing.</h2>
+          <p class="kicker">Related products</p>
+          <h2>Other policies and facilities people pair with this.</h2>
         </div>
         <div class="grid-3">
           
             <article class="product-card">
               <h3>Equipment Financing</h3>
+              <p class="who-line">Contractors buying trucks, lifts, or tools · Manufacturers and shops adding machinery</p>
               <p>Financing for machinery, vehicles, and business equipment.</p>
               <a class="btn btn-outline" href="equipment-financing.html">View details</a>
             </article>
             <article class="product-card">
               <h3>Asset-Based Lending (ABL)</h3>
+              <p class="who-line">Wholesalers, distributors, and manufacturers · Companies whose invoices or inventory are the real story</p>
               <p>Loans secured by business assets such as accounts receivable and inventory.</p>
               <a class="btn btn-outline" href="asset-based-lending.html">View details</a>
             </article>
             <article class="product-card">
-              <h3>Business Lines of Credit</h3>
+              <h3>Business Lines of Credit <span class="aka">LOC</span></h3>
+              <p class="who-line">Businesses with repeating, uneven cash needs · Owners who are tired of one-off short-term loans</p>
               <p>Revolving credit facilities for ongoing business needs.</p>
               <a class="btn btn-outline" href="business-lines-of-credit.html">View details</a>
+            </article>
+            <article class="product-card">
+              <h3>Unsecured Term Loans</h3>
+              <p class="who-line">Established businesses with clean banking history · Owners who need a defined amount, not a revolving line</p>
+              <p>Term financing options for qualified businesses.</p>
+              <a class="btn btn-outline" href="unsecured-term-loans.html">View details</a>
+            </article>
+            <article class="product-card">
+              <h3>Commercial Real Estate Loans <span class="aka">CRE</span></h3>
+              <p class="who-line">Investors buying or refinancing income property · Business owners purchasing the building they occupy</p>
+              <p>Financing for multi-family, office, retail, industrial, hotels, self-storage, and other commercial properties.</p>
+              <a class="btn btn-outline" href="commercial-real-estate.html">View details</a>
+            </article>
+            <article class="product-card">
+              <h3>Bridge Financing</h3>
+              <p class="who-line">Buyers who need to close before permanent debt is ready · Owners executing a renovation or lease-up</p>
+              <p>Short-term financing solutions to bridge gaps between transactions.</p>
+              <a class="btn btn-outline" href="bridge-financing.html">View details</a>
             </article>
         </div>
       </div>
@@ -192,7 +247,7 @@
       </div>
     </div>
   </footer>
-<script src="../js/main.js?v=5"></script>
+<script src="../js/main.js?v=6"></script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=5">
+  <link rel="stylesheet" href="../css/styles.css?v=6">
 </head>
 <body>
 
@@ -81,8 +81,19 @@
       <div class="page-hero-media"><img src="../assets/images/hero-commercial.jpg" alt=""></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Commercial Lines</p>
-        <h1>Workers’ Compensation</h1>
+        <h1>Workers’ Compensation <span class="aka">WC</span></h1>
         <p class="lede">Statutory coverage for employee workplace injuries and related employer obligations.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#start">Get Started</a>
+          <a class="btn btn-ghost" href="#related">Related products</a>
+        </div>
+      </div>
+    </section>
+    
+    <section class="who-bar">
+      <div class="container">
+        <p class="card-tag">Who this is for</p>
+        <p>Any employer with W-2 staff, in states that require it · Contractors who must show certificates to get on site · Growing companies hiring their first employees · Businesses using a mix of employees and subcontractors</p>
       </div>
     </section>
     <section class="section">
@@ -100,7 +111,7 @@
           <p class="mt-16 product-prose">This is not a “nice to have.” It is the coverage state law uses so an injured employee does not have to sue the employer to get medical care and wage replacement. In return, the employer generally receives protection from many related lawsuits. Premium is driven by payroll and by class codes — a desk job is priced differently from roofing. We review headcount, how people actually spend their day, and whether 1099 help should really be treated as employees. Contractors often cannot step on a job site without a workers’ comp certificate.</p>
           <div class="explain-grid">
             <div class="explain-card">
-              <p class="card-tag">Who it’s for</p>
+              <p class="card-tag">Who this is for</p>
               <ul class="feature-list"><li>Any employer with W-2 staff, in states that require it</li><li>Contractors who must show certificates to get on site</li><li>Growing companies hiring their first employees</li><li>Businesses using a mix of employees and subcontractors</li></ul>
             </div>
             <div class="explain-card">
@@ -118,37 +129,81 @@
           </div>
           <p class="disclaimer mt-32">Coverage, eligibility, and terms vary by location and underwriting.</p>
         </div>
-        <aside class="panel sticky-card">
-          <p class="card-tag">Next step</p>
-          <h3 style="font-family:var(--font-serif);font-size:30px;font-weight:500;color:var(--navy);margin:8px 0 12px">Workers’ Compensation</h3>
-          <p style="color:var(--slate);margin-bottom:20px">Share a few details and we will follow up.</p>
-          <a class="btn btn-gold btn-block" href="../get-started.html?product=workers-compensation">Get Started</a>
-          <a class="btn btn-outline btn-block mt-8" href="../contact.html">Contact Us</a>
+        <aside class="panel sticky-card" id="start">
+          
+  <form class="form form-lead" data-form action="https://formsubmit.co/ajax/rasheed@wellesleycollective.com" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Wellesley Collective website inquiry">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="page" value="Workers’ Compensation">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
+    <div class="form-success">Thank you. We will follow up within one business day.</div>
+    <div class="form-fields">
+      <h3 class="lead-heading">Tell us what you need.</h3>
+      <div class="form-row">
+        <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" required></div>
+        <div class="field"><label for="lead-phone">Phone</label><input id="lead-phone" name="phone" type="tel" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" required></div>
+        <div class="field"><label for="lead-need">Need</label>
+          <select id="lead-need" name="need" required>
+            <option value="">Insurance / Financing / Both</option>
+            <option value="insurance" selected>Insurance</option><option value="financing">Financing</option><option value="both">Both</option>
+          </select>
+        </div>
+      </div>
+      <p class="form-error"></p>
+      <button class="btn btn-gold" type="submit">Get Started</button>
+      <p class="form-note">We’ll follow up within one business day.</p>
+    </div>
+  </form>
         </aside>
       </div>
     </section>
-    <section class="section section-cream">
+    <section class="section section-cream" id="related">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Related</p>
-          <h2>Continue exploring insurance.</h2>
+          <p class="kicker">Related products</p>
+          <h2>Other policies and facilities people pair with this.</h2>
         </div>
         <div class="grid-3">
           
             <article class="product-card">
-              <h3>General Liability</h3>
+              <h3>General Liability <span class="aka">GL</span></h3>
+              <p class="who-line">Offices, shops, and service businesses · Contractors who must give certificates to general contractors</p>
               <p>Core protection if a third party alleges bodily injury or property damage arising from business operations.</p>
               <a class="btn btn-outline" href="general-liability.html">View details</a>
             </article>
             <article class="product-card">
-              <h3>Commercial Property / Buildings</h3>
+              <h3>Commercial Property / Buildings <span class="aka">Property</span></h3>
+              <p class="who-line">Business owners who occupy their own building · Investors who own retail, office, or industrial space</p>
               <p>Coverage for buildings, business personal property, and related property exposures.</p>
               <a class="btn btn-outline" href="commercial-property.html">View details</a>
             </article>
             <article class="product-card">
-              <h3>Commercial Auto / Fleet</h3>
+              <h3>Commercial Auto / Fleet <span class="aka">Fleet</span></h3>
+              <p class="who-line">Contractors and trades with work trucks or vans · Distributors and service companies</p>
               <p>Protection for business vehicles and fleets used in daily operations.</p>
               <a class="btn btn-outline" href="commercial-auto.html">View details</a>
+            </article>
+            <article class="product-card">
+              <h3>Business Owners Policy (BOP)</h3>
+              <p class="who-line">Small and midsize offices · Retail and light service businesses</p>
+              <p>A packaged approach that combines property and liability for many small and midsize businesses.</p>
+              <a class="btn btn-outline" href="business-owners-policy.html">View details</a>
+            </article>
+            <article class="product-card">
+              <h3>Artisan Contractors Insurance</h3>
+              <p class="who-line">Licensed trades and specialty artisans · One-person shops through small crews</p>
+              <p>Coverage tailored for trade contractors and specialty artisans.</p>
+              <a class="btn btn-outline" href="artisan-contractors.html">View details</a>
+            </article>
+            <article class="product-card">
+              <h3>Professional Liability (E&amp;O)</h3>
+              <p class="who-line">Consultants, advisors, and professional firms · Anyone whose contract requires E&amp;O</p>
+              <p>Protection against claims alleging professional mistakes, omissions, or negligent advice.</p>
+              <a class="btn btn-outline" href="professional-liability.html">View details</a>
             </article>
         </div>
       </div>
@@ -192,7 +247,7 @@
       </div>
     </div>
   </footer>
-<script src="../js/main.js?v=5"></script>
+<script src="../js/main.js?v=6"></script>
 
 </body>
 </html>

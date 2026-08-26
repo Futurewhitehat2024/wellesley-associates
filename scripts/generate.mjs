@@ -439,8 +439,8 @@ function footer(root) {
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [] }) {
-  const css = `${root}css/styles.css?v=5`;
-  const js = `${root}js/main.js?v=5`;
+  const css = `${root}css/styles.css?v=6`;
+  const js = `${root}js/main.js?v=6`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -467,13 +467,55 @@ ${extraScripts.map((src) => `<script src="${root}${src}"></script>`).join("\n")}
 `;
 }
 
+const AKA = {
+  "homeowners-insurance": "Homeowners",
+  "auto-insurance": "Auto",
+  "personal-umbrella": "Umbrella",
+  "flood-insurance": "Flood",
+  "general-liability": "GL",
+  "business-owners-policy": "BOP",
+  "workers-compensation": "WC",
+  "commercial-auto": "Fleet",
+  "professional-liability": "E&O",
+  "cyber-liability": "Cyber",
+  "inland-marine": "Inland Marine",
+  "commercial-umbrella": "Umbrella",
+  "commercial-property": "Property",
+  "asset-based-lending": "ABL",
+  "sba-loans": "SBA",
+  "commercial-real-estate": "CRE",
+  "business-lines-of-credit": "LOC",
+};
+
+function productTitle(item) {
+  const aka = AKA[item.slug];
+  if (!aka || item.name.includes(`(${aka})`) || item.name === aka) return esc(item.name);
+  return `${esc(item.name)} <span class="aka">${esc(aka)}</span>`;
+}
+
+function whoLine(item) {
+  if (!item.who || !item.who.length) return "";
+  return item.who.slice(0, 2).join(" · ");
+}
+
+function bySlug(list, slugs) {
+  return slugs.map((slug) => list.find((item) => item.slug === slug)).filter(Boolean);
+}
+
+function pickRelated(item, primary, secondary = [], count = 6) {
+  const rest = primary.filter((other) => other.slug !== item.slug);
+  const extra = secondary.filter((other) => other.slug !== item.slug);
+  return [...rest, ...extra].slice(0, count);
+}
+
 function productCards(items, folder, cta, root) {
   return items
     .map(
       (item) => `
       <article class="product-card">
         <div class="icon-dot">+</div>
-        <h3>${esc(item.name)}</h3>
+        <h3>${productTitle(item)}</h3>
+        <p class="who-line">${esc(whoLine(item))}</p>
         <p>${esc(item.summary)}</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn btn-gold" href="${root}get-started.html?product=${item.slug}">${esc(cta)}</a>
@@ -482,6 +524,83 @@ function productCards(items, folder, cta, root) {
       </article>`
     )
     .join("");
+}
+
+function productIndex(items, folder, root) {
+  return `
+    <div class="product-index">
+      ${items
+        .map((item) => {
+          const aka = AKA[item.slug];
+          return `<a href="${root}${folder}/${item.slug}.html">${aka ? `<strong>${esc(aka)}</strong>` : `<strong>+</strong>`}<span>${esc(item.name)}</span></a>`;
+        })
+        .join("")}
+    </div>`;
+}
+
+function whoBlock(text) {
+  return `
+    <section class="who-bar">
+      <div class="container">
+        <p class="card-tag">Who this is for</p>
+        <p>${esc(text)}</p>
+      </div>
+    </section>`;
+}
+
+function leadForm({ root = "", product = "", need = "" }) {
+  const needOptions = [
+    ["insurance", "Insurance"],
+    ["financing", "Financing"],
+    ["both", "Both"],
+  ]
+    .map(
+      ([value, label]) =>
+        `<option value="${value}"${need === value ? " selected" : ""}>${label}</option>`
+    )
+    .join("");
+  return `
+  <form class="form form-lead" data-form action="https://formsubmit.co/ajax/${FIRM_EMAIL}" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Wellesley Collective website inquiry">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="page" value="${esc(product || "service page")}">
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
+    <div class="form-success">Thank you. We will follow up within one business day.</div>
+    <div class="form-fields">
+      <h3 class="lead-heading">Tell us what you need.</h3>
+      <div class="form-row">
+        <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" required></div>
+        <div class="field"><label for="lead-phone">Phone</label><input id="lead-phone" name="phone" type="tel" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" required></div>
+        <div class="field"><label for="lead-need">Need</label>
+          <select id="lead-need" name="need" required>
+            <option value="">Insurance / Financing / Both</option>
+            ${needOptions}
+          </select>
+        </div>
+      </div>
+      <p class="form-error"></p>
+      <button class="btn btn-gold" type="submit">Get Started</button>
+      <p class="form-note">We’ll follow up within one business day.</p>
+    </div>
+  </form>`;
+}
+
+function convertBand({ root, product = "", need = "" }) {
+  return `
+    <section class="section lead-band">
+      <div class="container quote-layout">
+        <div>
+          <p class="kicker">Next step</p>
+          <h2>We’ll follow up within one business day.</h2>
+          <p class="subhead">Name, phone, email, and whether you need insurance, financing, or both. That is enough to start.</p>
+        </div>
+        <div class="panel">${leadForm({ root, product, need })}</div>
+      </div>
+    </section>`;
 }
 
 function interestOptions(selected = "") {
@@ -919,7 +1038,7 @@ pages.push({
   file: "insurance/index.html",
   html: layout({
     title: "Insurance | Wellesley Collective",
-    description: "Personal and commercial insurance solutions from Wellesley Collective.",
+    description: "Quote GL, BOP, workers’ comp, commercial auto, cyber, inland marine, homeowners, auto, umbrella, and flood with Wellesley Collective.",
     root: "../",
     current: "insurance",
     content: `
@@ -927,42 +1046,52 @@ pages.push({
       <div class="page-hero-media"><img src="../assets/images/hero-home.jpg" alt="Private home"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Insurance</p>
-        <h1>Personal and commercial coverage.</h1>
-        <p class="lede">From households to operating companies, we review the risk and quote the coverage that fits.</p>
+        <h1>GL, BOP, workers’ comp, commercial auto, cyber, homeowners, auto, umbrella.</h1>
+        <p class="lede">We quote the actual policy — not a category. Personal lines and commercial lines, named the way you search for them.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="../get-started.html">Get Started</a>
-          <a class="btn btn-ghost" href="#personal">Personal Lines</a>
-          <a class="btn btn-ghost" href="#commercial">Commercial Lines</a>
+          <a class="btn btn-gold" href="#start">Get Started</a>
+          <a class="btn btn-ghost" href="#products">View products</a>
         </div>
       </div>
     </section>
-    <section class="section anchor" id="personal">
+    ${whoBlock("Homeowners, drivers, landlords, contractors, and business owners who need a licensed quote on a specific policy — general liability, BOP, workers’ compensation, commercial auto, cyber, inland marine, homeowners, auto, or umbrella.")}
+    <section class="section" id="products">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Personal Lines</p>
-          <h2>Protection for homes, vehicles, and personal liability.</h2>
-          <p>Coverage for individuals and families. Open a product to see who it is for, what it covers, and how it works.</p>
+          <p class="kicker">Most requested</p>
+          <h2>Start with the policy you actually need.</h2>
+          <p>Six products people ask for first. Every other personal and commercial line is listed below.</p>
         </div>
-        <div class="grid-3">${productCards(personalLines, "insurance", "Get Started", "../")}</div>
+        <div class="grid-3">${productCards(
+          bySlug(
+            [...commercialLines, ...personalLines],
+            ["general-liability", "business-owners-policy", "workers-compensation", "commercial-auto", "cyber-liability", "homeowners-insurance"]
+          ),
+          "insurance",
+          "Get Started",
+          "../"
+        )}</div>
       </div>
     </section>
-    <section class="section section-cream anchor" id="commercial">
+    <section class="section section-cream anchor" id="personal">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Commercial Lines</p>
-          <h2>Coverage for operations, property, people, and professional risk.</h2>
-          <p>Quoted on their own or as a coordinated program for the business.</p>
+          <p class="kicker">Personal lines</p>
+          <h2>Homeowners, auto, renters, condo, umbrella, watercraft, flood.</h2>
         </div>
-        <div class="grid-3">${productCards(commercialLines, "insurance", "Get Started", "../")}</div>
+        ${productIndex(personalLines, "insurance", "../")}
       </div>
     </section>
-    <section class="cta-band">
+    <section class="section anchor" id="commercial">
       <div class="container">
-        <h2>Not sure which policy you need?</h2>
-        <p>Start a general insurance inquiry and we will help you identify the right personal or commercial starting point.</p>
-        <a class="btn btn-gold" href="../contact.html">Contact Us</a>
+        <div class="section-head">
+          <p class="kicker">Commercial lines</p>
+          <h2>GL, property, commercial auto, WC, BOP, contractors, E&amp;O, inland marine, umbrella, cyber, flood.</h2>
+        </div>
+        ${productIndex(commercialLines, "insurance", "../")}
       </div>
-    </section>`,
+    </section>
+    <div id="start">${convertBand({ root: "../", product: "Insurance", need: "insurance" })}</div>`,
   }),
 });
 
@@ -970,7 +1099,7 @@ pages.push({
   file: "commercial-loans/index.html",
   html: layout({
     title: "Commercial Financing | Wellesley Collective",
-    description: "Commercial lending solutions including working capital, equipment, ABL, CRE, bridge, construction, and SBA financing.",
+    description: "Apply for working capital, equipment, ABL, lines of credit, CRE, bridge, construction, and SBA financing with Wellesley Collective.",
     root: "../",
     current: "loans",
     content: `
@@ -978,43 +1107,54 @@ pages.push({
       <div class="page-hero-media"><img src="../assets/images/hero-commercial.jpg" alt="Commercial campus"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Commercial Financing</p>
-        <h1>Capital solutions for operators and commercial property investors.</h1>
-        <p class="lede">We help business owners and CRE investors with working capital, equipment, asset-based, real estate, bridge, construction, and SBA financing.</p>
+        <h1>Working capital, equipment, CRE, SBA, bridge, and lines of credit.</h1>
+        <p class="lede">Named products for operators and commercial property investors — not a generic “business loan” page.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="../get-started.html?type=loan">Apply Now</a>
-          <a class="btn btn-ghost" href="../contact.html">Contact Us</a>
+          <a class="btn btn-gold" href="#start">Apply Now</a>
+          <a class="btn btn-ghost" href="#products">View products</a>
         </div>
       </div>
     </section>
-    <section class="section">
+    ${whoBlock("Business owners and CRE investors who need a specific facility: working capital, equipment financing, a line of credit, ABL, a commercial real estate loan, a bridge, construction funds, or an SBA 7(a) or 504.")}
+    <section class="section" id="products">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Financing offerings</p>
-          <h2>Commercial capital, by need.</h2>
-          <p>Working capital, equipment, real estate, construction, and SBA. Open a product or apply from here.</p>
+          <p class="kicker">Most requested</p>
+          <h2>Six facilities people apply for first.</h2>
+          <p>Every commercial financing product we handle is listed below.</p>
         </div>
-        <div class="grid-3">${productCards(loanProducts, "commercial-loans", "Apply Now", "../")}</div>
+        <div class="grid-3">${productCards(
+          bySlug(loanProducts, [
+            "working-capital",
+            "equipment-financing",
+            "commercial-real-estate",
+            "sba-loans",
+            "business-lines-of-credit",
+            "bridge-financing",
+          ]),
+          "commercial-loans",
+          "Apply Now",
+          "../"
+        )}</div>
       </div>
     </section>
-    <section class="section section-navy">
+    <section class="section section-cream">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">How we finance</p>
-          <h2>Operating capital, equipment, and commercial property.</h2>
+          <p class="kicker">All commercial financing</p>
+          <h2>Working capital, equipment, ABL, LOC, unsecured term, CRE, bridge, construction, SBA.</h2>
         </div>
-        <div class="pillars">
-          <div class="pillar"><h3>Operating capital</h3><p>Working capital, lines of credit, unsecured term, and ABL conversations for day-to-day and growth needs.</p></div>
-          <div class="pillar"><h3>Assets and equipment</h3><p>Financing discussions for machinery, vehicles, and other equipment that supports production or service delivery.</p></div>
-          <div class="pillar"><h3>Commercial property</h3><p>CRE, bridge, and construction inquiries across multi-family, office, retail, industrial, hotels, self-storage, and more.</p></div>
-        </div>
+        ${productIndex(loanProducts, "commercial-loans", "../")}
         <p class="disclaimer mt-32">Any loan is subject to credit approval, eligibility, and documentation.</p>
       </div>
-    </section>`,
+    </section>
+    <div id="start">${convertBand({ root: "../", product: "Commercial Financing", need: "financing" })}</div>`,
   }),
 });
 
-function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, image }) {
+function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "" }) {
   const root = "../";
+  const related = pickRelated(item, siblings, relatedExtra, 6);
   return layout({
     title: `${item.name} | Wellesley Collective`,
     description: item.summary,
@@ -1025,10 +1165,15 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
       <div class="page-hero-media"><img src="${root}assets/images/${image}" alt=""></div>
       <div class="container page-hero-content">
         <p class="eyebrow">${esc(eyebrow)}</p>
-        <h1>${esc(item.name)}</h1>
+        <h1>${productTitle(item)}</h1>
         <p class="lede">${esc(item.summary)}</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#start">${esc(cta)}</a>
+          <a class="btn btn-ghost" href="#related">Related products</a>
+        </div>
       </div>
     </section>
+    ${whoBlock(item.who.join(" · "))}
     <section class="section">
       <div class="container product-layout">
         <div>
@@ -1044,7 +1189,7 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
           <p class="mt-16 product-prose">${esc(item.details)}</p>
           <div class="explain-grid">
             <div class="explain-card">
-              <p class="card-tag">Who it’s for</p>
+              <p class="card-tag">Who this is for</p>
               <ul class="feature-list">${item.who.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
             </div>
             <div class="explain-card">
@@ -1062,31 +1207,26 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
           </div>
           <p class="disclaimer mt-32">Coverage, eligibility, and terms vary by location and underwriting.</p>
         </div>
-        <aside class="panel sticky-card">
-          <p class="card-tag">Next step</p>
-          <h3 style="font-family:var(--font-serif);font-size:30px;font-weight:500;color:var(--navy);margin:8px 0 12px">${esc(item.name)}</h3>
-          <p style="color:var(--slate);margin-bottom:20px">Share a few details and we will follow up.</p>
-          <a class="btn btn-gold btn-block" href="${root}get-started.html?product=${item.slug}">${esc(cta)}</a>
-          <a class="btn btn-outline btn-block mt-8" href="${root}contact.html">Contact Us</a>
+        <aside class="panel sticky-card" id="start">
+          ${leadForm({ root, product: item.name, need })}
         </aside>
       </div>
     </section>
-    <section class="section section-cream">
+    <section class="section section-cream" id="related">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Related</p>
-          <h2>Continue exploring ${esc(siblingLabel).toLowerCase()}.</h2>
+          <p class="kicker">Related products</p>
+          <h2>Other policies and facilities people pair with this.</h2>
         </div>
         <div class="grid-3">
-          ${siblings
-            .filter((other) => other.slug !== item.slug)
-            .slice(0, 3)
+          ${related
             .map(
               (other) => `
             <article class="product-card">
-              <h3>${esc(other.name)}</h3>
+              <h3>${productTitle(other)}</h3>
+              <p class="who-line">${esc(whoLine(other))}</p>
               <p>${esc(other.summary)}</p>
-              <a class="btn btn-outline" href="${other.slug}.html">View details</a>
+              <a class="btn btn-outline" href="${other.folder ? `${root}${other.folder}/${other.slug}.html` : `${other.slug}.html`}">View details</a>
             </article>`
             )
             .join("")}
@@ -1665,7 +1805,9 @@ for (const item of personalLines) {
       cta: "Get Started",
       siblingLabel: "Insurance",
       siblings: personalLines,
+      relatedExtra: commercialLines,
       image: "hero-home.jpg",
+      need: "insurance",
     }),
   });
 }
@@ -1681,7 +1823,9 @@ for (const item of commercialLines) {
       cta: "Get Started",
       siblingLabel: "Insurance",
       siblings: commercialLines,
+      relatedExtra: personalLines,
       image: "hero-commercial.jpg",
+      need: "insurance",
     }),
   });
 }
@@ -1698,6 +1842,7 @@ for (const item of loanProducts) {
       siblingLabel: "Commercial Financing",
       siblings: loanProducts,
       image: "hero-city.jpg",
+      need: "financing",
     }),
   });
 }

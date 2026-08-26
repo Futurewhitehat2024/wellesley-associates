@@ -686,10 +686,86 @@ h2 {
   line-height: 1.2;
 }
 
+.aka {
+  display: inline-block;
+  margin-left: 8px;
+  color: var(--gold-dark);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
 .product-card p {
   margin: 12px 0 22px;
   color: var(--slate);
   flex: 1;
+}
+
+.product-card .who-line {
+  margin: 8px 0 0;
+  color: var(--navy);
+  font-size: 13.5px;
+  font-weight: 500;
+  flex: 0;
+}
+
+.who-bar {
+  padding: 28px 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.who-bar .card-tag {
+  margin-bottom: 8px;
+}
+
+.who-bar p:last-child {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--slate);
+  font-size: 17px;
+}
+
+.product-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+}
+
+.product-index a {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--navy);
+}
+
+.product-index a:hover span {
+  color: var(--gold-dark);
+}
+
+.product-index strong {
+  flex: 0 0 7.5rem;
+  color: var(--gold-dark);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lead-heading {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.lead-band {
+  background: var(--cream);
 }
 
 .product-card .btn {
@@ -1410,6 +1486,7 @@ h2 {
   .pillars,
   .split,
   .quote-layout,
+  .product-index,
   .product-layout,
   .coming-soon,
   .footer-grid,
