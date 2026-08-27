@@ -321,7 +321,27 @@ function esc(value) {
 function logoImg(root, variant = "default") {
   const file = variant === "light" ? "assets/brand/logo-light.png?v=3" : "assets/brand/logo.png?v=3";
   const cls = variant === "light" ? "logo-img logo-img-light" : "logo-img";
-  return `<img class="${cls}" src="${root}${file}" alt="Wellesley Collective" width="196" height="78">`;
+  return `<img class="${cls}" src="${root}${file}" alt="Wellesley Collective" width="196" height="78" decoding="async">`;
+}
+
+function photo({ src, alt, root = "", lazy = true, priority = false, className = "" }) {
+  const attrs = [
+    className ? `class="${className}"` : "",
+    `src="${root}${src}"`,
+    `alt="${esc(alt)}"`,
+    lazy ? `loading="lazy" decoding="async"` : `decoding="async"`,
+    priority ? `fetchpriority="high"` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return `<img ${attrs}>`;
+}
+
+function figurePhoto({ src, alt, caption, root = "", lazy = true }) {
+  return `<figure class="photo-frame">
+    ${photo({ src, alt, root, lazy })}
+    ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}
+  </figure>`;
 }
 
 const FIRM_EMAIL = "rasheed@wellesleycollective.com";
@@ -441,7 +461,7 @@ function footer(root) {
 const SITE = "https://wellesleycollective.com";
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=7`;
+  const css = `${root}css/styles.css?v=8`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -534,7 +554,7 @@ function productCards(items, folder, cta, root) {
     .map(
       (item) => `
       <article class="product-card">
-        <div class="icon-dot">+</div>
+        <div class="icon-dot" aria-hidden="true">+</div>
         <h3>${productTitle(item)}</h3>
         <p class="who-line">${esc(whoLine(item))}</p>
         <p>${esc(item.summary)}</p>
@@ -928,7 +948,7 @@ pages.push({
     current: "home",
     content: `
     <section class="hero">
-      <div class="hero-media"><img src="assets/images/hero-city.jpg" alt="Evening city skyline"></div>
+      <div class="hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "Evening city skyline over a commercial district", lazy: false, priority: true })}</div>
       <div class="container hero-content">
         <p class="eyebrow">Wellesley Collective</p>
         <h1>One relationship for protection and capital.</h1>
@@ -958,7 +978,7 @@ pages.push({
         </div>
         <div class="grid-2">
           <article class="card">
-            <div class="card-media"><img src="assets/images/service-insurance.jpg" alt="Commercial building and work fleet, representing commercial insurance"></div>
+            <div class="card-media">${photo({ src: "assets/images/service-insurance.jpg", alt: "Commercial building and work fleet, representing commercial insurance" })}</div>
             <div class="card-body">
               <p class="card-tag">Protection</p>
               <h3>Insurance</h3>
@@ -967,7 +987,7 @@ pages.push({
             </div>
           </article>
           <article class="card">
-            <div class="card-media"><img src="assets/images/service-commercial-loans.jpg" alt="Capital and loan documents on a conference table, representing commercial funding"></div>
+            <div class="card-media">${photo({ src: "assets/images/service-commercial-loans.jpg", alt: "Capital and loan documents on a conference table, representing commercial funding" })}</div>
             <div class="card-body">
               <p class="card-tag">Capital</p>
               <h3>Commercial Financing</h3>
@@ -981,7 +1001,7 @@ pages.push({
 
     <section class="section section-cream">
       <div class="container split">
-        <img src="assets/images/about-office.jpg" alt="Private conference room">
+        ${figurePhoto({ src: "assets/images/about-office.jpg", alt: "Private conference room with city views", caption: "A quiet room for coverage, capital, and the facts of the file." })}
         <div class="split-copy">
           <p class="kicker">How we work</p>
           <h2>One firm. Coverage and capital in the same conversation.</h2>
@@ -995,6 +1015,14 @@ pages.push({
       </div>
     </section>
 
+    <section class="photo-rail-wrap" aria-label="Property, workspace, and capital">
+      <div class="container photo-rail">
+        ${figurePhoto({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", caption: "Households" })}
+        ${figurePhoto({ src: "assets/images/texture-stone.jpg", alt: "Stone and bronze architectural detail", caption: "The room" })}
+        ${figurePhoto({ src: "assets/images/hero-commercial.jpg", alt: "Commercial campus at twilight", caption: "Operating companies" })}
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="section-head center">
@@ -1003,21 +1031,30 @@ pages.push({
         </div>
         <div class="steps">
           <div class="step">
-            <div class="step-num">01</div>
+            <div class="step-num" aria-hidden="true">01</div>
             <h3>Share the need</h3>
             <p>Tell us about the household, business, property, or capital request. A short conversation is usually enough to determine fit.</p>
           </div>
           <div class="step">
-            <div class="step-num">02</div>
+            <div class="step-num" aria-hidden="true">02</div>
             <h3>Build the solution</h3>
             <p>We review the risk, asset, or financing need and prepare a quote or a clear path to funding.</p>
           </div>
           <div class="step">
-            <div class="step-num">03</div>
+            <div class="step-num" aria-hidden="true">03</div>
             <h3>Move with clarity</h3>
             <p>You receive a defined path — a quote, underwriting, or financing next steps — with the same team throughout.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <blockquote class="pull-quote">
+          <p>Coverage and capital in the same conversation.</p>
+          <cite>Wellesley Collective</cite>
+        </blockquote>
       </div>
     </section>
 
@@ -1101,7 +1138,7 @@ pages.push({
     current: "about",
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="assets/images/about-office.jpg?v=5" alt="Private client office overlooking the city"></div>
+      <div class="page-hero-media">${photo({ src: "assets/images/about-office.jpg?v=5", alt: "Private client office overlooking the city", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">The firm</p>
         <h1>Built for clients who value judgment as much as access.</h1>
@@ -1116,7 +1153,7 @@ pages.push({
           <p>Households and businesses rarely experience risk and capital as separate problems. A growing company needs liability coverage and a line of credit. A property owner needs the building insured and the financing structured. We were formed to sit at that intersection.</p>
           <p>We quote insurance, structure commercial financing, and stay with you from first conversation through close.</p>
         </div>
-        <img src="assets/images/texture-stone.jpg" alt="Architectural stone and bronze detail">
+        ${figurePhoto({ src: "assets/images/texture-stone.jpg", alt: "Architectural stone and bronze detail", caption: "Materials that last: stone, bronze, and a file handled with care." })}
       </div>
     </section>
     <section class="section section-cream">
@@ -1164,7 +1201,7 @@ pages.push({
     current: "contact",
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="assets/images/hero-city.jpg" alt="City skyline"></div>
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "City skyline at dusk", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Contact</p>
         <h1>Tell us what you need. We will take it from there.</h1>
@@ -1223,7 +1260,7 @@ pages.push({
     current: "contact",
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="assets/images/hero-commercial.jpg" alt="Commercial building"></div>
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-commercial.jpg", alt: "Commercial building facade", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Get started</p>
         <h1 id="started-title">Get started.</h1>
@@ -1313,7 +1350,7 @@ pages.push({
     current: "insurance",
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="../assets/images/hero-home.jpg" alt="Private home"></div>
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", root: "../", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Insurance</p>
         <h1>GL, BOP, workers’ comp, commercial auto, cyber, homeowners, auto, umbrella.</h1>
@@ -1379,7 +1416,7 @@ pages.push({
     current: "loans",
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="../assets/images/hero-commercial.jpg" alt="Commercial campus"></div>
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-commercial.jpg", alt: "Commercial campus at twilight", root: "../", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Commercial Financing</p>
         <h1>Working capital, equipment, CRE, SBA, bridge, and lines of credit.</h1>
@@ -1442,7 +1479,7 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
     current,
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="${root}assets/images/${image}" alt=""></div>
+      <div class="page-hero-media">${photo({ src: `assets/images/${image}`, alt: `${item.name} — Wellesley Collective`, root, lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">${esc(eyebrow)}</p>
         <h1>${productTitle(item)}</h1>
@@ -1862,7 +1899,7 @@ pages.push({
     extraScripts: ["js/blog.js?v=4"],
     content: `
     <section class="page-hero">
-      <div class="page-hero-media"><img src="../assets/images/hero-city.jpg" alt="City skyline"></div>
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "City skyline at dusk", root: "../", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Wellesley Insights</p>
         <h1>News that affects your coverage and capital.</h1>
