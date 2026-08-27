@@ -347,6 +347,24 @@ function figurePhoto({ src, alt, caption, root = "", lazy = true }) {
 const FIRM_EMAIL = "rasheed@wellesleycollective.com";
 const FIRM_PHONE = "954-295-1210";
 const FIRM_TEL = "+19542951210";
+const CALENDLY_URL = "https://calendly.com/rasheed-wellesleycollective/30min";
+const ZOHO_FORM_HTML = fs.readFileSync(path.join(rootDir, "partials", "zoho-lead-form.html"), "utf8");
+
+function zohoForm() {
+  return `<div class="zoho-embed">${ZOHO_FORM_HTML}</div>`;
+}
+
+function calendlyBlock() {
+  return `
+    <div class="calendly-block">
+      <p class="kicker">Intro call</p>
+      <h2>Book a 30-minute call.</h2>
+      <p class="subhead">No account required. Pick a time that works.</p>
+      <a class="btn btn-gold" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+      <div class="calendly-inline-widget" data-url="${CALENDLY_URL}" style="min-width:320px;height:700px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>`;
+}
 
 function header(root, current) {
   const r = root;
@@ -446,6 +464,7 @@ function footer(root) {
           <h4>Contact</h4>
           <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
           <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a>
+          <a href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
           <a href="${r}get-started.html">Get Started</a>
           <a href="${r}contact.html">Contact Us</a>
         </div>
@@ -461,7 +480,7 @@ function footer(root) {
 const SITE = "https://wellesleycollective.com";
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=8`;
+  const css = `${root}css/styles.css?v=9`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -955,7 +974,7 @@ pages.push({
         <p class="lede">Insurance and commercial financing — handled by one licensed team, with a clear path from first conversation to close.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="get-started.html">Get Started</a>
-          <a class="btn btn-ghost" href="contact.html">Contact Us</a>
+          <a class="btn btn-ghost" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
         </div>
       </div>
     </section>
@@ -1227,8 +1246,16 @@ pages.push({
               <li>Existing-client service and document coordination</li>
             </ul>
           </div>
+          <div class="hero-actions mt-32">
+            <a class="btn btn-navy" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+          </div>
         </div>
-        <div class="panel">${formBlock({ heading: "Contact Us", button: "Send Message" })}</div>
+        <div class="panel">${zohoForm()}</div>
+      </div>
+    </section>
+    <section class="section section-cream">
+      <div class="container">
+        ${calendlyBlock()}
       </div>
     </section>`,
   }),
@@ -1277,9 +1304,17 @@ pages.push({
             <li>We review what you need and outline next steps.</li>
             <li>You stay with our team if questions come up along the way.</li>
           </ul>
+          <div class="hero-actions mt-32">
+            <a class="btn btn-navy" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+          </div>
           <p class="disclaimer mt-32">Submitting this form does not bind coverage or guarantee financing.</p>
         </div>
-        <div class="panel">${formBlock({ heading: "Get Started", button: "Get Started" })}</div>
+        <div class="panel">${zohoForm()}</div>
+      </div>
+    </section>
+    <section class="section section-cream">
+      <div class="container">
+        ${calendlyBlock()}
       </div>
     </section>`,
   }),
