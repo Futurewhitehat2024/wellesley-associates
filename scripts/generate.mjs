@@ -668,7 +668,7 @@ function redirectPage(to) {
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=15`;
+  const css = `${root}css/styles.css?v=16`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -1425,7 +1425,7 @@ pages.push({
   file: "about.html",
   html: layout({
     title: "About | Wellesley Collective",
-    description: "Wellesley Collective is a licensed firm providing insurance, financial services, and commercial financing.",
+    description: "Meet Rasheed Wellesley, principal of Wellesley Collective — a licensed Florida firm for personal, commercial, and life insurance, annuities, and commercial financing.",
     path: "about.html",
     current: "about",
     content: `
@@ -1433,21 +1433,84 @@ pages.push({
       <div class="page-hero-media">${photo({ src: "assets/images/about-office.jpg?v=5", alt: "Private client office overlooking the city", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">The firm</p>
-        <h1>Built for clients who value judgment as much as access.</h1>
-        <p class="lede">Wellesley Collective brings insurance, financial services, and commercial financing into a single relationship.</p>
+        <h1>A licensed practice with one person accountable for the file.</h1>
+        <p class="lede">Wellesley Collective is the independent firm of Rasheed Wellesley. Insurance, annuities, and commercial financing sit in one relationship — not three handoffs.</p>
       </div>
     </section>
+
     <section class="section">
-      <div class="container split">
+      <div class="container split about-principal">
+        ${figurePhoto({
+          src: "assets/images/rasheed-wellesley.jpg?v=1",
+          alt: "Rasheed Wellesley, principal of Wellesley Collective",
+          caption: "Rasheed Wellesley · Principal",
+        })}
         <div class="split-copy">
-          <p class="kicker">Our approach</p>
-          <h2>One licensed team for protection and capital.</h2>
-          <p>Households and businesses rarely experience risk and capital as separate problems. A growing company needs liability coverage and a line of credit. A property owner needs the building insured and the financing structured. We were formed to sit at that intersection.</p>
-          <p>We quote property, casualty, life, and annuities, structure commercial financing, and stay with you from first conversation through close.</p>
+          <p class="kicker">The principal</p>
+          <h2>Rasheed Wellesley</h2>
+          <p>You work with Rasheed. He is a Florida-resident licensed insurance agent and the principal of Wellesley Collective LLC. The practice is built for households and operators who want a direct conversation about coverage and capital — not a call center and a new person at every step.</p>
+          <p>He has held a Florida agent license since 2021, with authority for general lines (property and casualty) and life including variable annuities. He is also licensed as a non-resident in additional states. Products, appointments, and what can be placed still depend on the state and the file.</p>
+          <ul class="about-facts">
+            <li><strong>Role</strong> Principal, Wellesley Collective</li>
+            <li><strong>NPN</strong> 19762898</li>
+            <li><strong>Resident license</strong> Florida · Agent</li>
+            <li><strong>Phone</strong> <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a></li>
+            <li><strong>Email</strong> <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a></li>
+          </ul>
+          <div class="hero-actions mt-32">
+            <a class="btn btn-gold" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+            <a class="btn btn-outline" href="contact.html">Contact</a>
+          </div>
         </div>
-        ${figurePhoto({ src: "assets/images/texture-stone.jpg", alt: "Architectural stone and bronze detail", caption: "Materials that last: stone, bronze, and a file handled with care." })}
       </div>
     </section>
+
+    <section class="section section-cream">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">How the firm is built</p>
+          <h2>Protection, income, and capital in one practice.</h2>
+          <p>Households and businesses rarely experience risk and money as separate problems. A growing company needs liability coverage and a line of credit. A family needs the house insured and a life policy that actually fits. Wellesley Collective was formed to sit at that intersection.</p>
+        </div>
+        <div class="grid-3">
+          <article class="product-card">
+            <p class="card-tag">Insurance</p>
+            <h3>Personal, commercial, and life</h3>
+            <p>Property, casualty, and life insurance — including term, whole life, universal life, and final expense — quoted and placed by a licensed agent.</p>
+            <a class="btn btn-outline" href="insurance/index.html">Explore insurance</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Financial services</p>
+            <h3>Annuities</h3>
+            <p>Fixed, indexed, and income annuities when the job is a stated rate, a floor, or a paycheck. Separate from life insurance on purpose.</p>
+            <a class="btn btn-outline" href="financial-services/index.html">Explore annuities</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Capital</p>
+            <h3>Commercial financing</h3>
+            <p>Working capital, equipment, CRE, SBA, bridge, and lines of credit for operators and commercial property — subject to credit and documentation.</p>
+            <a class="btn btn-outline" href="commercial-loans/index.html">Explore financing</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Licensing</p>
+          <h2>Florida resident, licensed in additional states.</h2>
+          <p>Resident license in Florida. Non-resident licenses currently include California, Colorado, Delaware, Maryland, Michigan, New Jersey, Ohio, Oregon, Pennsylvania, Texas, Virginia, and Washington. Confirm the state before you assume a product can be written there.</p>
+        </div>
+        <div class="state-list" aria-label="Licensed states">
+          ${["FL", "CA", "CO", "DE", "MD", "MI", "NJ", "OH", "OR", "PA", "TX", "VA", "WA"]
+            .map((st) => `<span>${st}</span>`)
+            .join("")}
+        </div>
+        <p class="disclaimer mt-32">NPN 19762898. License status can be verified through NIPR. Lines of authority, appointments, and available products vary by state.</p>
+      </div>
+    </section>
+
     <section class="section section-cream">
       <div class="container">
         <div class="section-head">
@@ -1473,12 +1536,42 @@ pages.push({
         </div>
       </div>
     </section>
+
     <section class="section">
-      <div class="container" style="max-width:760px">
-        <p class="kicker">The work</p>
-        <h2>Insurance, financial services, and commercial financing under one roof.</h2>
-        <p class="mt-16" style="color:var(--slate)">Wellesley Collective provides personal, commercial, and life insurance; annuities; and commercial financing. Products, pricing, and terms vary by state and underwriting.</p>
-        <a class="btn btn-navy mt-32" href="contact.html">Contact the Firm</a>
+      <div class="container">
+        <div class="section-head center">
+          <p class="kicker">The process</p>
+          <h2>Simple, considered, and direct.</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" aria-hidden="true">01</div>
+            <h3>Share the need</h3>
+            <p>Tell us about the household, business, property, or capital request. A short conversation is usually enough to determine fit.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">02</div>
+            <h3>Build the solution</h3>
+            <p>We review the risk, the asset, or the financing need and prepare a quote or a clear path to funding.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">03</div>
+            <h3>Stay with the same person</h3>
+            <p>You receive a defined path — a quote, underwriting, or financing next steps — with Rasheed throughout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <p class="eyebrow" style="justify-content:center">Begin a conversation</p>
+        <h2>Ready to talk through coverage or capital?</h2>
+        <p>Book a 30-minute intro call, or send a few details and we will follow up.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-gold" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+          <a class="btn btn-ghost" href="get-started.html">Get Started</a>
+        </div>
       </div>
     </section>`,
   }),
