@@ -491,6 +491,13 @@ function isSelfQuote(item) {
   return Boolean(item && item.kind && item.kind !== "annuity");
 }
 
+function intakePath(item) {
+  if (!item) return "";
+  if (personalLines.some((line) => line.slug === item.slug)) return "intake/personal.html";
+  if (commercialLines.some((line) => line.slug === item.slug)) return "intake/commercial.html";
+  return "";
+}
+
 function quoteApplyEmbed() {
   return `
     <div class="quote-apply">
@@ -548,12 +555,14 @@ function header(root, current) {
           <div class="dropdown dropdown-wide dropdown-3">
             <div>
               <p class="dropdown-label">Personal Lines</p>
-              <a href="${r}insurance/index.html#personal"><strong>View all personal lines</strong></a>
+              <a href="${r}intake/personal.html"><strong>Start a personal quote</strong></a>
+              <a href="${r}insurance/index.html#personal">View all personal lines</a>
               ${personalLines.map((item) => `<a href="${r}insurance/${item.slug}.html">${esc(item.name)}</a>`).join("")}
             </div>
             <div>
               <p class="dropdown-label">Commercial Lines</p>
-              <a href="${r}insurance/index.html#commercial"><strong>View all commercial lines</strong></a>
+              <a href="${r}intake/commercial.html"><strong>Start a commercial quote</strong></a>
+              <a href="${r}insurance/index.html#commercial">View all commercial lines</a>
               ${commercialLines.map((item) => `<a href="${r}insurance/${item.slug}.html">${esc(item.name)}</a>`).join("")}
             </div>
             <div>
@@ -633,6 +642,8 @@ function footer(root) {
           <a href="${r}insurance/index.html">Insurance</a>
           <a href="${r}insurance/index.html#life">Life insurance</a>
           <a href="${r}insurance/quote.html">Life insurance quote</a>
+          <a href="${r}intake/personal.html">Personal quote intake</a>
+          <a href="${r}intake/commercial.html">Commercial quote intake</a>
           <a href="${r}financial-services/index.html">Financial Services</a>
           <a href="${r}commercial-loans/index.html">Commercial Financing</a>
           <a href="${r}rates.html">Market rates</a>
@@ -682,8 +693,122 @@ function redirectPage(to) {
 `;
 }
 
+function checkboxes(name, items) {
+  return `<div class="check-grid">${items
+    .map(
+      (item) =>
+        `<label class="check"><input type="checkbox" name="${name}" value="${esc(item)}"><span>${esc(item)}</span></label>`
+    )
+    .join("")}</div>`;
+}
+
+function stateSelect() {
+  const states = ["FL", "CA", "CO", "DE", "MD", "MI", "NJ", "OH", "OR", "PA", "TX", "VA", "WA", "Other"];
+  return `<select id="intake-state" name="state">
+            <option value="">Select</option>
+            ${states.map((st) => `<option value="${st}">${st}</option>`).join("")}
+          </select>`;
+}
+
+function intakePage({ kind, title, description, lede, who, extraFields, coverages }) {
+  const root = "../";
+  const isCommercial = kind === "commercial";
+  return layout({
+    title: `${title} | Wellesley Collective`,
+    description,
+    root,
+    path: `intake/${kind}.html`,
+    current: "insurance",
+    extraScripts: ["js/intake.js?v=2"],
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({
+        src: isCommercial ? "assets/images/hero-commercial.jpg" : "assets/images/hero-home.jpg",
+        alt: isCommercial ? "Commercial campus at twilight" : "A well-kept home at dusk",
+        root,
+        lazy: false,
+      })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">${isCommercial ? "Commercial insurance" : "Personal insurance"}</p>
+        <h1>${esc(title)}</h1>
+        <p class="lede">${esc(lede)}</p>
+      </div>
+    </section>
+    ${whoBlock(who)}
+    <section class="section">
+      <div class="container intake-wrap">
+        <div class="panel intake-success" data-intake-success hidden>
+          <p class="card-tag">Received</p>
+          <h2>Thank you. We have the file.</h2>
+          <p>We will follow up within one business day. If you attached documents, keep a copy until we confirm.</p>
+          <div class="hero-actions mt-32">
+            <a class="btn btn-gold" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+            <a class="btn btn-outline" href="../index.html">Back to home</a>
+          </div>
+        </div>
+        <form class="form intake-form" data-intake="${kind}" novalidate>
+          <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="form-note">Only name and email are required. Everything else helps us quote faster.</p>
+
+          <h3 class="intake-h">Contact</h3>
+          <div class="form-row">
+            <div class="field"><label for="intake-name">Name <span class="req">required</span></label><input id="intake-name" name="name" autocomplete="name"></div>
+            <div class="field"><label for="intake-email">Email <span class="req">required</span></label><input id="intake-email" name="email" type="email" autocomplete="email"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="intake-phone">Phone</label><input id="intake-phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="intake-state">State</label>${stateSelect()}</div>
+          </div>
+          ${
+            isCommercial
+              ? `<div class="form-row">
+            <div class="field"><label for="intake-company">Company</label><input id="intake-company" name="company" autocomplete="organization"></div>
+            <div class="field"><label for="intake-title">Title</label><input id="intake-title" name="title"></div>
+          </div>`
+              : ""
+          }
+          <div class="form-row">
+            <div class="field"><label for="intake-zip">ZIP</label><input id="intake-zip" name="zip" inputmode="numeric"></div>
+            <div class="field"><label for="intake-preferred">Preferred contact</label>
+              <select id="intake-preferred" name="preferred_contact">
+                <option value="">Select</option>
+                <option value="Email">Email</option>
+                <option value="Phone">Phone</option>
+                <option value="Text">Text</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 class="intake-h">What to quote</h3>
+          ${checkboxes("coverages", coverages)}
+
+          ${extraFields}
+
+          <h3 class="intake-h">Notes</h3>
+          <div class="field">
+            <label for="intake-message">Anything else we should know</label>
+            <textarea id="intake-message" name="message" rows="4" placeholder="Claims, timeline, certificates needed, or how the property or business is used."></textarea>
+          </div>
+
+          <h3 class="intake-h">Documents</h3>
+          <p class="form-note">Optional. Declarations, photos, loss runs, driver lists, applications. PDF, JPG, PNG, Word, or Excel. Up to 5 files, 8 MB each. Attached files are sent with your request so we can quote from them.</p>
+          <div class="field">
+            <label for="intake-files">Upload files</label>
+            <input id="intake-files" name="files" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.heic,.csv">
+          </div>
+          <ul class="file-list" data-file-list></ul>
+
+          <p class="form-note" data-intake-status></p>
+          <button class="btn btn-gold" type="submit">Send for a quote</button>
+          <p class="disclaimer mt-32">Submitting this form does not bind coverage. Name and email are enough to start. The more you add, the faster we can quote.</p>
+        </form>
+      </div>
+    </section>`,
+  });
+}
+
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=17`;
+  const css = `${root}css/styles.css?v=19`;
   const js = `${root}js/main.js?v=7`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -785,8 +910,13 @@ function productCards(items, folder, cta, root) {
   return items
     .map((item) => {
       const selfQuote = isSelfQuote(item);
-      const goldHref = selfQuote ? `${root}insurance/quote.html` : `${root}get-started.html?product=${item.slug}`;
-      const goldLabel = selfQuote ? "Get a quote" : cta;
+      const intake = intakePath(item);
+      const goldHref = selfQuote
+        ? `${root}insurance/quote.html`
+        : intake
+          ? `${root}${intake}`
+          : `${root}get-started.html?product=${item.slug}`;
+      const goldLabel = selfQuote ? "Get a quote" : intake ? "Start a quote" : cta;
       return `
       <article class="product-card">
         <div class="icon-dot" aria-hidden="true">+</div>
@@ -1288,7 +1418,7 @@ pages.push({
               <p>Personal lines, commercial lines, and life insurance — term, whole life, universal life, final expense, disability, and long-term care.</p>
               <div class="hero-actions">
                 <a class="btn btn-navy" href="insurance/index.html">Explore Insurance</a>
-                <a class="btn btn-outline" href="insurance/quote.html">Quote life insurance</a>
+                <a class="btn btn-outline" href="intake/personal.html">Personal quote</a>
               </div>
             </div>
           </article>
@@ -1685,6 +1815,7 @@ pages.push({
             <li>We review what you need and outline next steps.</li>
             <li>You stay with our team if questions come up along the way.</li>
             <li>For life insurance, you can also <a href="insurance/quote.html">quote yourself online</a>.</li>
+            <li>For a full personal quote, use the <a href="intake/personal.html">personal intake</a>. For a business, use the <a href="intake/commercial.html">commercial intake</a>.</li>
           </ul>
           <div class="hero-actions mt-32">
             <a class="btn btn-navy" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
@@ -1699,6 +1830,108 @@ pages.push({
         ${calendlyBlock()}
       </div>
     </section>`,
+  }),
+});
+
+pages.push({
+  file: "intake/personal.html",
+  html: intakePage({
+    kind: "personal",
+    title: "Personal insurance intake",
+    description: "Start a personal insurance quote with Wellesley Collective. Only name and email are required.",
+    lede: "Home, auto, flood, umbrella, watercraft, and life. Name and email are enough to start. The rest helps us quote.",
+    who: "Households that need a personal or life insurance quote and want to send details — and optional documents — in one place.",
+    coverages: [
+      ...personalLines.map((item) => item.name),
+      ...lifeProducts.map((item) => item.name),
+    ],
+    extraFields: `
+          <h3 class="intake-h">Property</h3>
+          <div class="field"><label for="intake-address">Property address</label><input id="intake-address" name="property_address" autocomplete="street-address"></div>
+          <div class="form-row">
+            <div class="field"><label for="intake-occupancy">Occupancy</label>
+              <select id="intake-occupancy" name="occupancy">
+                <option value="">Select</option>
+                <option value="Primary">Primary</option>
+                <option value="Secondary">Secondary / seasonal</option>
+                <option value="Rental">Rental</option>
+                <option value="Condo">Condo</option>
+              </select>
+            </div>
+            <div class="field"><label for="intake-year-built">Year built</label><input id="intake-year-built" name="year_built" inputmode="numeric"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="intake-construction">Construction</label><input id="intake-construction" name="construction" placeholder="Frame, masonry, etc."></div>
+            <div class="field"><label for="intake-dwelling">Rebuild / dwelling amount</label><input id="intake-dwelling" name="dwelling_limit"></div>
+          </div>
+          <h3 class="intake-h">Auto</h3>
+          <div class="form-row">
+            <div class="field"><label for="intake-vehicles">Number of vehicles</label><input id="intake-vehicles" name="vehicles" inputmode="numeric"></div>
+            <div class="field"><label for="intake-drivers">Drivers in household</label><input id="intake-drivers" name="drivers" inputmode="numeric"></div>
+          </div>
+          <div class="field"><label for="intake-vins">VINs or vehicle descriptions</label><textarea id="intake-vins" name="vins" rows="3" placeholder="Year, make, model, or 17-character VIN"></textarea></div>
+          <h3 class="intake-h">Life</h3>
+          <div class="form-row">
+            <div class="field"><label for="intake-dob">Date of birth</label><input id="intake-dob" name="date_of_birth" placeholder="MM/DD/YYYY"></div>
+            <div class="field"><label for="intake-face">Coverage amount sought</label><input id="intake-face" name="life_amount" placeholder="$500,000"></div>
+          </div>
+          <h3 class="intake-h">Current insurance</h3>
+          <div class="form-row">
+            <div class="field"><label for="intake-carrier">Current carrier</label><input id="intake-carrier" name="current_carrier"></div>
+            <div class="field"><label for="intake-exp">Expiration / renewal</label><input id="intake-exp" name="expiration" placeholder="MM/DD/YYYY"></div>
+          </div>
+          <div class="field"><label for="intake-premium">Current premium</label><input id="intake-premium" name="current_premium"></div>
+        `,
+  }),
+});
+
+pages.push({
+  file: "intake/commercial.html",
+  html: intakePage({
+    kind: "commercial",
+    title: "Commercial insurance intake",
+    description: "Start a commercial insurance quote with Wellesley Collective. Only name and email are required.",
+    lede: "GL, BOP, workers’ comp, fleet, property, cyber, and contractors. Name and email are enough to start. The rest helps us quote.",
+    who: "Business owners and contractors who want to send operations details — and optional loss runs or declarations — for a commercial quote.",
+    coverages: commercialLines.map((item) => item.name),
+    extraFields: `
+          <h3 class="intake-h">The business</h3>
+          <div class="form-row">
+            <div class="field"><label for="intake-entity">Entity type</label>
+              <select id="intake-entity" name="entity_type">
+                <option value="">Select</option>
+                <option value="LLC">LLC</option>
+                <option value="Corporation">Corporation</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Sole proprietor">Sole proprietor</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field"><label for="intake-years">Years in business</label><input id="intake-years" name="years_in_business" inputmode="numeric"></div>
+          </div>
+          <div class="field"><label for="intake-ops">Operations / class of work</label><textarea id="intake-ops" name="operations" rows="3" placeholder="What the company actually does, job-site vs shop, who the customers are."></textarea></div>
+          <div class="form-row">
+            <div class="field"><label for="intake-employees">Employees</label><input id="intake-employees" name="employees" inputmode="numeric"></div>
+            <div class="field"><label for="intake-payroll">Annual payroll</label><input id="intake-payroll" name="payroll"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="intake-revenue">Annual revenue</label><input id="intake-revenue" name="revenue"></div>
+            <div class="field"><label for="intake-locations">Locations</label><input id="intake-locations" name="locations" placeholder="Number of locations or addresses"></div>
+          </div>
+          <div class="field"><label for="intake-website">Website</label><input id="intake-website" name="website" inputmode="url"></div>
+          <h3 class="intake-h">Autos, property, and claims</h3>
+          <div class="form-row">
+            <div class="field"><label for="intake-fleet">Fleet / work vehicles</label><input id="intake-fleet" name="fleet_count" inputmode="numeric"></div>
+            <div class="field"><label for="intake-sub">Subcontractors</label><input id="intake-sub" name="subcontractors" placeholder="Yes / no, or % of work"></div>
+          </div>
+          <div class="field"><label for="intake-cvins">VINs or unit descriptions</label><textarea id="intake-cvins" name="vins" rows="3"></textarea></div>
+          <div class="field"><label for="intake-bldg">Buildings / contents values</label><textarea id="intake-bldg" name="property_values" rows="3"></textarea></div>
+          <div class="form-row">
+            <div class="field"><label for="intake-ccarrier">Current carrier</label><input id="intake-ccarrier" name="current_carrier"></div>
+            <div class="field"><label for="intake-cexp">Expiration / renewal</label><input id="intake-cexp" name="expiration"></div>
+          </div>
+          <div class="field"><label for="intake-claims">Claims in the last 5 years</label><textarea id="intake-claims" name="claims" rows="3"></textarea></div>
+        `,
   }),
 });
 
@@ -2037,6 +2270,7 @@ pages.push({
         <p class="kicker">Legal</p>
         <h1>Privacy Policy</h1>
         <p class="subhead">This website is operated by Wellesley Collective. We collect the information you submit through our forms — typically your name, email, phone number, and a description of your inquiry.</p>
+        <p class="mt-16" style="color:var(--slate)">If you use an insurance intake form, we also collect the quote details you enter and any documents you attach so we can prepare a quote. Files are sent to our CRM and, when attached, to our firm email.</p>
         <p class="mt-16" style="color:var(--slate)">We use that information to respond to you and to quote or discuss the services you requested. We do not sell personal information.</p>
         <p class="mt-16" style="color:var(--slate)">For privacy questions, email <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a> or use the contact form on this website.</p>
       </div>
@@ -2079,8 +2313,8 @@ pages.push({
         <h1>Property, casualty, and life insurance — quoted by one licensed team.</h1>
         <p class="lede">We quote the actual policy — not a category. Personal lines, commercial lines, and life insurance, named the way you search for them. Annuities live under Financial Services.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="quote.html">Get a life quote</a>
-          <a class="btn btn-ghost" href="#life">Life insurance</a>
+          <a class="btn btn-gold" href="../intake/personal.html">Personal quote</a>
+          <a class="btn btn-ghost" href="../intake/commercial.html">Commercial quote</a>
         </div>
       </div>
     </section>
@@ -2108,6 +2342,9 @@ pages.push({
         <div class="section-head">
           <p class="kicker">Personal lines</p>
           <h2>Homeowners, auto, renters, condo, umbrella, watercraft, flood.</h2>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="../intake/personal.html">Start a personal quote</a>
+          </div>
         </div>
         ${productIndex(personalLines, "insurance", "../")}
       </div>
@@ -2117,6 +2354,9 @@ pages.push({
         <div class="section-head">
           <p class="kicker">Commercial lines</p>
           <h2>GL, property, commercial auto, WC, BOP, contractors, E&amp;O, inland marine, umbrella, cyber, flood.</h2>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="../intake/commercial.html">Start a commercial quote</a>
+          </div>
         </div>
         ${productIndex(commercialLines, "insurance", "../")}
       </div>
@@ -2305,11 +2545,11 @@ pages.push({
   }),
 });
 
-function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "", guides = [], quoteHref = "" }) {
+function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "", guides = [], quoteHref = "", intakeHref = "" }) {
   const root = "../";
   const related = pickRelated(item, siblings, relatedExtra, 6);
-  const primaryHref = quoteHref || "#start";
-  const primaryLabel = quoteHref ? "Get a quote" : cta;
+  const primaryHref = quoteHref || intakeHref || "#start";
+  const primaryLabel = quoteHref ? "Get a quote" : intakeHref ? "Start a quote" : cta;
   const quotePanel = quoteHref
     ? `<div class="quote-cta-panel">
         <p class="card-tag">Quote yourself</p>
@@ -2317,6 +2557,14 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
         <p>Answer a few questions and see options. You can apply online or stop and talk with us.</p>
         <a class="btn btn-gold" href="${quoteHref}">Get a quote</a>
         <p class="form-note">Prefer we follow up instead? Use the form below.</p>
+      </div>`
+    : intakeHref
+      ? `<div class="quote-cta-panel">
+        <p class="card-tag">Quote</p>
+        <h3 class="lead-heading">Send what we need to quote.</h3>
+        <p>Name and email are enough. Add property, vehicles, operations, and documents if you have them.</p>
+        <a class="btn btn-gold" href="${intakeHref}">Start a quote</a>
+        <p class="form-note">Prefer a short message instead? Use the form below.</p>
       </div>`
     : "";
   return layout({
@@ -3024,6 +3272,7 @@ for (const item of personalLines) {
       relatedExtra: commercialLines,
       image: "hero-home.jpg",
       need: "insurance",
+      intakeHref: "../intake/personal.html",
       guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
@@ -3043,6 +3292,7 @@ for (const item of commercialLines) {
       relatedExtra: personalLines,
       image: "hero-commercial.jpg",
       need: "insurance",
+      intakeHref: "../intake/commercial.html",
       guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
