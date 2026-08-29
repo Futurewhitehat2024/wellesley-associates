@@ -1,4 +1,4 @@
-import { fetchJson, bindForm, setStatus, inquireUrl, geocode, escapeHtml } from "./core.js";
+import { fetchJson, bindForm, setStatus, geocode, escapeHtml, personalIntakeUrl } from "./core.js";
 
 function nwsHeaders() {
   return { Accept: "application/geo+json" };
@@ -87,10 +87,10 @@ export function initRisk() {
             .join("") +
           "</ul>"
         : "<p>No active NWS watches or warnings at this point right now.</p>";
-      const inquire = inquireUrl({
+      const inquire = personalIntakeUrl({
         product: "homeowners-insurance",
-        need: "insurance",
-        location: place.label,
+        coverage: "Homeowners Insurance",
+        property_address: place.label,
         zip: place.zip || "",
       });
       out.innerHTML =
@@ -128,7 +128,7 @@ export function initRisk() {
         pill("Seismic", false, "", "Needs a local file") +
         "</div>" +
         "<a class='btn btn-gold' href='" +
-        inquireUrl({ product: "flood-insurance", need: "insurance" }) +
+        personalIntakeUrl({ product: "flood-insurance", coverage: "Flood Insurance" }) +
         "'>Request a full insurance review</a>" +
         "</article>";
       out.hidden = false;

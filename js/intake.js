@@ -116,11 +116,20 @@
 
   function prefillFromQuery() {
     const params = new URLSearchParams(window.location.search);
-    ["company", "state", "property_address", "zip", "entity_type", "years_in_business", "name"].forEach(function (key) {
+    ["company", "state", "property_address", "zip", "entity_type", "years_in_business", "name", "vins"].forEach(function (key) {
       const value = params.get(key);
       const el = form.elements[key];
       if (value && el && !String(el.value || "").trim()) el.value = value;
     });
+    if (form.elements.vins && !String(form.elements.vins.value || "").trim()) {
+      try {
+        const stored = sessionStorage.getItem("wellesleyVin");
+        if (stored) {
+          const vin = JSON.parse(stored);
+          form.elements.vins.value = [vin.vin, vin.year, vin.make, vin.model].filter(Boolean).join(" ");
+        }
+      } catch (err) {}
+    }
   }
   prefillFromQuery();
 

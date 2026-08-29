@@ -607,7 +607,7 @@ function header(root, current) {
             Resources
             <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
-          <div class="dropdown dropdown-wide dropdown-3">
+          <div class="dropdown dropdown-wide dropdown-3 dropdown-end">
             <div>
               <p class="dropdown-label">Property &amp; vehicles</p>
               <a href="${r}resources/index.html"><strong>All tools</strong></a>
@@ -750,15 +750,15 @@ function toolBlock({ id, kicker, title, subhead, fields, note, button, cream }) 
     </section>`;
 }
 
-function toolDesk(tag, heading, items) {
+function toolDesk(tag, heading, items, base = "") {
   return `<article class="tool-desk">
     <p class="card-tag">${tag}</p>
     <h3>${heading}</h3>
     ${items
-      .map(
-        (item) =>
-          `<a href="#${item.id}"><strong>${item.name}</strong><span>${item.blurb}</span></a>`
-      )
+      .map((item) => {
+        const href = base ? `${base}#${item.id}` : `#${item.id}`;
+        return `<a href="${href}"><strong>${item.name}</strong><span>${item.blurb}</span></a>`;
+      })
       .join("")}
   </article>`;
 }
@@ -780,7 +780,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
     root,
     path: `intake/${kind}.html`,
     current: "insurance",
-    extraScripts: ["js/intake.js?v=4"],
+    extraScripts: ["js/intake.js?v=5"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({
@@ -869,7 +869,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=21`;
+  const css = `${root}css/styles.css?v=22`;
   const js = `${root}js/main.js?v=7`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -1480,6 +1480,7 @@ pages.push({
               <div class="hero-actions">
                 <a class="btn btn-navy" href="insurance/index.html">Explore Insurance</a>
                 <a class="btn btn-outline" href="intake/personal.html">Personal quote</a>
+                <a class="btn btn-outline" href="intake/commercial.html">Commercial quote</a>
               </div>
             </div>
           </article>
@@ -1506,6 +1507,50 @@ pages.push({
     </section>
 
     <section class="section section-cream">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Resource Center</p>
+          <h2>Eight tools. One desk.</h2>
+          <p>Flood maps, entity lookup, DSCR, VIN, longevity, and more — grouped here so nothing is scattered around the site.</p>
+        </div>
+        <div class="tool-desks">
+          ${toolDesk(
+            "Property & vehicles",
+            "Start with a place or a VIN.",
+            [
+              { id: "flood", name: "Flood zone lookup", blurb: "FEMA flood zone and a flood-quote handoff." },
+              { id: "risk", name: "Property risk checker", blurb: "NWS alerts and USGS seismic history." },
+              { id: "vin", name: "VIN decoder", blurb: "Year, make, model, then the right auto form." },
+            ],
+            "resources/index.html"
+          )}
+          ${toolDesk(
+            "Business & capital",
+            "Commercial insurance and financing.",
+            [
+              { id: "entity", name: "Entity lookup", blurb: "Legal name, then the commercial quote." },
+              { id: "dscr", name: "DSCR calculator", blurb: "NOI versus annual debt service, live." },
+              { id: "sba", name: "SBA 7(a) / 504 snapshot", blurb: "Program limits and typical terms." },
+            ],
+            "resources/index.html"
+          )}
+          ${toolDesk(
+            "Life & money",
+            "Longevity, income, and cash.",
+            [
+              { id: "longevity", name: "Longevity & income gap", blurb: "SSA life table versus the paycheck you want." },
+              { id: "inflation", name: "Inflation calculator", blurb: "What uninvested cash is worth." },
+            ],
+            "resources/index.html"
+          )}
+        </div>
+        <div class="hero-actions mt-32">
+          <a class="btn btn-navy" href="resources/index.html">Open the Resource Center</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container split">
         ${figurePhoto({ src: "assets/images/about-office.jpg", alt: "Private conference room with city views", caption: "A quiet room for coverage, capital, and the facts of the file." })}
         <div class="split-copy">
@@ -1697,6 +1742,10 @@ pages.push({
             <p>Working capital, equipment, CRE, SBA, bridge, and lines of credit for operators and commercial property — subject to credit and documentation.</p>
             <a class="btn btn-outline" href="commercial-loans/index.html">Explore financing</a>
           </article>
+        </div>
+        <div class="hero-actions mt-32">
+          <a class="btn btn-navy" href="resources/index.html">Resource Center</a>
+          <a class="btn btn-outline" href="get-started.html">Get Started</a>
         </div>
       </div>
     </section>
@@ -2474,7 +2523,7 @@ pages.push({
         </div>
       </div>
     </section>
-    <script type="module" src="../js/resources/index.js?v=3"></script>`,
+    <script type="module" src="../js/resources/index.js?v=4"></script>`,
   }),
 });
 
@@ -2959,7 +3008,7 @@ const archivePosts = [
     description: "How the January 2026 Fannie Mae and Freddie Mac MBS purchase directive affected mortgage rates.",
     lede: "To pressure home-loan rates lower, the administration directed Fannie Mae and Freddie Mac to buy $200 billion in mortgage-backed bonds. Rates dipped. Most existing borrowers still had no reason to refinance.",
     ctaLabel: "Review homeowners coverage",
-    ctaHref: "../get-started.html?product=homeowners-insurance",
+    ctaHref: "../intake/personal.html?product=homeowners-insurance",
     body: `
       <p>In early January, President Trump said Fannie Mae and Freddie Mac should buy $200 billion in mortgage-backed bonds to help lower home-loan rates. <a href="https://www.cnbc.com/2026/01/28/fed-decision-mortgage-rates-credit-cards-loans.html" target="_blank" rel="noopener">CNBC noted</a> that the average 30-year fixed rate sank briefly on the news and was near 6.15% later that month, down from more than 7% a year earlier.</p>
       <p>The Fed’s January minutes later confirmed the market reaction: MBS yields fell relative to Treasuries after the announcement. Policymakers also observed that the move was unlikely to produce a refinance wave, because most outstanding mortgages still carried rates well below the new market rate.</p>
@@ -3107,7 +3156,7 @@ const archivePosts = [
     description: "FHFA’s May 2026 house-price report and what slower appreciation means for owners and buyers.",
     lede: "Home values did not crack. They cooled. FHFA’s first-quarter House Price Index was up 1.7% year over year — a far cry from the double-digit run of the early 2020s.",
     ctaLabel: "Review homeowners coverage",
-    ctaHref: "../get-started.html?product=homeowners-insurance",
+    ctaHref: "../intake/personal.html?product=homeowners-insurance",
     body: `
       <p>On May 26 the <a href="https://www.fhfa.gov/" target="_blank" rel="noopener">Federal Housing Finance Agency</a> reported that U.S. house prices rose 1.7% between the first quarter of 2025 and the first quarter of 2026, and 0.5% from the prior quarter. Later monthly prints showed a slight April dip and a 0.3% May rebound, with May still up 2.2% year over year.</p>
       <p>Slower appreciation is not a crash. It is a market where equity still exists but does not bail out a bad purchase. For buyers, it means you cannot assume the house will “grow into” an uncomfortable payment. For owners, it means insurance rebuild cost and market value are still diverging — replacement cost has been rising even where sale prices are only inching up.</p>
@@ -3390,7 +3439,7 @@ pages.push({
     date: "August 17, 2026",
     lede: "Premiums have outpaced inflation for years, and a new industry report says keeping a policy is getting harder — not just more expensive. That matters for anyone who owns a home, a rental, or a condo.",
     ctaLabel: "Get Started",
-    ctaHref: "../get-started.html?product=homeowners-insurance",
+    ctaHref: "../intake/personal.html?product=homeowners-insurance",
     body: `
       <p>On August 6, <a href="https://www.cnbc.com/2026/08/06/homeowners-insurance-costs-soar-naic-report.html" target="_blank" rel="noopener">CNBC reported</a> on National Association of Insurance Commissioners findings: homeowners insurance premiums have risen faster than inflation nationwide, and insurers are dropping customers at a higher rate. After adjusting for inflation, consumers saw average premium increases of 18% in the Northeast, 25% in the Midwest, 27% in the Southeast, and 43% in the West over a seven-year window.</p>
       <p>That tracks a longer Treasury finding: from 2018 to 2022, average premiums per policy rose 8.7% faster than inflation, with the highest-risk ZIP codes paying far more than the lowest-risk ones. The Zebra’s 2026 home-trend work put the average homeowner near $2,966 a year — and found that nearly half of owners said they would struggle to pay the mortgage if premiums rose again.</p>
@@ -3443,7 +3492,7 @@ pages.push({
     date: "August 17, 2026",
     lede: "Every hurricane season and spring melt, the same surprise shows up: the homeowners policy does not pay for flood. FEMA’s guidance has not changed. The risk has not gone away either.",
     ctaLabel: "Get Started",
-    ctaHref: "../get-started.html?product=flood-insurance",
+    ctaHref: "../intake/personal.html?product=flood-insurance",
     body: `
       <p><a href="https://www.fema.gov/flood-insurance" target="_blank" rel="noopener">FEMA is direct about it</a>: most homeowners insurance does not cover flood damage. Flood insurance is a separate policy for the building, the contents, or both. It is available in participating National Flood Insurance Program communities, and it is required for many homes in high-risk zones that carry a government-backed mortgage.</p>
       <p>That requirement is the floor, not the full picture. Floods happen outside mapped high-risk zones. Updated flood maps and heavier rainfall have pulled more properties into a conversation they did not have five years ago. Industry notes heading into 2026 also flagged that many flood premiums are running 10% or more above the prior year, especially for homes newly added to flood zones.</p>

@@ -1,4 +1,4 @@
-import { fetchJson, bindForm, setStatus, inquireUrl } from "./core.js";
+import { fetchJson, bindForm, setStatus, escapeHtml, personalIntakeUrl, commercialIntakeUrl } from "./core.js";
 
 const FIELDS = [
   ["Model Year", "year"],
@@ -73,26 +73,23 @@ export function initVin() {
       storeVin(payload);
       const commercial = isCommercial(payload.type);
       const product = commercial ? "commercial-auto" : "auto-insurance";
-      const qs = inquireUrl({
+      const vehicle = [payload.year, payload.make, payload.model].filter(Boolean).join(" ");
+      const qs = (commercial ? commercialIntakeUrl : personalIntakeUrl)({
         product: product,
-        need: "insurance",
-        vin: vin,
-        year: payload.year,
-        make: payload.make,
-        model: payload.model,
-        vehicle: [payload.year, payload.make, payload.model].filter(Boolean).join(" "),
+        coverage: commercial ? "Commercial Auto / Fleet" : "Auto Insurance",
+        vins: [vin, vehicle].filter(Boolean).join(" — "),
       });
       out.innerHTML =
         "<article class='result-card'>" +
         "<p class='card-tag'>NHTSA VPIC decode</p>" +
         "<h3>" +
-        [payload.year, payload.make, payload.model].filter(Boolean).join(" ") +
+        escapeHtml(vehicle || "Decoded vehicle") +
         "</h3>" +
-        (error ? "<p class='form-note is-error'>" + error + "</p>" : "") +
+        (error ? "<p class='form-note is-error'>" + escapeHtml(error) + "</p>" : "") +
         "<dl class='spec-list'>" +
         specs
           .map(function (row) {
-            return "<div><dt>" + row.label + "</dt><dd>" + (row.value || "—") + "</dd></div>";
+            return "<div><dt>" + escapeHtml(row.label) + "</dt><dd>" + escapeHtml(row.value || "—") + "</dd></div>";
           })
           .join("") +
         "</dl>" +
@@ -112,7 +109,7 @@ export function initVin() {
         "<h3>The VIN decoder did not respond.</h3>" +
         "<p>NHTSA VPIC timed out or blocked the request. Send the VIN with your inquiry and we will decode it on our side.</p>" +
         "<a class='btn btn-gold' href='" +
-        inquireUrl({ product: "auto-insurance", need: "insurance", vin: vin }) +
+        personalIntakeUrl({ product: "auto-insurance", coverage: "Auto Insurance", vins: vin }) +
         "'>Request a full auto quote</a>" +
         "</article>";
       out.hidden = false;
