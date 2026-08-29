@@ -4,7 +4,7 @@
   const refresh = document.getElementById("news-refresh");
   if (!grid) return;
 
-  const CACHE_KEY = "wa-news-v2-finance";
+  const CACHE_KEY = "wa-news-v3-finance";
   const CACHE_MS = 20 * 60 * 1000;
 
   const FEEDS = [
@@ -42,12 +42,13 @@
 
   const BLOCK = /murder|homicide|manslaughter|shooting|shot dead|stabbed|stabbing|killed in|killing of|massacre|rape|sexual assault|child abuse|suicide|beheading|body found|crime scene|serial killer|missing person|abduct|kidnapp|domestic violence|assaulted|gunman|gunmen|active shooter|died after being|fatal crash|wrongful death|fatality|celebrity|oscar|grammy|tmz|true crime/i;
 
-  const ALLOW = /federal reserve|fomc|interest rate|inflation|cpi|pce|treasury|yield|mortgage|housing|homeowner|home price|refinance|insurance|premium|underwrit|flood|liability|workers.?comp|cyber|commercial real estate|multifamily|cmbs|sba\b|small business|loan|lending|credit|working capital|equipment financ|line of credit|\bbank|\bbanking|gdp|payroll|jobs report|unemployment|recession|fed funds|prime rate|bond|nasdaq|dow |s&p|stock market|wall street|earnings|oil price|crude|energy price|tariff|dollar|fannie|freddie|fhfa|naic|fema|condo|landlord|policy rate|rate cut|rate hike|origination|delinquenc|default|foreclos|deductible|coverage|reinsur|risk|capital market|private credit|bridge loan|construction loan|commercial loan|business loan|equity market|securit|liquidity|balance sheet|monetary|fiscal|consumer price|housing start|building permit|existing home|new home sales/i;
+  const ALLOW = /federal reserve|fomc|interest rate|inflation|cpi|pce|treasury|yield|mortgage|housing|homeowner|home price|refinance|insurance|premium|underwrit|flood|liability|workers.?comp|cyber|commercial real estate|multifamily|cmbs|sba\b|small business|loan|lending|credit|working capital|equipment financ|line of credit|\bbank|\bbanking|gdp|payroll|jobs report|unemployment|recession|fed funds|prime rate|bond|nasdaq|dow |s&p|stock market|wall street|earnings|oil price|crude|energy price|tariff|dollar|fannie|freddie|fhfa|naic|fema|condo|landlord|policy rate|rate cut|rate hike|origination|delinquenc|default|foreclos|deductible|coverage|reinsur|risk|capital market|private credit|bridge loan|construction loan|commercial loan|business loan|equity market|securit|liquidity|balance sheet|monetary|fiscal|consumer price|housing start|building permit|existing home|new home sales|annuit|myga|spia|fixed income|retirement income/i;
 
   const KEYWORDS = {
     homeowners: /homeowner|housing|mortgage|home price|rent|flood|condo|roof|wildfire|hurricane|fannie|freddie|fhfa|existing home|new home/i,
     business: /small business|sba|credit|loan|lending|working capital|payroll|recession|employment|bank|earnings|gdp/i,
-    insurance: /insur|premium|underwrit|liability|flood|cyber|workers.?comp|reinsur|naic|coverage|deductible/i,
+    insurance: /insur|premium|underwrit|liability|flood|cyber|workers.?comp|reinsur|naic|coverage|deductible|term life|whole life/i,
+    financial: /annuit|myga|spia|fixed indexed|retirement income|cd rate|money market|401k|ira\b|pension|longevity/i,
     rates: /federal reserve|fomc|interest rate|inflation|cpi|pce|treasury|yield|fed |monetary|rate cut|rate hike|fed funds/i,
     cre: /commercial real estate|multifamily|office|retail|industrial|cmbs|cre |hotel|self-storage|construction loan/i,
   };

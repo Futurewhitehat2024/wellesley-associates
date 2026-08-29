@@ -1132,7 +1132,7 @@ const guides = [
     date: "August 2026",
     lede: "Term, whole life, and universal life all pay a death benefit. They are not interchangeable. The right policy is the one that still makes sense if you live, not only if you die.",
     ctaLabel: "Get a life insurance quote",
-    ctaHref: "../insurance/term-life-insurance.html",
+    ctaHref: "../insurance/quote.html",
     body: `
       <p><a href="../insurance/term-life-insurance.html">Term life</a> is a lease. You buy a large death benefit for 10, 15, 20, or 30 years at the lowest premium of the three. If you die during the term, the people you named are paid. If you outlive it, the coverage ends unless you convert or renew. There is usually no cash value. That is the right product for income replacement, a mortgage, or a defined obligation with an end date.</p>
       <p><a href="../insurance/whole-life-insurance.html">Whole life</a> is a purchase. Premiums, death benefit, and a minimum cash-value schedule are in the contract. It costs more because it is built to still be there at 80. People use it for lifelong protection, estate liquidity, and a conservative cash-value component — not because a dividend illustration looked attractive.</p>
@@ -1150,7 +1150,7 @@ const guides = [
         <li>A GUL priced to a no-lapse guarantee is cheaper than whole life for a death-benefit-only job.</li>
       </ul>
       <p>Return-of-premium term costs more than standard term and can give premiums back if you outlive the period. <a href="../insurance/final-expense-insurance.html">Final expense</a> is a small whole-life policy for funeral costs, not a substitute for a $1 million term policy. <a href="../insurance/business-life-insurance.html">Key-person and buy-sell coverage</a> is the business version of the same decision: match the duration of the policy to the duration of the need.</p>
-      <p>Health history is underwriting, not a reason to stay silent. Wellesley Collective quotes standard and impaired-risk cases and will tell you if a file is outside what we can place. We will follow up within one business day.</p>
+      <p>An annuity is a different job. If the need is a stated rate, a floor, or a paycheck, that conversation is <a href="../financial-services/index.html">Financial Services</a>, not a life policy. Life insurance stays under Insurance. You can <a href="../insurance/quote.html">quote term and permanent life yourself</a>, or we will review the file. Health history is underwriting, not a reason to stay silent.</p>
     `,
   },
   {
@@ -1162,7 +1162,7 @@ const guides = [
     date: "August 2026",
     lede: "Annuities are insurance contracts, not bank accounts and not mutual funds. The type you buy decides whether you get a stated rate, an index formula, or a paycheck.",
     ctaLabel: "Ask about annuities",
-    ctaHref: "../financial-services/fixed-annuities.html",
+    ctaHref: "../financial-services/index.html",
     body: `
       <p>People say “annuity” as if it were one product. It is four different jobs wearing the same word.</p>
       <p>A <a href="../financial-services/fixed-annuities.html">fixed annuity</a> credits a declared rate. A MYGA (multi-year guaranteed annuity) locks that rate for a set term, often 3, 5, or 7 years. It is an insurance contract, not a CD. It is not FDIC insured. Guarantees depend on the issuing carrier. Liquidity is limited by surrender charges. Tax on gains usually waits until you take the money out.</p>
@@ -1174,7 +1174,7 @@ const guides = [
         <li><strong>Want a floor under a portion of savings, and can leave it for the surrender period.</strong> An FIA can be the slice — not the whole portfolio.</li>
         <li><strong>Need a paycheck for life, and can give up the lump sum.</strong> A SPIA (now) or a DIA (later).</li>
       </ul>
-      <p>None of these is a checking account, a growth-equity substitute, or a replacement for <a href="../insurance/term-life-insurance.html">life insurance</a>. If the household still needs a death benefit, buy life insurance for that job. If a spouse would need care, look at <a href="../insurance/long-term-care-insurance.html">long-term care coverage</a> separately. Wellesley Collective will quote the contract that matches the use of funds and tell you when an annuity is the wrong box.</p>
+      <p>None of these is a checking account, a growth-equity substitute, or a replacement for <a href="../insurance/term-life-insurance.html">life insurance</a>. Life coverage is insurance. Annuities sit under <a href="../financial-services/index.html">Financial Services</a>. If the household still needs a death benefit, buy life insurance for that job. If a spouse would need care, look at <a href="../insurance/long-term-care-insurance.html">long-term care coverage</a> separately. Wellesley Collective will quote the contract that matches the use of funds and tell you when an annuity is the wrong box.</p>
     `,
   },
 ];
@@ -2331,18 +2331,18 @@ pages.push({
   file: "blog/index.html",
   html: layout({
     title: "Blog | Wellesley Collective",
-    description: "Guides and briefings from Wellesley Collective on insurance, life insurance, annuities, commercial financing, rates, and commercial real estate.",
+    description: "Guides and briefings from Wellesley Collective on insurance, annuities, commercial financing, rates, and commercial real estate.",
     root: "../",
     path: "blog/index.html",
     current: "blog",
-    extraScripts: ["js/blog.js?v=4"],
+    extraScripts: ["js/blog.js?v=5"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "City skyline at dusk", root: "../", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Wellesley Insights</p>
         <h1>News that affects your coverage and capital.</h1>
-        <p class="lede">Guides you can use at renewal or application, plus the headlines that move premiums, payments, and deal terms — from Wellesley Collective.</p>
+        <p class="lede">Guides for insurance, annuities, and commercial financing — plus the headlines that move premiums, payments, and deal terms.</p>
       </div>
     </section>
 
@@ -2350,8 +2350,8 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">Guides</p>
-          <h2>Evergreen reading for coverage and capital.</h2>
-          <p>Named products, written so you can act — then a form if you want Wellesley Collective to review the file.</p>
+          <h2>Evergreen reading for coverage, income, and capital.</h2>
+          <p>Named products, written so you can act — then a conversation if you want Wellesley Collective to review the file.</p>
         </div>
         <div class="grid-3">
           ${guides
@@ -2387,6 +2387,7 @@ pages.push({
           <button class="filter-btn" type="button" data-filter="homeowners">For Homeowners</button>
           <button class="filter-btn" type="button" data-filter="business">For Business Owners</button>
           <button class="filter-btn" type="button" data-filter="insurance">Insurance</button>
+          <button class="filter-btn" type="button" data-filter="financial">Financial Services</button>
           <button class="filter-btn" type="button" data-filter="rates">Rates &amp; Economy</button>
           <button class="filter-btn" type="button" data-filter="cre">Commercial Property</button>
         </div>
