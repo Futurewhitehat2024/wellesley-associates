@@ -1797,13 +1797,7 @@ h2 {
 }
 
 .zoho-embed input.zcwf_button[type="reset"] {
-  border-radius: 999px !important;
-  min-height: 46px;
-  padding: 0 18px !important;
-  border: 1px solid var(--line) !important;
-  background: transparent !important;
-  color: var(--navy) !important;
-  max-width: none !important;
+  display: none !important;
 }
 
 .calendly-block {
