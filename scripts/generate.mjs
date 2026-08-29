@@ -619,7 +619,7 @@ function footer(root) {
 const SITE = "https://wellesleycollective.com";
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=10`;
+  const css = `${root}css/styles.css?v=11`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -1246,14 +1246,6 @@ pages.push({
             <a class="btn btn-outline" href="get-started.html">Get Started</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="photo-rail-wrap" aria-label="Property, workspace, and capital">
-      <div class="container photo-rail">
-        ${figurePhoto({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", caption: "Households" })}
-        ${figurePhoto({ src: "assets/images/texture-stone.jpg", alt: "Stone and bronze architectural detail", caption: "The room" })}
-        ${figurePhoto({ src: "assets/images/hero-commercial.jpg", alt: "Commercial campus at twilight", caption: "Operating companies" })}
       </div>
     </section>
 

@@ -868,29 +868,6 @@ h2 {
   color: var(--muted);
 }
 
-.photo-rail-wrap {
-  padding: 12px 0 72px;
-  background: var(--cream);
-}
-
-.photo-rail {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr 1fr;
-  gap: 18px;
-  align-items: end;
-}
-
-.photo-rail .photo-frame img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-.photo-rail .photo-frame:nth-child(2) img {
-  height: 220px;
-}
-
 .pull-quote {
   max-width: 34ch;
   margin: 0 auto;
@@ -1671,15 +1648,6 @@ h2 {
   .split img,
   .split .photo-frame img {
     height: 280px;
-  }
-
-  .photo-rail {
-    grid-template-columns: 1fr;
-  }
-
-  .photo-rail .photo-frame img,
-  .photo-rail .photo-frame:nth-child(2) img {
-    height: 220px;
   }
 
   .form-row {
