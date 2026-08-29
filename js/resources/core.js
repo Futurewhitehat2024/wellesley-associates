@@ -6,6 +6,59 @@ export function inquireUrl(params) {
   return GET_STARTED + "?" + q.toString();
 }
 
+export function personalIntakeUrl(params) {
+  return "../intake/personal.html?" + new URLSearchParams(params).toString();
+}
+
+export function commercialIntakeUrl(params) {
+  return "../intake/commercial.html?" + new URLSearchParams(params).toString();
+}
+
+export function escapeHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+export function specRow(label, value) {
+  return "<div><dt>" + escapeHtml(label) + "</dt><dd>" + value + "</dd></div>";
+}
+
+export async function geocode(query) {
+  const trimmed = String(query || "").trim();
+  const zip = trimmed.match(/\b(\d{5})(?:-\d{4})?\b/);
+  const zipOnly = /^\d{5}$/.test(trimmed) || (zip && trimmed.length <= 10);
+  if (zipOnly) {
+    const code = (trimmed.match(/^\d{5}/) || zip)[0].slice(0, 5);
+    const data = await fetchJson("https://api.zippopotam.us/us/" + code);
+    const place = data.places && data.places[0];
+    if (!place) throw new Error("ZIP not found");
+    return {
+      lat: Number(place.latitude),
+      lon: Number(place.longitude),
+      label: place["place name"] + ", " + place["state abbreviation"] + " " + code,
+      zip: code,
+      centroid: true,
+    };
+  }
+  const url =
+    "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=" +
+    encodeURIComponent(trimmed) +
+    "&benchmark=Public_AR_Current&format=json";
+  const data = await fetchJson(url);
+  const match = data.result && data.result.addressMatches && data.result.addressMatches[0];
+  if (!match) throw new Error("Address not found");
+  return {
+    lat: match.coordinates.y,
+    lon: match.coordinates.x,
+    label: match.matchedAddress,
+    zip: (match.addressComponents && match.addressComponents.zip) || "",
+    centroid: false,
+  };
+}
+
 export function parseNumber(value) {
   if (value == null || value === "") return null;
   const n = Number(String(value).replace(/[$,%\s]/g, ""));

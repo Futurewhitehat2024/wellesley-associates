@@ -114,6 +114,16 @@
   }
   preselectCoverages();
 
+  function prefillFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    ["company", "state", "property_address", "zip", "entity_type", "years_in_business", "name"].forEach(function (key) {
+      const value = params.get(key);
+      const el = form.elements[key];
+      if (value && el && !String(el.value || "").trim()) el.value = value;
+    });
+  }
+  prefillFromQuery();
+
   if (fileInput) {
     fileInput.addEventListener("change", function () {
       const files = Array.from(fileInput.files || []);

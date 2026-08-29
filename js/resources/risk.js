@@ -1,37 +1,7 @@
-import { fetchJson, bindForm, setStatus, inquireUrl } from "./core.js";
+import { fetchJson, bindForm, setStatus, inquireUrl, geocode, escapeHtml } from "./core.js";
 
 function nwsHeaders() {
   return { Accept: "application/geo+json" };
-}
-
-async function geocode(query) {
-  const trimmed = String(query || "").trim();
-  const zip = trimmed.match(/\b(\d{5})(?:-\d{4})?\b/);
-  if (/^\d{5}$/.test(trimmed) || (zip && trimmed.length <= 10)) {
-    const code = (trimmed.match(/^\d{5}/) || zip)[0].slice(0, 5);
-    const data = await fetchJson("https://api.zippopotam.us/us/" + code);
-    const place = data.places && data.places[0];
-    if (!place) throw new Error("ZIP not found");
-    return {
-      lat: Number(place.latitude),
-      lon: Number(place.longitude),
-      label: place["place name"] + ", " + place["state abbreviation"] + " " + code,
-      zip: code,
-    };
-  }
-  const url =
-    "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=" +
-    encodeURIComponent(trimmed) +
-    "&benchmark=Public_AR_Current&format=json";
-  const data = await fetchJson(url);
-  const match = data.result && data.result.addressMatches && data.result.addressMatches[0];
-  if (!match) throw new Error("Address not found");
-  return {
-    lat: match.coordinates.y,
-    lon: match.coordinates.x,
-    label: match.matchedAddress,
-    zip: (match.addressComponents && match.addressComponents.zip) || "",
-  };
 }
 
 function tagFromAlerts(alerts) {
@@ -127,7 +97,7 @@ export function initRisk() {
         "<article class='result-card'>" +
         "<p class='card-tag'>Local risk profile</p>" +
         "<h3>" +
-        place.label +
+        escapeHtml(place.label) +
         "</h3>" +
         "<div class='risk-pills'>" +
         pill("Flood / water", wx.flood, "Active alert", "No active NWS flood alert") +

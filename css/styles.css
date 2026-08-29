@@ -1507,7 +1507,9 @@ h2 {
   margin: 14px auto 28px;
 }
 
-.anchor {
+.anchor,
+.section[id],
+.tool-group[id] {
   scroll-margin-top: 130px;
 }
 
@@ -1763,6 +1765,7 @@ h2 {
   .rate-grid,
   .tool-layout,
   .tool-index,
+  .tool-desks,
   .trust-row,
   .steps,
   .pillars,
@@ -2145,6 +2148,58 @@ h2 {
   gap: 14px;
 }
 
+.tool-desks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tool-desk {
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 22px 24px 12px;
+}
+
+.tool-desk h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--navy);
+  margin: 8px 0 14px;
+}
+
+.tool-desk a {
+  display: block;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
+  color: var(--navy);
+}
+
+.tool-desk a:hover strong {
+  color: var(--gold-dark);
+}
+
+.tool-desk a strong {
+  display: block;
+  font-size: 15px;
+}
+
+.tool-desk a span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tool-group {
+  padding-bottom: 0;
+}
+
+.tool-group + .section {
+  padding-top: 36px;
+}
+
 .tool-index a {
   display: flex;
   flex-direction: column;
@@ -2226,6 +2281,42 @@ h2 {
 .risk-pill.is-off {
   background: #e7eee6;
   color: #2f5d3a;
+}
+
+.risk-pill.is-mid {
+  background: #f4ead0;
+  color: #7a5a16;
+}
+
+.entity-picks {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.entity-pick {
+  text-align: left;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  color: var(--navy);
+}
+
+.entity-pick:hover {
+  border-color: var(--gold);
+}
+
+.entity-pick strong,
+.entity-pick span {
+  display: block;
+}
+
+.entity-pick span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .spec-list {

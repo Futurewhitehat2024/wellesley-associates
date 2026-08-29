@@ -607,13 +607,25 @@ function header(root, current) {
             Resources
             <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
-          <div class="dropdown">
-            <p class="dropdown-label">Client tools</p>
-            <a href="${r}resources/index.html"><strong>Resource Center</strong></a>
-            <a href="${r}resources/index.html#risk">Property risk checker</a>
-            <a href="${r}resources/index.html#vin">VIN decoder</a>
-            <a href="${r}resources/index.html#inflation">Inflation calculator</a>
-            <a href="${r}resources/index.html#sba">SBA feasibility</a>
+          <div class="dropdown dropdown-wide dropdown-3">
+            <div>
+              <p class="dropdown-label">Property &amp; vehicles</p>
+              <a href="${r}resources/index.html"><strong>All tools</strong></a>
+              <a href="${r}resources/index.html#flood">Flood zone lookup</a>
+              <a href="${r}resources/index.html#risk">Property risk checker</a>
+              <a href="${r}resources/index.html#vin">VIN decoder</a>
+            </div>
+            <div>
+              <p class="dropdown-label">Business &amp; capital</p>
+              <a href="${r}resources/index.html#entity">Entity lookup</a>
+              <a href="${r}resources/index.html#dscr">DSCR calculator</a>
+              <a href="${r}resources/index.html#sba">SBA snapshot</a>
+            </div>
+            <div>
+              <p class="dropdown-label">Life &amp; money</p>
+              <a href="${r}resources/index.html#longevity">Longevity &amp; income gap</a>
+              <a href="${r}resources/index.html#inflation">Inflation calculator</a>
+            </div>
           </div>
         </div>
         <a class="nav-link${active("blog")}" href="${r}blog/index.html">Blog</a>
@@ -719,6 +731,38 @@ function startLineOptions(items, href, extras = []) {
   );
 }
 
+function toolBlock({ id, kicker, title, subhead, fields, note, button, cream }) {
+  return `
+    <section class="section${cream ? " section-cream" : ""}" id="${id}">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">${kicker}</p>
+          <h2>${title}</h2>
+          <p class="subhead">${subhead}</p>
+          <form class="form tool-form" id="${id}-form">
+            ${fields}
+            <p class="form-note" id="${id}-status">${note}</p>
+            <button class="btn btn-gold" type="submit">${button}</button>
+          </form>
+        </div>
+        <div id="${id}-result" class="tool-output" hidden></div>
+      </div>
+    </section>`;
+}
+
+function toolDesk(tag, heading, items) {
+  return `<article class="tool-desk">
+    <p class="card-tag">${tag}</p>
+    <h3>${heading}</h3>
+    ${items
+      .map(
+        (item) =>
+          `<a href="#${item.id}"><strong>${item.name}</strong><span>${item.blurb}</span></a>`
+      )
+      .join("")}
+  </article>`;
+}
+
 function stateSelect() {
   const states = ["FL", "CA", "CO", "DE", "MD", "MI", "NJ", "OH", "OR", "PA", "TX", "VA", "WA", "Other"];
   return `<select id="intake-state" name="state">
@@ -736,7 +780,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
     root,
     path: `intake/${kind}.html`,
     current: "insurance",
-    extraScripts: ["js/intake.js?v=3"],
+    extraScripts: ["js/intake.js?v=4"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({
@@ -825,7 +869,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=20`;
+  const css = `${root}css/styles.css?v=21`;
   const js = `${root}js/main.js?v=7`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -2179,7 +2223,7 @@ pages.push({
   file: "resources/index.html",
   html: layout({
     title: "Resource Center | Wellesley Collective",
-    description: "Free public tools: property risk checker, VIN decoder, inflation calculator, and SBA 7(a)/504 feasibility snapshot.",
+    description: "All Wellesley Collective client tools in one place: flood zone, property risk, VIN, entity lookup, DSCR, SBA, longevity, and inflation.",
     root: "../",
     path: "resources/index.html",
     current: "resources",
@@ -2189,63 +2233,206 @@ pages.push({
       <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "Evening city skyline over a commercial district", root: "../", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Client Resource Center</p>
-        <h1>Insurance and financial tools you can run yourself.</h1>
-        <p class="lede">Four public-data tools for property risk, vehicle identification, cash erosion, and SBA loan structure. Each one can hand off to a full review with Wellesley Collective. None of them is a quote or a credit decision.</p>
+        <h1>Eight tools. One desk.</h1>
+        <p class="lede">Property, business, and life — grouped here so nothing is scattered around the site. Each tool can hand off to a quote or a call. None of them is a quote or a credit decision.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#risk">Start with property risk</a>
-          <a class="btn btn-ghost" href="../get-started.html">Request a full review</a>
+          <a class="btn btn-gold" href="#tools">See all tools</a>
+          <a class="btn btn-ghost" href="../get-started.html">Get Started</a>
         </div>
       </div>
     </section>
-    ${whoBlock("Homeowners, fleet operators, pre-retirees sitting on cash, and business owners sizing SBA 7(a) or 504 — before a formal application.")}
+    ${whoBlock("Homeowners checking flood maps, operators confirming the legal entity, borrowers running DSCR, and households sizing retirement income — before a formal application.")}
 
-    <section class="section section-cream">
-      <div class="container tool-index">
-        <a href="#risk"><strong>01</strong><span>Property risk checker</span></a>
-        <a href="#vin"><strong>02</strong><span>VIN decoder</span></a>
-        <a href="#inflation"><strong>03</strong><span>Inflation calculator</span></a>
-        <a href="#sba"><strong>04</strong><span>SBA feasibility</span></a>
+    <section class="section section-cream" id="tools">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Directory</p>
+          <h2>Find the tool, then run it below.</h2>
+        </div>
+        <div class="tool-desks">
+          ${toolDesk("Property & vehicles", "Insurance files that start with a place or a vehicle.", [
+            { id: "flood", name: "Flood zone lookup", blurb: "FEMA NFHL zone and a flood-quote handoff." },
+            { id: "risk", name: "Property risk checker", blurb: "NWS alerts and USGS seismic history." },
+            { id: "vin", name: "VIN decoder", blurb: "NHTSA year, make, model, then the right auto form." },
+          ])}
+          ${toolDesk("Business & capital", "Commercial insurance and financing, before the application.", [
+            { id: "entity", name: "Entity lookup", blurb: "Legal name, status, type — then the commercial quote." },
+            { id: "dscr", name: "DSCR calculator", blurb: "NOI versus annual debt service, live." },
+            { id: "sba", name: "SBA 7(a) / 504 snapshot", blurb: "Program limits, guaranty, and typical terms." },
+          ])}
+          ${toolDesk("Life & money", "Longevity, income, and cash sitting still.", [
+            { id: "longevity", name: "Longevity & income gap", blurb: "SSA life table versus the paycheck you want." },
+            { id: "inflation", name: "Inflation calculator", blurb: "BLS CPI-U and what uninvested cash is worth." },
+          ])}
+        </div>
       </div>
     </section>
 
-    <section class="section" id="risk">
-      <div class="container tool-layout">
-        <div>
-          <p class="kicker">Property</p>
-          <h2>Commercial &amp; personal property risk checker.</h2>
-          <p class="subhead">Enter a ZIP or street address. We geocode it, pull active National Weather Service alerts, and look up USGS earthquake history within 100 miles.</p>
-          <form class="form tool-form" id="risk-form">
-            <div class="field">
+    <section class="section tool-group" id="property">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Property &amp; vehicles</p>
+          <h2>Start with the address or the VIN.</h2>
+        </div>
+      </div>
+    </section>
+    ${toolBlock({
+      id: "flood",
+      kicker: "Property insurance",
+      title: "FEMA flood zone lookup.",
+      subhead: "Enter a property address. We geocode it and read the FEMA National Flood Hazard Layer for the effective flood zone — then send you to a flood quote if you want one.",
+      fields: `<div class="field">
+              <label for="flood-address">Property address or ZIP</label>
+              <input id="flood-address" name="address" required placeholder="200 E Las Olas Blvd, Fort Lauderdale, FL">
+            </div>`,
+      note: "FEMA NFHL. A street address is tighter than a ZIP centroid.",
+      button: "Look up flood zone",
+    })}
+    ${toolBlock({
+      id: "risk",
+      kicker: "Property",
+      title: "Commercial &amp; personal property risk checker.",
+      subhead: "Enter a ZIP or street address. We geocode it, pull active National Weather Service alerts, and look up USGS earthquake history within 100 miles.",
+      fields: `<div class="field">
               <label for="risk-location">ZIP code or street address</label>
               <input id="risk-location" name="location" required placeholder="33101 or 200 E Las Olas Blvd, Fort Lauderdale, FL">
-            </div>
-            <p class="form-note" id="risk-status">NWS + USGS. Flood-zone maps from FEMA are a separate product.</p>
-            <button class="btn btn-gold" type="submit">Check local risk</button>
-          </form>
-        </div>
-        <div id="risk-result" class="tool-output" hidden></div>
-      </div>
-    </section>
-
-    <section class="section section-cream" id="vin">
-      <div class="container tool-layout">
-        <div>
-          <p class="kicker">Auto &amp; fleet</p>
-          <h2>VIN decoder for personal auto and commercial fleet.</h2>
-          <p class="subhead">Paste a 17-character VIN. NHTSA VPIC returns year, make, model, body class, vehicle type, drive type, fuel, and displacement — then we route you to the right quote form.</p>
-          <form class="form tool-form" id="vin-form">
-            <div class="field">
+            </div>`,
+      note: "NWS + USGS. Flood-zone maps are the tool above.",
+      button: "Check local risk",
+      cream: true,
+    })}
+    ${toolBlock({
+      id: "vin",
+      kicker: "Auto &amp; fleet",
+      title: "VIN decoder for personal auto and commercial fleet.",
+      subhead: "Paste a 17-character VIN. NHTSA VPIC returns year, make, model, body class, vehicle type, drive type, fuel, and displacement — then we route you to the right quote form.",
+      fields: `<div class="field">
               <label for="vin-input">Vehicle identification number</label>
               <input id="vin-input" name="vin" required maxlength="17" autocomplete="off" placeholder="1HGCM82633A004352" spellcheck="false">
-            </div>
-            <p class="form-note" id="vin-status">Decodes as you finish the 17th character, or on submit.</p>
-            <button class="btn btn-gold" type="submit">Decode VIN</button>
-          </form>
+            </div>`,
+      note: "Decodes as you finish the 17th character, or on submit.",
+      button: "Decode VIN",
+    })}
+
+    <section class="section tool-group section-cream" id="business">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Business &amp; capital</p>
+          <h2>Confirm the entity. Then stress the numbers.</h2>
         </div>
-        <div id="vin-result" class="tool-output" hidden></div>
       </div>
     </section>
+    ${toolBlock({
+      id: "entity",
+      kicker: "Commercial lines",
+      title: "Corporate entity lookup.",
+      subhead: "Enter the company name and state. We look up registry status, entity type, and registration year, then put the official name on the commercial quote form.",
+      fields: `<div class="form-row">
+              <div class="field">
+                <label for="entity-company">Company name</label>
+                <input id="entity-company" name="company" required placeholder="Legal name as filed">
+              </div>
+              <div class="field">
+                <label for="entity-state">State of formation</label>
+                <select id="entity-state" name="state" required>
+                  <option value="">Select</option>
+                  ${["FL", "CA", "CO", "DE", "MD", "MI", "NJ", "OH", "OR", "PA", "TX", "VA", "WA"].map((st) => `<option value="${st}">${st}</option>`).join("")}
+                  <option value="NY">NY</option>
+                  <option value="GA">GA</option>
+                  <option value="NC">NC</option>
+                  <option value="IL">IL</option>
+                </select>
+              </div>
+            </div>`,
+      note: "Public company registries. Confirm against the secretary of state printout before binding.",
+      button: "Look up entity",
+    })}
+    ${toolBlock({
+      id: "dscr",
+      kicker: "Commercial financing",
+      title: "DSCR &amp; coverage calculator.",
+      subhead: "Annual net operating income divided by annual principal and interest. The ratio updates as you type. Not a credit decision.",
+      fields: `<div class="form-row">
+              <div class="field">
+                <label for="dscr-noi">Annual net operating income (NOI)</label>
+                <input id="dscr-noi" name="noi" inputmode="decimal" required placeholder="240000">
+              </div>
+              <div class="field">
+                <label for="dscr-debt">Annual debt service (principal + interest)</label>
+                <input id="dscr-debt" name="debt" inputmode="decimal" required placeholder="180000">
+              </div>
+            </div>`,
+      note: "< 1.15x high risk · 1.20x–1.35x standard fit · > 1.35x strong.",
+      button: "Calculate DSCR",
+      cream: true,
+    })}
+    ${toolBlock({
+      id: "sba",
+      kicker: "Commercial financing",
+      title: "SBA 7(a) / 504 feasibility snapshot.",
+      subhead: "Enter an amount and use of funds. We apply published SBA program limits, guaranty percentages, illustrative fees, typical terms, and a common DSCR starting point. Not a credit decision.",
+      fields: `<div class="form-row">
+              <div class="field">
+                <label for="sba-amount">Requested amount</label>
+                <input id="sba-amount" name="amount" type="number" min="25000" step="5000" required placeholder="1250000">
+              </div>
+              <div class="field">
+                <label for="sba-purpose">Use of funds</label>
+                <select id="sba-purpose" name="purpose">
+                  <option value="wc">Working capital</option>
+                  <option value="equipment">Equipment</option>
+                  <option value="cre" selected>Owner-occupied commercial real estate</option>
+                </select>
+              </div>
+            </div>`,
+      note: "Published SBA 7(a) and 504 program rules as of July 4, 2026.",
+      button: "Run feasibility",
+    })}
 
+    <section class="section tool-group" id="life-money">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Life &amp; money</p>
+          <h2>How long the checks have to last — and what cash is doing.</h2>
+        </div>
+      </div>
+    </section>
+    ${toolBlock({
+      id: "longevity",
+      kicker: "Life &amp; annuities",
+      title: "SSA longevity &amp; income gap planner.",
+      subhead: "Current age, gender, and the monthly income you want. We use SSA period life table remaining expectancy to size the horizon, then show the gap versus income you already expect.",
+      fields: `<div class="form-row">
+              <div class="field">
+                <label for="longevity-age">Current age</label>
+                <input id="longevity-age" name="age" inputmode="numeric" required placeholder="58">
+              </div>
+              <div class="field">
+                <label for="longevity-gender">Gender (SSA table)</label>
+                <select id="longevity-gender" name="gender">
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="longevity-income">Desired monthly retirement income</label>
+                <input id="longevity-income" name="income" inputmode="decimal" required placeholder="6000">
+              </div>
+              <div class="field">
+                <label for="longevity-retire">Retirement age</label>
+                <input id="longevity-retire" name="retire" inputmode="numeric" value="67" placeholder="67">
+              </div>
+            </div>
+            <div class="field">
+              <label for="longevity-have">Monthly income you already expect (optional)</label>
+              <input id="longevity-have" name="have" inputmode="decimal" placeholder="Social Security, pension">
+            </div>`,
+      note: "SSA period life table, 2021. Averages, not a forecast of your life.",
+      button: "Show the income gap",
+      cream: true,
+    })}
     <section class="section" id="inflation">
       <div class="container tool-layout">
         <div>
@@ -2276,47 +2463,18 @@ pages.push({
       </div>
     </section>
 
-    <section class="section section-cream" id="sba">
-      <div class="container tool-layout">
-        <div>
-          <p class="kicker">Commercial financing</p>
-          <h2>SBA 7(a) / 504 feasibility snapshot.</h2>
-          <p class="subhead">Enter an amount and use of funds. We apply published SBA program limits, guaranty percentages, illustrative fees, typical terms, and a common DSCR starting point. Not a credit decision.</p>
-          <form class="form tool-form" id="sba-form">
-            <div class="form-row">
-              <div class="field">
-                <label for="sba-amount">Requested amount</label>
-                <input id="sba-amount" name="amount" type="number" min="25000" step="5000" required placeholder="1250000">
-              </div>
-              <div class="field">
-                <label for="sba-purpose">Use of funds</label>
-                <select id="sba-purpose" name="purpose">
-                  <option value="wc">Working capital</option>
-                  <option value="equipment">Equipment</option>
-                  <option value="cre" selected>Owner-occupied commercial real estate</option>
-                </select>
-              </div>
-            </div>
-            <p class="form-note" id="sba-status">Published SBA 7(a) and 504 program rules as of July 4, 2026.</p>
-            <button class="btn btn-gold" type="submit">Run feasibility</button>
-          </form>
-        </div>
-        <div id="sba-result" class="tool-output" hidden></div>
-      </div>
-    </section>
-
     <section class="cta-band">
       <div class="container">
         <p class="eyebrow" style="justify-content:center">Need the file reviewed</p>
         <h2>Tools first. Then a person if you want one.</h2>
         <p>Send what you ran and we will tell you what, if anything, should change.</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-gold" href="../get-started.html">Request a full review</a>
+          <a class="btn btn-gold" href="../get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
         </div>
       </div>
     </section>
-    <script type="module" src="../js/resources/index.js?v=2"></script>`,
+    <script type="module" src="../js/resources/index.js?v=3"></script>`,
   }),
 });
 
