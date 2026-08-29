@@ -1584,6 +1584,7 @@ h2 {
 @media (max-width: 980px) {
   .grid-3,
   .grid-4,
+  .rate-grid,
   .trust-row,
   .steps,
   .pillars,
@@ -1686,6 +1687,15 @@ h2 {
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .rates-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .curve-board {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1828,6 +1838,116 @@ h2 {
   border-radius: 14px;
   border: 1px solid var(--line-soft);
   background: var(--white);
+}
+
+.rates-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.rate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.rate-card {
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 22px 22px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rate-card h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--navy);
+  margin: 6px 0 12px;
+}
+
+.rate-value {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--navy-deep);
+  font-weight: 500;
+}
+
+.rate-meta {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.rate-card.is-live {
+  border-color: #c9d7c6;
+}
+
+.rate-card.is-fallback .rate-value {
+  color: var(--navy-mid);
+}
+
+.curve-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  align-items: end;
+  min-height: 220px;
+  margin: 8px 0 28px;
+  padding: 18px 18px 12px;
+  background: var(--cream);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+}
+
+.curve-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 190px;
+}
+
+.curve-bar {
+  flex: 1;
+  width: 100%;
+  max-width: 42px;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(18, 35, 69, 0.08);
+  border-radius: 10px 10px 4px 4px;
+  overflow: hidden;
+}
+
+.curve-fill {
+  display: block;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(180deg, var(--gold-light), var(--navy));
+  border-radius: 10px 10px 4px 4px;
+  transition: height 0.35s ease;
+}
+
+.curve-rate {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.curve-tenor {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#rates-dashboard.is-loading .rate-value {
+  opacity: 0.55;
 }
 
 @media (prefers-reduced-motion: reduce) {

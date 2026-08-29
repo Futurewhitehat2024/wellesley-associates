@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About | Wellesley Collective</title>
-  <meta name="description" content="Wellesley Collective is a licensed firm providing insurance, financial services, and commercial financing.">
-  <link rel="canonical" href="https://wellesleycollective.com/about.html">
+  <title>Market Rates | Wellesley Collective</title>
+  <meta name="description" content="Live federal funds, SOFR, prime, Treasury par yields, and mortgage rates from FRED and the U.S. Treasury.">
+  <link rel="canonical" href="https://wellesleycollective.com/rates.html">
   <meta property="og:site_name" content="Wellesley Collective">
-  <meta property="og:title" content="About | Wellesley Collective">
-  <meta property="og:description" content="Wellesley Collective is a licensed firm providing insurance, financial services, and commercial financing.">
-  <meta property="og:url" content="https://wellesleycollective.com/about.html">
+  <meta property="og:title" content="Market Rates | Wellesley Collective">
+  <meta property="og:description" content="Live federal funds, SOFR, prime, Treasury par yields, and mortgage rates from FRED and the U.S. Treasury.">
+  <meta property="og:url" content="https://wellesleycollective.com/rates.html">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/brand/favicon.png?v=3" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,9 +92,9 @@
             </div>
           </div>
         </div>
-        <a class="nav-link" href="rates.html">Rates</a>
+        <a class="nav-link is-active" href="rates.html">Rates</a>
         <a class="nav-link" href="blog/index.html">Blog</a>
-        <a class="nav-link is-active" href="about.html">About</a>
+        <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </nav>
       <a class="btn btn-gold header-cta" href="get-started.html">Get Started</a>
@@ -103,58 +103,180 @@
 <main id="main">
 
     <section class="page-hero">
-      <div class="page-hero-media"><img src="assets/images/about-office.jpg?v=5" alt="Private client office overlooking the city" decoding="async"></div>
+      <div class="page-hero-media"><img src="assets/images/hero-city.jpg" alt="Evening city skyline over a commercial district" decoding="async"></div>
       <div class="container page-hero-content">
-        <p class="eyebrow">The firm</p>
-        <h1>Built for clients who value judgment as much as access.</h1>
-        <p class="lede">Wellesley Collective brings insurance, financial services, and commercial financing into a single relationship.</p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container split">
-        <div class="split-copy">
-          <p class="kicker">Our approach</p>
-          <h2>One licensed team for protection and capital.</h2>
-          <p>Households and businesses rarely experience risk and capital as separate problems. A growing company needs liability coverage and a line of credit. A property owner needs the building insured and the financing structured. We were formed to sit at that intersection.</p>
-          <p>We quote property, casualty, life, and annuities, structure commercial financing, and stay with you from first conversation through close.</p>
+        <p class="eyebrow">Market rates</p>
+        <h1>Published rates, pulled when you open the page.</h1>
+        <p class="lede">Federal funds, SOFR, prime, the Treasury par yield curve, and mortgage averages. These are market series — not a Wellesley quote or a commitment to lend.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#rates">View rates</a>
+          <a class="btn btn-ghost" href="get-started.html">Talk with the firm</a>
         </div>
-        <figure class="photo-frame">
-    <img src="assets/images/texture-stone.jpg" alt="Architectural stone and bronze detail" loading="lazy" decoding="async">
-    <figcaption>Materials that last: stone, bronze, and a file handled with care.</figcaption>
-  </figure>
       </div>
     </section>
-    <section class="section section-cream">
+    
+    <section class="who-bar">
       <div class="container">
-        <div class="section-head">
-          <p class="kicker">What you can expect</p>
-          <h2>Professional standards, plainly kept.</h2>
-        </div>
-        <div class="grid-3">
-          <article class="product-card">
-            <div class="icon-dot">01</div>
-            <h3>Clarity over volume</h3>
-            <p>We would rather decline a poor fit than force a product. Every inquiry is reviewed for purpose, timing, and whether we can actually help.</p>
-          </article>
-          <article class="product-card">
-            <div class="icon-dot">02</div>
-            <h3>Coordinated advice</h3>
-            <p>Insurance and financing decisions inform one another. When both are in play, we keep the conversation connected rather than fragmented.</p>
-          </article>
-          <article class="product-card">
-            <div class="icon-dot">03</div>
-            <h3>Discreet handling</h3>
-            <p>Personal, business, and property information is treated as confidential and used only to serve your request.</p>
-          </article>
-        </div>
+        <p class="card-tag">Who this is for</p>
+        <p>Anyone pricing a loan, a refinance, or a policy who wants the current published backdrop before a conversation.</p>
       </div>
     </section>
-    <section class="section">
-      <div class="container" style="max-width:760px">
-        <p class="kicker">The work</p>
-        <h2>Insurance, financial services, and commercial financing under one roof.</h2>
-        <p class="mt-16" style="color:var(--slate)">Wellesley Collective provides personal, commercial, and life insurance; annuities; and commercial financing. Products, pricing, and terms vary by state and underwriting.</p>
-        <a class="btn btn-navy mt-32" href="contact.html">Contact the Firm</a>
+    <section class="section" id="rates">
+      <div class="container" id="rates-dashboard">
+        <div class="rates-toolbar">
+          <p class="form-note" id="rates-status">Loading live series…</p>
+          <button class="btn btn-outline" type="button" id="rates-refresh">Refresh</button>
+        </div>
+
+        <div class="section-head">
+          <p class="kicker">Central bank rates</p>
+          <h2>Policy and overnight funding.</h2>
+        </div>
+        <div class="rate-grid">
+          <article class="rate-card is-fallback" data-rate="FEDFUNDS">
+            <p class="card-tag">FRED · FEDFUNDS</p>
+            <h3>Federal Funds Rate</h3>
+            <p class="rate-value">3.62%</p>
+            <p class="rate-meta">Fallback · as of Jul 31, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="SOFR">
+            <p class="card-tag">FRED · SOFR</p>
+            <h3>SOFR</h3>
+            <p class="rate-value">3.66%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DPRIME">
+            <p class="card-tag">FRED · DPRIME</p>
+            <h3>Bank Prime Loan Rate</h3>
+            <p class="rate-value">6.50%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+        </div>
+
+        <div class="section-head mt-32">
+          <p class="kicker">Treasury yield curve</p>
+          <h2>Par yields from one month to 30 years.</h2>
+          <p id="curve-meta">Published fallbacks · as of Aug 28, 2026</p>
+        </div>
+        <div class="curve-board" aria-hidden="true">
+          
+            <div class="curve-col" data-curve="YC_1M">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">1M</p>
+            </div>
+            <div class="curve-col" data-curve="YC_3M">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">3M</p>
+            </div>
+            <div class="curve-col" data-curve="YC_6M">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">6M</p>
+            </div>
+            <div class="curve-col" data-curve="YC_1Y">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">1Y</p>
+            </div>
+            <div class="curve-col" data-curve="YC_2Y">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">2Y</p>
+            </div>
+            <div class="curve-col" data-curve="YC_5Y">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">5Y</p>
+            </div>
+            <div class="curve-col" data-curve="YC_10Y">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">10Y</p>
+            </div>
+            <div class="curve-col" data-curve="YC_30Y">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">30Y</p>
+            </div>
+        </div>
+        <div class="rate-grid">
+          <article class="rate-card is-fallback" data-rate="YC_1M">
+            <p class="card-tag">1-Month</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">3.84%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_3M">
+            <p class="card-tag">3-Month</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">3.90%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_6M">
+            <p class="card-tag">6-Month</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">4.02%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_1Y">
+            <p class="card-tag">1-Year</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">4.15%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_2Y">
+            <p class="card-tag">2-Year</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">4.34%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DGS5">
+            <p class="card-tag">FRED · DGS5</p>
+            <h3>5-Year Treasury</h3>
+            <p class="rate-value">4.48%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DGS10">
+            <p class="card-tag">FRED · DGS10</p>
+            <h3>10-Year Treasury</h3>
+            <p class="rate-value">4.73%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DGS30">
+            <p class="card-tag">FRED · DGS30</p>
+            <h3>30-Year Treasury</h3>
+            <p class="rate-value">5.22%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+        </div>
+
+        <div class="section-head mt-32">
+          <p class="kicker">Consumer / mortgage rates</p>
+          <h2>Home-loan averages and corporate credit.</h2>
+        </div>
+        <div class="rate-grid">
+          <article class="rate-card is-fallback" data-rate="MORTGAGE30US">
+            <p class="card-tag">FRED · MORTGAGE30US</p>
+            <h3>30-Year Fixed Mortgage</h3>
+            <p class="rate-value">6.35%</p>
+            <p class="rate-meta">Fallback · as of Aug 20, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="MORTGAGE15US">
+            <p class="card-tag">FRED · MORTGAGE15US</p>
+            <h3>15-Year Fixed Mortgage</h3>
+            <p class="rate-value">5.72%</p>
+            <p class="rate-meta">Fallback · as of Aug 20, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="BAMLC0A4CBBB">
+            <p class="card-tag">FRED · BAMLC0A4CBBB</p>
+            <h3>Corporate BBB Spot Yield</h3>
+            <p class="rate-value">5.88%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+        </div>
+        <p class="disclaimer mt-32">Sources: Federal Reserve Bank of St. Louis (FRED) and the U.S. Department of the Treasury. Series can lag, revise, or fail to load; fallback values are shown when a request times out. These figures are not an offer of credit, a lock, or an insurance quote. Your rate depends on credit, collateral, occupancy, and underwriting.</p>
       </div>
     </section>
 </main>
@@ -202,6 +324,6 @@
     </div>
   </footer>
 <script src="js/main.js?v=6"></script>
-
+<script src="js/rates.js?v=1"></script>
 </body>
 </html>

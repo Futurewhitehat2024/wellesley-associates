@@ -592,6 +592,7 @@ function header(root, current) {
             </div>
           </div>
         </div>
+        <a class="nav-link${active("rates")}" href="${r}rates.html">Rates</a>
         <a class="nav-link${active("blog")}" href="${r}blog/index.html">Blog</a>
         <a class="nav-link${active("about")}" href="${r}about.html">About</a>
         <a class="nav-link${active("contact")}" href="${r}contact.html">Contact</a>
@@ -620,6 +621,7 @@ function footer(root) {
           <a href="${r}insurance/quote.html">Life insurance quote</a>
           <a href="${r}financial-services/index.html">Financial Services</a>
           <a href="${r}commercial-loans/index.html">Commercial Financing</a>
+          <a href="${r}rates.html">Market rates</a>
           <a href="${r}get-started.html">Get Started</a>
         </div>
         <div>
@@ -666,7 +668,7 @@ function redirectPage(to) {
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=14`;
+  const css = `${root}css/styles.css?v=15`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -1587,6 +1589,167 @@ pages.push({
     <section class="section section-cream">
       <div class="container">
         ${calendlyBlock()}
+      </div>
+    </section>`,
+  }),
+});
+
+pages.push({
+  file: "rates.html",
+  html: layout({
+    title: "Market Rates | Wellesley Collective",
+    path: "rates.html",
+    description: "Live federal funds, SOFR, prime, Treasury par yields, and mortgage rates from FRED and the U.S. Treasury.",
+    current: "rates",
+    extraScripts: ["js/rates.js?v=1"],
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "Evening city skyline over a commercial district", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Market rates</p>
+        <h1>Published rates, pulled when you open the page.</h1>
+        <p class="lede">Federal funds, SOFR, prime, the Treasury par yield curve, and mortgage averages. These are market series — not a Wellesley quote or a commitment to lend.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#rates">View rates</a>
+          <a class="btn btn-ghost" href="get-started.html">Talk with the firm</a>
+        </div>
+      </div>
+    </section>
+    ${whoBlock("Anyone pricing a loan, a refinance, or a policy who wants the current published backdrop before a conversation.")}
+    <section class="section" id="rates">
+      <div class="container" id="rates-dashboard">
+        <div class="rates-toolbar">
+          <p class="form-note" id="rates-status">Loading live series…</p>
+          <button class="btn btn-outline" type="button" id="rates-refresh">Refresh</button>
+        </div>
+
+        <div class="section-head">
+          <p class="kicker">Central bank rates</p>
+          <h2>Policy and overnight funding.</h2>
+        </div>
+        <div class="rate-grid">
+          <article class="rate-card is-fallback" data-rate="FEDFUNDS">
+            <p class="card-tag">FRED · FEDFUNDS</p>
+            <h3>Federal Funds Rate</h3>
+            <p class="rate-value">3.62%</p>
+            <p class="rate-meta">Fallback · as of Jul 31, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="SOFR">
+            <p class="card-tag">FRED · SOFR</p>
+            <h3>SOFR</h3>
+            <p class="rate-value">3.66%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DPRIME">
+            <p class="card-tag">FRED · DPRIME</p>
+            <h3>Bank Prime Loan Rate</h3>
+            <p class="rate-value">6.50%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+        </div>
+
+        <div class="section-head mt-32">
+          <p class="kicker">Treasury yield curve</p>
+          <h2>Par yields from one month to 30 years.</h2>
+          <p id="curve-meta">Published fallbacks · as of Aug 28, 2026</p>
+        </div>
+        <div class="curve-board" aria-hidden="true">
+          ${[
+            ["YC_1M", "1M"],
+            ["YC_3M", "3M"],
+            ["YC_6M", "6M"],
+            ["YC_1Y", "1Y"],
+            ["YC_2Y", "2Y"],
+            ["YC_5Y", "5Y"],
+            ["YC_10Y", "10Y"],
+            ["YC_30Y", "30Y"],
+          ]
+            .map(
+              ([key, label]) => `
+            <div class="curve-col" data-curve="${key}">
+              <div class="curve-bar"><span class="curve-fill"></span></div>
+              <p class="curve-rate">—</p>
+              <p class="curve-tenor">${label}</p>
+            </div>`
+            )
+            .join("")}
+        </div>
+        <div class="rate-grid">
+          <article class="rate-card is-fallback" data-rate="YC_1M">
+            <p class="card-tag">1-Month</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">3.84%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_3M">
+            <p class="card-tag">3-Month</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">3.90%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_6M">
+            <p class="card-tag">6-Month</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">4.02%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_1Y">
+            <p class="card-tag">1-Year</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">4.15%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="YC_2Y">
+            <p class="card-tag">2-Year</p>
+            <h3>Treasury par yield</h3>
+            <p class="rate-value">4.34%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DGS5">
+            <p class="card-tag">FRED · DGS5</p>
+            <h3>5-Year Treasury</h3>
+            <p class="rate-value">4.48%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DGS10">
+            <p class="card-tag">FRED · DGS10</p>
+            <h3>10-Year Treasury</h3>
+            <p class="rate-value">4.73%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="DGS30">
+            <p class="card-tag">FRED · DGS30</p>
+            <h3>30-Year Treasury</h3>
+            <p class="rate-value">5.22%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+        </div>
+
+        <div class="section-head mt-32">
+          <p class="kicker">Consumer / mortgage rates</p>
+          <h2>Home-loan averages and corporate credit.</h2>
+        </div>
+        <div class="rate-grid">
+          <article class="rate-card is-fallback" data-rate="MORTGAGE30US">
+            <p class="card-tag">FRED · MORTGAGE30US</p>
+            <h3>30-Year Fixed Mortgage</h3>
+            <p class="rate-value">6.35%</p>
+            <p class="rate-meta">Fallback · as of Aug 20, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="MORTGAGE15US">
+            <p class="card-tag">FRED · MORTGAGE15US</p>
+            <h3>15-Year Fixed Mortgage</h3>
+            <p class="rate-value">5.72%</p>
+            <p class="rate-meta">Fallback · as of Aug 20, 2026</p>
+          </article>
+          <article class="rate-card is-fallback" data-rate="BAMLC0A4CBBB">
+            <p class="card-tag">FRED · BAMLC0A4CBBB</p>
+            <h3>Corporate BBB Spot Yield</h3>
+            <p class="rate-value">5.88%</p>
+            <p class="rate-meta">Fallback · as of Aug 28, 2026</p>
+          </article>
+        </div>
+        <p class="disclaimer mt-32">Sources: Federal Reserve Bank of St. Louis (FRED) and the U.S. Department of the Treasury. Series can lag, revise, or fail to load; fallback values are shown when a request times out. These figures are not an offer of credit, a lock, or an insurance quote. Your rate depends on credit, collateral, occupancy, and underwriting.</p>
       </div>
     </section>`,
   }),
