@@ -593,6 +593,20 @@ function header(root, current) {
           </div>
         </div>
         <a class="nav-link${active("rates")}" href="${r}rates.html">Rates</a>
+        <div class="nav-item">
+          <a class="nav-btn${active("resources")}" href="${r}resources/index.html">
+            Resources
+            <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <div class="dropdown">
+            <p class="dropdown-label">Client tools</p>
+            <a href="${r}resources/index.html"><strong>Resource Center</strong></a>
+            <a href="${r}resources/index.html#risk">Property risk checker</a>
+            <a href="${r}resources/index.html#vin">VIN decoder</a>
+            <a href="${r}resources/index.html#inflation">Inflation calculator</a>
+            <a href="${r}resources/index.html#sba">SBA feasibility</a>
+          </div>
+        </div>
         <a class="nav-link${active("blog")}" href="${r}blog/index.html">Blog</a>
         <a class="nav-link${active("about")}" href="${r}about.html">About</a>
         <a class="nav-link${active("contact")}" href="${r}contact.html">Contact</a>
@@ -622,6 +636,7 @@ function footer(root) {
           <a href="${r}financial-services/index.html">Financial Services</a>
           <a href="${r}commercial-loans/index.html">Commercial Financing</a>
           <a href="${r}rates.html">Market rates</a>
+          <a href="${r}resources/index.html">Resource Center</a>
           <a href="${r}get-started.html">Get Started</a>
         </div>
         <div>
@@ -668,8 +683,8 @@ function redirectPage(to) {
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=16`;
-  const js = `${root}js/main.js?v=6`;
+  const css = `${root}css/styles.css?v=17`;
+  const js = `${root}js/main.js?v=7`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
     "@context": "https://schema.org",
@@ -1845,6 +1860,151 @@ pages.push({
         <p class="disclaimer mt-32">Sources: Federal Reserve Bank of St. Louis (FRED) and the U.S. Department of the Treasury. Series can lag, revise, or fail to load; fallback values are shown when a request times out. These figures are not an offer of credit, a lock, or an insurance quote. Your rate depends on credit, collateral, occupancy, and underwriting.</p>
       </div>
     </section>`,
+  }),
+});
+
+pages.push({
+  file: "resources/index.html",
+  html: layout({
+    title: "Resource Center | Wellesley Collective",
+    description: "Free public tools: property risk checker, VIN decoder, inflation calculator, and SBA 7(a)/504 feasibility snapshot.",
+    root: "../",
+    path: "resources/index.html",
+    current: "resources",
+    extraScripts: [],
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "Evening city skyline over a commercial district", root: "../", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Client Resource Center</p>
+        <h1>Insurance and financial tools you can run yourself.</h1>
+        <p class="lede">Four public-data tools for property risk, vehicle identification, cash erosion, and SBA loan structure. Each one can hand off to a full review with Wellesley Collective. None of them is a quote or a credit decision.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#risk">Start with property risk</a>
+          <a class="btn btn-ghost" href="../get-started.html">Request a full review</a>
+        </div>
+      </div>
+    </section>
+    ${whoBlock("Homeowners, fleet operators, pre-retirees sitting on cash, and business owners sizing SBA 7(a) or 504 — before a formal application.")}
+
+    <section class="section section-cream">
+      <div class="container tool-index">
+        <a href="#risk"><strong>01</strong><span>Property risk checker</span></a>
+        <a href="#vin"><strong>02</strong><span>VIN decoder</span></a>
+        <a href="#inflation"><strong>03</strong><span>Inflation calculator</span></a>
+        <a href="#sba"><strong>04</strong><span>SBA feasibility</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="risk">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Property</p>
+          <h2>Commercial &amp; personal property risk checker.</h2>
+          <p class="subhead">Enter a ZIP or street address. We geocode it, pull active National Weather Service alerts, and look up USGS earthquake history within 100 miles.</p>
+          <form class="form tool-form" id="risk-form">
+            <div class="field">
+              <label for="risk-location">ZIP code or street address</label>
+              <input id="risk-location" name="location" required placeholder="33101 or 200 E Las Olas Blvd, Fort Lauderdale, FL">
+            </div>
+            <p class="form-note" id="risk-status">NWS + USGS. Flood-zone maps from FEMA are a separate product.</p>
+            <button class="btn btn-gold" type="submit">Check local risk</button>
+          </form>
+        </div>
+        <div id="risk-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="vin">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Auto &amp; fleet</p>
+          <h2>VIN decoder for personal auto and commercial fleet.</h2>
+          <p class="subhead">Paste a 17-character VIN. NHTSA VPIC returns year, make, model, body class, vehicle type, drive type, fuel, and displacement — then we route you to the right quote form.</p>
+          <form class="form tool-form" id="vin-form">
+            <div class="field">
+              <label for="vin-input">Vehicle identification number</label>
+              <input id="vin-input" name="vin" required maxlength="17" autocomplete="off" placeholder="1HGCM82633A004352" spellcheck="false">
+            </div>
+            <p class="form-note" id="vin-status">Decodes as you finish the 17th character, or on submit.</p>
+            <button class="btn btn-gold" type="submit">Decode VIN</button>
+          </form>
+        </div>
+        <div id="vin-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="section" id="inflation">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Life &amp; annuities</p>
+          <h2>Inflation and cash erosion calculator.</h2>
+          <p class="subhead">Uses BLS CPI-U (CUUR0000SA0) for a trailing 12-month inflation rate, then shows what uninvested cash is worth in today’s dollars versus hypothetical fixed and indexed growth. Illustrations only.</p>
+          <p class="form-note" id="cpi-rate">Loading CPI…</p>
+          <form class="form tool-form" id="inflation-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="cash-input">Uninvested cash</label>
+                <input id="cash-input" name="cash" type="number" min="1000" step="1000" required placeholder="250000">
+              </div>
+              <div class="field">
+                <label for="years-input">Horizon</label>
+                <select id="years-input" name="years">
+                  <option value="10">10 years</option>
+                  <option value="20" selected>20 years</option>
+                  <option value="30">30 years</option>
+                </select>
+              </div>
+            </div>
+            <p class="form-note" id="inflation-status">BLS public API.</p>
+            <button class="btn btn-gold" type="submit">Show purchasing power</button>
+          </form>
+        </div>
+        <div id="inflation-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="sba">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Commercial financing</p>
+          <h2>SBA 7(a) / 504 feasibility snapshot.</h2>
+          <p class="subhead">Enter an amount and use of funds. We apply published SBA program limits, guaranty percentages, illustrative fees, typical terms, and a common DSCR starting point. Not a credit decision.</p>
+          <form class="form tool-form" id="sba-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="sba-amount">Requested amount</label>
+                <input id="sba-amount" name="amount" type="number" min="25000" step="5000" required placeholder="1250000">
+              </div>
+              <div class="field">
+                <label for="sba-purpose">Use of funds</label>
+                <select id="sba-purpose" name="purpose">
+                  <option value="wc">Working capital</option>
+                  <option value="equipment">Equipment</option>
+                  <option value="cre" selected>Owner-occupied commercial real estate</option>
+                </select>
+              </div>
+            </div>
+            <p class="form-note" id="sba-status">Checking SBA open data…</p>
+            <button class="btn btn-gold" type="submit">Run feasibility</button>
+          </form>
+        </div>
+        <div id="sba-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <p class="eyebrow" style="justify-content:center">Need the file reviewed</p>
+        <h2>Tools first. Then a person if you want one.</h2>
+        <p>Send what you ran and we will tell you what, if anything, should change.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-gold" href="../get-started.html">Request a full review</a>
+          <a class="btn btn-ghost" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="../js/resources/index.js"></script>`,
   }),
 });
 

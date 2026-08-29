@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bridge Financing | Wellesley Collective</title>
-  <meta name="description" content="Short-term financing solutions to bridge gaps between transactions.">
-  <link rel="canonical" href="https://wellesleycollective.com/commercial-loans/bridge-financing.html">
+  <title>Resource Center | Wellesley Collective</title>
+  <meta name="description" content="Free public tools: property risk checker, VIN decoder, inflation calculator, and SBA 7(a)/504 feasibility snapshot.">
+  <link rel="canonical" href="https://wellesleycollective.com/resources/index.html">
   <meta property="og:site_name" content="Wellesley Collective">
-  <meta property="og:title" content="Bridge Financing | Wellesley Collective">
-  <meta property="og:description" content="Short-term financing solutions to bridge gaps between transactions.">
-  <meta property="og:url" content="https://wellesleycollective.com/commercial-loans/bridge-financing.html">
+  <meta property="og:title" content="Resource Center | Wellesley Collective">
+  <meta property="og:description" content="Free public tools: property risk checker, VIN decoder, inflation calculator, and SBA 7(a)/504 feasibility snapshot.">
+  <meta property="og:url" content="https://wellesleycollective.com/resources/index.html">
   <meta property="og:type" content="website">
   <link rel="icon" href="../assets/brand/favicon.png?v=3" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="nav-item">
-          <a class="nav-btn is-active" href="../commercial-loans/index.html">
+          <a class="nav-btn" href="../commercial-loans/index.html">
             Commercial Financing
             <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
@@ -94,7 +94,7 @@
         </div>
         <a class="nav-link" href="../rates.html">Rates</a>
         <div class="nav-item">
-          <a class="nav-btn" href="../resources/index.html">
+          <a class="nav-btn is-active" href="../resources/index.html">
             Resources
             <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
@@ -117,14 +117,14 @@
 <main id="main">
 
     <section class="page-hero">
-      <div class="page-hero-media"><img src="../assets/images/hero-city.jpg" alt="Bridge Financing — Wellesley Collective" decoding="async"></div>
+      <div class="page-hero-media"><img src="../assets/images/hero-city.jpg" alt="Evening city skyline over a commercial district" decoding="async"></div>
       <div class="container page-hero-content">
-        <p class="eyebrow">Commercial Financing</p>
-        <h1>Bridge Financing</h1>
-        <p class="lede">Short-term financing solutions to bridge gaps between transactions.</p>
+        <p class="eyebrow">Client Resource Center</p>
+        <h1>Insurance and financial tools you can run yourself.</h1>
+        <p class="lede">Four public-data tools for property risk, vehicle identification, cash erosion, and SBA loan structure. Each one can hand off to a full review with Wellesley Collective. None of them is a quote or a credit decision.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#start">Apply Now</a>
-          <a class="btn btn-ghost" href="#related">Related products</a>
+          <a class="btn btn-gold" href="#risk">Start with property risk</a>
+          <a class="btn btn-ghost" href="../get-started.html">Request a full review</a>
         </div>
       </div>
     </section>
@@ -132,140 +132,128 @@
     <section class="who-bar">
       <div class="container">
         <p class="card-tag">Who this is for</p>
-        <p>Buyers who need to close before permanent debt is ready · Owners executing a renovation or lease-up · Sponsors facing a maturity with a clear refinance plan · Investors who need speed more than a 10-year term</p>
+        <p>Homeowners, fleet operators, pre-retirees sitting on cash, and business owners sizing SBA 7(a) or 504 — before a formal application.</p>
       </div>
     </section>
-    <section class="section">
-      <div class="container product-layout">
+
+    <section class="section section-cream">
+      <div class="container tool-index">
+        <a href="#risk"><strong>01</strong><span>Property risk checker</span></a>
+        <a href="#vin"><strong>02</strong><span>VIN decoder</span></a>
+        <a href="#inflation"><strong>03</strong><span>Inflation calculator</span></a>
+        <a href="#sba"><strong>04</strong><span>SBA feasibility</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="risk">
+      <div class="container tool-layout">
         <div>
-          <div class="breadcrumb">
-            <a href="../index.html">Home</a>
-            <span>/</span>
-            <a href="../commercial-loans/index.html">Commercial Financing</a>
-            <span>/</span>
-            <span>Bridge Financing</span>
-          </div>
-          <p class="plain-callout">Bridge financing is a short-term loan that gets you from here to there — through a purchase, a renovation, or the months before a permanent loan is ready.</p>
-          <h2>How it works</h2>
-          <p class="mt-16 product-prose">Permanent commercial debt wants a stable story: leased, performing, clean title, long runway. Real deals are often messy in the middle. A bridge loan is meant for that middle. It can close an acquisition quickly, fund a value-add plan, or replace a loan that is coming due while you finish leasing or wait on take-out financing. The term is short on purpose. The exit — sale, refinance, or stabilization — has to be believable on day one. We will not put a bridge on a property that has no path off of it.</p>
-          <div class="explain-grid">
-            <div class="explain-card">
-              <p class="card-tag">Who this is for</p>
-              <ul class="feature-list"><li>Buyers who need to close before permanent debt is ready</li><li>Owners executing a renovation or lease-up</li><li>Sponsors facing a maturity with a clear refinance plan</li><li>Investors who need speed more than a 10-year term</li></ul>
+          <p class="kicker">Property</p>
+          <h2>Commercial &amp; personal property risk checker.</h2>
+          <p class="subhead">Enter a ZIP or street address. We geocode it, pull active National Weather Service alerts, and look up USGS earthquake history within 100 miles.</p>
+          <form class="form tool-form" id="risk-form">
+            <div class="field">
+              <label for="risk-location">ZIP code or street address</label>
+              <input id="risk-location" name="location" required placeholder="33101 or 200 E Las Olas Blvd, Fort Lauderdale, FL">
             </div>
-            <div class="explain-card">
-              <p class="card-tag">What it typically covers</p>
-              <ul class="feature-list"><li>Short-duration capital between two events</li><li>Acquisitions and value-add plans</li><li>A gap until take-out or sale</li><li>A defined exit, not an open-ended hold</li></ul>
+            <p class="form-note" id="risk-status">NWS + USGS. Flood-zone maps from FEMA are a separate product.</p>
+            <button class="btn btn-gold" type="submit">Check local risk</button>
+          </form>
+        </div>
+        <div id="risk-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="vin">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Auto &amp; fleet</p>
+          <h2>VIN decoder for personal auto and commercial fleet.</h2>
+          <p class="subhead">Paste a 17-character VIN. NHTSA VPIC returns year, make, model, body class, vehicle type, drive type, fuel, and displacement — then we route you to the right quote form.</p>
+          <form class="form tool-form" id="vin-form">
+            <div class="field">
+              <label for="vin-input">Vehicle identification number</label>
+              <input id="vin-input" name="vin" required maxlength="17" autocomplete="off" placeholder="1HGCM82633A004352" spellcheck="false">
             </div>
-          </div>
-          <div class="example-box">
-            <p class="card-tag">A simple example</p>
-            <p>You win a building at auction in 30 days. The permanent lender needs 90. A bridge can close the purchase; the permanent loan takes you out when underwriting is done.</p>
-          </div>
-          <div class="notes-box">
-            <p class="card-tag">Good to know</p>
-            <ul class="feature-list"><li>Bridge money is more expensive than permanent debt. That is the price of speed and flexibility.</li><li>If you cannot explain the exit in one sentence, it is not a bridge — it is a problem.</li></ul>
-          </div>
-          <p class="disclaimer mt-32">Coverage, eligibility, and terms vary by location and underwriting.</p>
+            <p class="form-note" id="vin-status">Decodes as you finish the 17th character, or on submit.</p>
+            <button class="btn btn-gold" type="submit">Decode VIN</button>
+          </form>
         </div>
-        <aside class="panel sticky-card" id="start">
-          
-          
-  <form class="form form-lead" data-form action="https://formsubmit.co/ajax/rasheed@wellesleycollective.com" method="POST" novalidate>
-    <input type="hidden" name="_subject" value="Wellesley Collective website inquiry">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="page" value="Bridge Financing">
-    <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true">
-    <div class="form-success">Thank you. We will follow up within one business day.</div>
-    <div class="form-fields">
-      <h3 class="lead-heading">Tell us what you need.</h3>
-      <div class="form-row">
-        <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" required></div>
-        <div class="field"><label for="lead-phone">Phone</label><input id="lead-phone" name="phone" type="tel" required></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" required></div>
-        <div class="field"><label for="lead-need">Need</label>
-          <select id="lead-need" name="need" required>
-            <option value="">Insurance / Annuities / Financing</option>
-            <option value="insurance">Insurance</option><option value="life">Life insurance</option><option value="annuities">Annuities</option><option value="financing" selected>Financing</option><option value="both">More than one</option>
-          </select>
-        </div>
-      </div>
-      <p class="form-error"></p>
-      <button class="btn btn-gold" type="submit">Get Started</button>
-      <p class="form-note">We’ll follow up within one business day.</p>
-    </div>
-  </form>
-        </aside>
+        <div id="vin-result" class="tool-output" hidden></div>
       </div>
     </section>
-    <section class="section section-cream" id="related">
+
+    <section class="section" id="inflation">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Life &amp; annuities</p>
+          <h2>Inflation and cash erosion calculator.</h2>
+          <p class="subhead">Uses BLS CPI-U (CUUR0000SA0) for a trailing 12-month inflation rate, then shows what uninvested cash is worth in today’s dollars versus hypothetical fixed and indexed growth. Illustrations only.</p>
+          <p class="form-note" id="cpi-rate">Loading CPI…</p>
+          <form class="form tool-form" id="inflation-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="cash-input">Uninvested cash</label>
+                <input id="cash-input" name="cash" type="number" min="1000" step="1000" required placeholder="250000">
+              </div>
+              <div class="field">
+                <label for="years-input">Horizon</label>
+                <select id="years-input" name="years">
+                  <option value="10">10 years</option>
+                  <option value="20" selected>20 years</option>
+                  <option value="30">30 years</option>
+                </select>
+              </div>
+            </div>
+            <p class="form-note" id="inflation-status">BLS public API.</p>
+            <button class="btn btn-gold" type="submit">Show purchasing power</button>
+          </form>
+        </div>
+        <div id="inflation-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="sba">
+      <div class="container tool-layout">
+        <div>
+          <p class="kicker">Commercial financing</p>
+          <h2>SBA 7(a) / 504 feasibility snapshot.</h2>
+          <p class="subhead">Enter an amount and use of funds. We apply published SBA program limits, guaranty percentages, illustrative fees, typical terms, and a common DSCR starting point. Not a credit decision.</p>
+          <form class="form tool-form" id="sba-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="sba-amount">Requested amount</label>
+                <input id="sba-amount" name="amount" type="number" min="25000" step="5000" required placeholder="1250000">
+              </div>
+              <div class="field">
+                <label for="sba-purpose">Use of funds</label>
+                <select id="sba-purpose" name="purpose">
+                  <option value="wc">Working capital</option>
+                  <option value="equipment">Equipment</option>
+                  <option value="cre" selected>Owner-occupied commercial real estate</option>
+                </select>
+              </div>
+            </div>
+            <p class="form-note" id="sba-status">Checking SBA open data…</p>
+            <button class="btn btn-gold" type="submit">Run feasibility</button>
+          </form>
+        </div>
+        <div id="sba-result" class="tool-output" hidden></div>
+      </div>
+    </section>
+
+    <section class="cta-band">
       <div class="container">
-        <div class="section-head">
-          <p class="kicker">Related products</p>
-          <h2>Other policies and facilities people pair with this.</h2>
-        </div>
-        <div class="grid-3">
-          
-            <article class="product-card">
-              <h3>Working Capital / Short-Term Financing</h3>
-              <p class="who-line">Owners with lumpy or seasonal sales · Companies waiting on customer invoices</p>
-              <p>Flexible funding to support day-to-day operations and cash flow needs.</p>
-              <a class="btn btn-outline" href="working-capital.html">View details</a>
-            </article>
-            <article class="product-card">
-              <h3>Equipment Financing</h3>
-              <p class="who-line">Contractors buying trucks, lifts, or tools · Manufacturers and shops adding machinery</p>
-              <p>Financing for machinery, vehicles, and business equipment.</p>
-              <a class="btn btn-outline" href="equipment-financing.html">View details</a>
-            </article>
-            <article class="product-card">
-              <h3>Asset-Based Lending (ABL)</h3>
-              <p class="who-line">Wholesalers, distributors, and manufacturers · Companies whose invoices or inventory are the real story</p>
-              <p>Loans secured by business assets such as accounts receivable and inventory.</p>
-              <a class="btn btn-outline" href="asset-based-lending.html">View details</a>
-            </article>
-            <article class="product-card">
-              <h3>Business Lines of Credit <span class="aka">LOC</span></h3>
-              <p class="who-line">Businesses with repeating, uneven cash needs · Owners who are tired of one-off short-term loans</p>
-              <p>Revolving credit facilities for ongoing business needs.</p>
-              <a class="btn btn-outline" href="business-lines-of-credit.html">View details</a>
-            </article>
-            <article class="product-card">
-              <h3>Unsecured Term Loans</h3>
-              <p class="who-line">Established businesses with clean banking history · Owners who need a defined amount, not a revolving line</p>
-              <p>Term financing options for qualified businesses.</p>
-              <a class="btn btn-outline" href="unsecured-term-loans.html">View details</a>
-            </article>
-            <article class="product-card">
-              <h3>Commercial Real Estate Loans <span class="aka">CRE</span></h3>
-              <p class="who-line">Investors buying or refinancing income property · Business owners purchasing the building they occupy</p>
-              <p>Financing for multi-family, office, retail, industrial, hotels, self-storage, and other commercial properties.</p>
-              <a class="btn btn-outline" href="commercial-real-estate.html">View details</a>
-            </article>
+        <p class="eyebrow" style="justify-content:center">Need the file reviewed</p>
+        <h2>Tools first. Then a person if you want one.</h2>
+        <p>Send what you ran and we will tell you what, if anything, should change.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-gold" href="../get-started.html">Request a full review</a>
+          <a class="btn btn-ghost" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
         </div>
       </div>
     </section>
-    
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker">Guides</p>
-          <h2>Read this before you quote or apply.</h2>
-        </div>
-        <div class="grid-3">
-          
-            <article class="product-card">
-              <p class="card-tag">Guide</p>
-              <h3>Bridge loan vs. permanent CRE financing</h3>
-              <p>When speed is the product, when a 10-year mortgage is the product, and what a clean exit looks like.</p>
-              <a class="btn btn-outline" href="../blog/bridge-vs-permanent-cre.html">Read guide</a>
-            </article>
-        </div>
-      </div>
-    </section>
+    <script type="module" src="../js/resources/index.js"></script>
 </main>
 
   <footer class="site-footer">

@@ -63,6 +63,23 @@
     if (match) productField.value = value;
   }
 
+  const messageField = document.querySelector("[name='LEADCF1'], textarea[name='message']");
+  if (messageField && !String(messageField.value || "").trim()) {
+    const bits = [];
+    ["vehicle", "vin", "year", "make", "model", "location", "zip", "amount", "purpose", "cash", "years"].forEach(function (key) {
+      if (params.get(key)) bits.push(key + ": " + params.get(key));
+    });
+    try {
+      const stored = sessionStorage.getItem("wellesleyVin");
+      if (stored && !params.get("vin")) {
+        const vin = JSON.parse(stored);
+        bits.push("VIN: " + (vin.vin || ""));
+        bits.push("Vehicle: " + [vin.year, vin.make, vin.model].filter(Boolean).join(" "));
+      }
+    } catch (err) {}
+    if (bits.length) messageField.value = bits.join("\n");
+  }
+
   function isLoanSelection(select) {
     if (!select || !select.selectedOptions.length) return false;
     if (new URLSearchParams(window.location.search).get("type") === "loan" && !select.value) return true;
