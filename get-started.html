@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Get Started | Wellesley Collective</title>
-  <meta name="description" content="Get started with Wellesley Collective for insurance, life insurance, annuities, or commercial financing.">
+  <meta name="description" content="Choose insurance, annuities, or commercial financing — then go to the right quote, or book a call.">
   <link rel="canonical" href="https://wellesleycollective.com/get-started.html">
   <meta property="og:site_name" content="Wellesley Collective">
   <meta property="og:title" content="Get Started | Wellesley Collective">
-  <meta property="og:description" content="Get started with Wellesley Collective for insurance, life insurance, annuities, or commercial financing.">
+  <meta property="og:description" content="Choose insurance, annuities, or commercial financing — then go to the right quote, or book a call.">
   <meta property="og:url" content="https://wellesleycollective.com/get-started.html">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/brand/favicon.png?v=3" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=19">
+  <link rel="stylesheet" href="css/styles.css?v=20">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Wellesley Collective","url":"https://wellesleycollective.com","email":"rasheed@wellesleycollective.com","telephone":"954-295-1210","description":"Licensed firm providing personal, commercial, and life insurance, annuities, and commercial financing.","areaServed":"US","sameAs":["https://wellesleycollective.com"]}</script>
 </head>
 <body>
@@ -122,28 +122,78 @@
       <div class="page-hero-media"><img src="assets/images/hero-commercial.jpg" alt="Commercial building facade" decoding="async"></div>
       <div class="container page-hero-content">
         <p class="eyebrow">Get started</p>
-        <h1 id="started-title">Get started.</h1>
-        <p class="lede" id="started-lede">Tell us what you need. We will review it and follow up with next steps.</p>
+        <h1 id="started-title">What do you need?</h1>
+        <p class="lede" id="started-lede">Pick a path. We will send you to the right quote — or you can book a call instead.</p>
       </div>
     </section>
-    <section class="section">
-      <div class="container quote-layout">
-        <div>
-          <p class="kicker">What happens next</p>
-          <h2>What happens next</h2>
-          <ul class="feature-list">
-            <li>We confirm the product, location, and a few basic facts.</li>
-            <li>We review what you need and outline next steps.</li>
-            <li>You stay with our team if questions come up along the way.</li>
-            <li>For life insurance, you can also <a href="insurance/quote.html">quote yourself online</a>.</li>
-            <li>For a full personal quote, use the <a href="intake/personal.html">personal intake</a>. For a business, use the <a href="intake/commercial.html">commercial intake</a>.</li>
-          </ul>
-          <div class="hero-actions mt-32">
-            <a class="btn btn-navy" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
+    <section class="section" id="start">
+      <div class="container start-wrap">
+        <form class="form intake-form start-path" data-start data-calendly="https://calendly.com/rasheed-wellesleycollective/30min" novalidate>
+          <p class="kicker">A few questions</p>
+          <h2 class="lead-heading">Tell us what you are here for.</h2>
+          <p class="form-note">You can stop at any point and book a call.</p>
+
+          <fieldset class="start-step">
+            <legend>I need</legend>
+            <select id="start-need" name="need">
+              <option value="">Select</option>
+              <option value="insurance">Insurance</option>
+              <option value="annuities">Annuities / financial services</option>
+              <option value="financing">Commercial financing</option>
+              <option value="unsure">Not sure yet</option>
+              <option value="call">Book a 30-minute call</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="insurance" hidden>
+            <legend>What kind of insurance?</legend>
+            <select id="start-kind" name="kind">
+              <option value="">Select</option>
+              <option value="personal" data-href="intake/personal.html">Personal — home, auto, flood, umbrella</option>
+              <option value="commercial" data-href="intake/commercial.html">Commercial — GL, BOP, workers’ comp, fleet</option>
+              <option value="life" data-href="insurance/quote.html">Life insurance — term, whole life, UL</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="personal" hidden>
+            <legend>Which personal coverage, if you know?</legend>
+            <select id="start-personal-line" name="personal_line">
+              <option value="" data-href="intake/personal.html">Not sure / more than one</option><option value="Homeowners Insurance" data-slug="homeowners-insurance" data-href="intake/personal.html">Homeowners Insurance</option><option value="Auto Insurance" data-slug="auto-insurance" data-href="intake/personal.html">Auto Insurance</option><option value="Renters Insurance" data-slug="renters-insurance" data-href="intake/personal.html">Renters Insurance</option><option value="Condo Insurance" data-slug="condo-insurance" data-href="intake/personal.html">Condo Insurance</option><option value="Personal Umbrella" data-slug="personal-umbrella" data-href="intake/personal.html">Personal Umbrella</option><option value="Watercraft / Boat Insurance" data-slug="watercraft-insurance" data-href="intake/personal.html">Watercraft / Boat Insurance</option><option value="Flood Insurance" data-slug="flood-insurance" data-href="intake/personal.html">Flood Insurance</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="commercial" hidden>
+            <legend>Which commercial coverage, if you know?</legend>
+            <select id="start-commercial-line" name="commercial_line">
+              <option value="" data-href="intake/commercial.html">Not sure / more than one</option><option value="General Liability" data-slug="general-liability" data-href="intake/commercial.html">General Liability</option><option value="Commercial Property / Buildings" data-slug="commercial-property" data-href="intake/commercial.html">Commercial Property / Buildings</option><option value="Commercial Auto / Fleet" data-slug="commercial-auto" data-href="intake/commercial.html">Commercial Auto / Fleet</option><option value="Workers’ Compensation" data-slug="workers-compensation" data-href="intake/commercial.html">Workers’ Compensation</option><option value="Business Owners Policy (BOP)" data-slug="business-owners-policy" data-href="intake/commercial.html">Business Owners Policy (BOP)</option><option value="Artisan Contractors Insurance" data-slug="artisan-contractors" data-href="intake/commercial.html">Artisan Contractors Insurance</option><option value="Professional Liability (E&amp;O)" data-slug="professional-liability" data-href="intake/commercial.html">Professional Liability (E&amp;O)</option><option value="Inland Marine / Heavy Machinery" data-slug="inland-marine" data-href="intake/commercial.html">Inland Marine / Heavy Machinery</option><option value="Commercial Umbrella / Excess" data-slug="commercial-umbrella" data-href="intake/commercial.html">Commercial Umbrella / Excess</option><option value="Cyber Liability" data-slug="cyber-liability" data-href="intake/commercial.html">Cyber Liability</option><option value="Flood Coverage (Commercial)" data-slug="commercial-flood" data-href="intake/commercial.html">Flood Coverage (Commercial)</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="life" hidden>
+            <legend>How do you want to handle life insurance?</legend>
+            <select id="start-life-line" name="life_line">
+              <option value="" data-href="insurance/quote.html">Quote myself online</option><option value="details" data-href="intake/personal.html">Send details instead</option><option value="Term Life Insurance" data-slug="term-life-insurance" data-href="insurance/quote.html">Term Life Insurance</option><option value="Whole Life Insurance" data-slug="whole-life-insurance" data-href="insurance/quote.html">Whole Life Insurance</option><option value="Universal Life Insurance" data-slug="universal-life-insurance" data-href="insurance/quote.html">Universal Life Insurance</option><option value="Final Expense Insurance" data-slug="final-expense-insurance" data-href="insurance/quote.html">Final Expense Insurance</option><option value="Business Life Insurance" data-slug="business-life-insurance" data-href="insurance/quote.html">Business Life Insurance</option><option value="Disability Insurance" data-slug="disability-insurance" data-href="intake/personal.html">Disability Insurance</option><option value="Long-Term Care Insurance" data-slug="long-term-care-insurance" data-href="intake/personal.html">Long-Term Care Insurance</option>
+            </select>
+          </fieldset>
+
+          <p class="form-note" data-start-status></p>
+          <div class="hero-actions start-actions">
+            <button class="btn btn-gold" type="submit" data-start-go>Continue</button>
+            <a class="btn btn-outline" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
           </div>
-          <p class="disclaimer mt-32">Submitting this form does not bind coverage or guarantee financing.</p>
-        </div>
-        <div class="panel"><div class="zoho-embed"><!-- Note :
+          <p class="disclaimer">This does not bind coverage or guarantee financing. Name and email are enough once you reach a quote form.</p>
+
+          <div hidden data-slug-map>
+            <option data-slug="fixed-annuities" data-need="annuities"></option><option data-slug="indexed-annuities" data-need="annuities"></option><option data-slug="income-annuities" data-need="annuities"></option>
+            <option data-slug="working-capital" data-need="financing"></option><option data-slug="equipment-financing" data-need="financing"></option><option data-slug="asset-based-lending" data-need="financing"></option><option data-slug="business-lines-of-credit" data-need="financing"></option><option data-slug="unsecured-term-loans" data-need="financing"></option><option data-slug="commercial-real-estate" data-need="financing"></option><option data-slug="bridge-financing" data-need="financing"></option><option data-slug="construction-development" data-need="financing"></option><option data-slug="sba-loans" data-need="financing"></option>
+          </div>
+        </form>
+
+        <div class="panel start-talk" id="talk" data-panel="talk" hidden>
+          <p class="card-tag">Next</p>
+          <h2 class="lead-heading" data-talk-title>Tell us what you need.</h2>
+          <p class="form-note">A few details are enough. Or skip this and book a call.</p>
+          <div class="zoho-embed"><!-- Note :
    - You can modify the font style and form style to suit your website. 
    - Code lines with comments Do not remove this code are required for the form to work properly, make sure that you do not remove these lines of code. 
    - The Mandatory check script can modified as to suit your business needs. 
@@ -753,10 +803,14 @@
 				</script>
 				<!-- Do not remove this --- Analytics Tracking code ends. -->
 			</form>
-		</div></div></div>
+		</div></div>
+          <div class="hero-actions mt-32">
+            <a class="btn btn-navy" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
+          </div>
+        </div>
       </div>
     </section>
-    <section class="section section-cream">
+    <section class="section section-cream" id="call">
       <div class="container">
         
     <div class="calendly-block">
@@ -817,6 +871,6 @@
     </div>
   </footer>
 <script src="js/main.js?v=7"></script>
-
+<script src="js/start.js?v=1"></script>
 </body>
 </html>

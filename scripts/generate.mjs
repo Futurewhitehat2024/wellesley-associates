@@ -695,11 +695,28 @@ function redirectPage(to) {
 
 function checkboxes(name, items) {
   return `<div class="check-grid">${items
-    .map(
-      (item) =>
-        `<label class="check"><input type="checkbox" name="${name}" value="${esc(item)}"><span>${esc(item)}</span></label>`
-    )
+    .map((item) => {
+      const value = typeof item === "string" ? item : item.name;
+      const slug = typeof item === "string" ? "" : item.slug;
+      return `<label class="check"><input type="checkbox" name="${name}" value="${esc(value)}"${slug ? ` data-slug="${esc(slug)}"` : ""}><span>${esc(value)}</span></label>`;
+    })
     .join("")}</div>`;
+}
+
+function startLineOptions(items, href, extras = []) {
+  const extraHtml = extras
+    .map((row) => `<option value="${esc(row.value)}" data-href="${row.href}">${esc(row.label)}</option>`)
+    .join("");
+  const blank = extras.length ? extraHtml : `<option value="" data-href="${href}">Not sure / more than one</option>`;
+  return (
+    blank +
+    items
+      .map((item) => {
+        const dest = typeof item.startHref === "string" ? item.startHref : href;
+        return `<option value="${esc(item.name)}" data-slug="${esc(item.slug)}" data-href="${dest}">${esc(item.name)}</option>`;
+      })
+      .join("")
+  );
 }
 
 function stateSelect() {
@@ -719,7 +736,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
     root,
     path: `intake/${kind}.html`,
     current: "insurance",
-    extraScripts: ["js/intake.js?v=2"],
+    extraScripts: ["js/intake.js?v=3"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({
@@ -808,7 +825,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=19`;
+  const css = `${root}css/styles.css?v=20`;
   const js = `${root}js/main.js?v=7`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -1794,38 +1811,103 @@ pages.push({
   html: layout({
     title: "Get Started | Wellesley Collective",
     path: "get-started.html",
-    description: "Get started with Wellesley Collective for insurance, life insurance, annuities, or commercial financing.",
+    description: "Choose insurance, annuities, or commercial financing — then go to the right quote, or book a call.",
     current: "contact",
+    extraScripts: ["js/start.js?v=1"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({ src: "assets/images/hero-commercial.jpg", alt: "Commercial building facade", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Get started</p>
-        <h1 id="started-title">Get started.</h1>
-        <p class="lede" id="started-lede">Tell us what you need. We will review it and follow up with next steps.</p>
+        <h1 id="started-title">What do you need?</h1>
+        <p class="lede" id="started-lede">Pick a path. We will send you to the right quote — or you can book a call instead.</p>
       </div>
     </section>
-    <section class="section">
-      <div class="container quote-layout">
-        <div>
-          <p class="kicker">What happens next</p>
-          <h2>What happens next</h2>
-          <ul class="feature-list">
-            <li>We confirm the product, location, and a few basic facts.</li>
-            <li>We review what you need and outline next steps.</li>
-            <li>You stay with our team if questions come up along the way.</li>
-            <li>For life insurance, you can also <a href="insurance/quote.html">quote yourself online</a>.</li>
-            <li>For a full personal quote, use the <a href="intake/personal.html">personal intake</a>. For a business, use the <a href="intake/commercial.html">commercial intake</a>.</li>
-          </ul>
+    <section class="section" id="start">
+      <div class="container start-wrap">
+        <form class="form intake-form start-path" data-start data-calendly="${CALENDLY_URL}" novalidate>
+          <p class="kicker">A few questions</p>
+          <h2 class="lead-heading">Tell us what you are here for.</h2>
+          <p class="form-note">You can stop at any point and book a call.</p>
+
+          <fieldset class="start-step">
+            <legend>I need</legend>
+            <select id="start-need" name="need">
+              <option value="">Select</option>
+              <option value="insurance">Insurance</option>
+              <option value="annuities">Annuities / financial services</option>
+              <option value="financing">Commercial financing</option>
+              <option value="unsure">Not sure yet</option>
+              <option value="call">Book a 30-minute call</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="insurance" hidden>
+            <legend>What kind of insurance?</legend>
+            <select id="start-kind" name="kind">
+              <option value="">Select</option>
+              <option value="personal" data-href="intake/personal.html">Personal — home, auto, flood, umbrella</option>
+              <option value="commercial" data-href="intake/commercial.html">Commercial — GL, BOP, workers’ comp, fleet</option>
+              <option value="life" data-href="insurance/quote.html">Life insurance — term, whole life, UL</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="personal" hidden>
+            <legend>Which personal coverage, if you know?</legend>
+            <select id="start-personal-line" name="personal_line">
+              ${startLineOptions(personalLines, "intake/personal.html")}
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="commercial" hidden>
+            <legend>Which commercial coverage, if you know?</legend>
+            <select id="start-commercial-line" name="commercial_line">
+              ${startLineOptions(commercialLines, "intake/commercial.html")}
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="life" hidden>
+            <legend>How do you want to handle life insurance?</legend>
+            <select id="start-life-line" name="life_line">
+              ${startLineOptions(
+                lifeProducts.map((item) => ({
+                  ...item,
+                  startHref: item.kind === "disability" || item.kind === "ltc" ? "intake/personal.html" : "insurance/quote.html",
+                })),
+                "insurance/quote.html",
+                [
+                  { value: "", href: "insurance/quote.html", label: "Quote myself online" },
+                  { value: "details", href: "intake/personal.html", label: "Send details instead" },
+                ]
+              )}
+            </select>
+          </fieldset>
+
+          <p class="form-note" data-start-status></p>
+          <div class="hero-actions start-actions">
+            <button class="btn btn-gold" type="submit" data-start-go>Continue</button>
+            <a class="btn btn-outline" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+          </div>
+          <p class="disclaimer">This does not bind coverage or guarantee financing. Name and email are enough once you reach a quote form.</p>
+
+          <div hidden data-slug-map>
+            ${annuityLines.map((item) => `<option data-slug="${esc(item.slug)}" data-need="annuities"></option>`).join("")}
+            ${loanProducts.map((item) => `<option data-slug="${esc(item.slug)}" data-need="financing"></option>`).join("")}
+          </div>
+        </form>
+
+        <div class="panel start-talk" id="talk" data-panel="talk" hidden>
+          <p class="card-tag">Next</p>
+          <h2 class="lead-heading" data-talk-title>Tell us what you need.</h2>
+          <p class="form-note">A few details are enough. Or skip this and book a call.</p>
+          ${zohoForm()}
           <div class="hero-actions mt-32">
             <a class="btn btn-navy" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
           </div>
-          <p class="disclaimer mt-32">Submitting this form does not bind coverage or guarantee financing.</p>
         </div>
-        <div class="panel">${zohoForm()}</div>
       </div>
     </section>
-    <section class="section section-cream">
+    <section class="section section-cream" id="call">
       <div class="container">
         ${calendlyBlock()}
       </div>
@@ -1841,10 +1923,7 @@ pages.push({
     description: "Start a personal insurance quote with Wellesley Collective. Only name and email are required.",
     lede: "Home, auto, flood, umbrella, watercraft, and life. Name and email are enough to start. The rest helps us quote.",
     who: "Households that need a personal or life insurance quote and want to send details — and optional documents — in one place.",
-    coverages: [
-      ...personalLines.map((item) => item.name),
-      ...lifeProducts.map((item) => item.name),
-    ],
+    coverages: [...personalLines, ...lifeProducts],
     extraFields: `
           <h3 class="intake-h">Property</h3>
           <div class="field"><label for="intake-address">Property address</label><input id="intake-address" name="property_address" autocomplete="street-address"></div>
@@ -1893,7 +1972,7 @@ pages.push({
     description: "Start a commercial insurance quote with Wellesley Collective. Only name and email are required.",
     lede: "GL, BOP, workers’ comp, fleet, property, cyber, and contractors. Name and email are enough to start. The rest helps us quote.",
     who: "Business owners and contractors who want to send operations details — and optional loss runs or declarations — for a commercial quote.",
-    coverages: commercialLines.map((item) => item.name),
+    coverages: commercialLines,
     extraFields: `
           <h3 class="intake-h">The business</h3>
           <div class="form-row">

@@ -98,6 +98,22 @@
       .join("");
   }
 
+  function preselectCoverages() {
+    const params = new URLSearchParams(window.location.search);
+    const wanted = [params.get("coverage"), params.get("product")].filter(Boolean);
+    if (!wanted.length) return;
+    form.querySelectorAll("[name='coverages']").forEach(function (box) {
+      const slug = String(box.getAttribute("data-slug") || "").toLowerCase();
+      const val = String(box.value || "").toLowerCase();
+      wanted.forEach(function (item) {
+        const raw = String(item).toLowerCase();
+        const spaced = raw.replace(/-/g, " ");
+        if (val === raw || val === spaced || slug === raw || slug === spaced) box.checked = true;
+      });
+    });
+  }
+  preselectCoverages();
+
   if (fileInput) {
     fileInput.addEventListener("change", function () {
       const files = Array.from(fileInput.files || []);
