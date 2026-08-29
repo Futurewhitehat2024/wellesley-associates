@@ -200,9 +200,9 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 12px;
+  padding: 10px 10px;
   color: var(--navy);
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.02em;
   background: none;
@@ -1564,7 +1564,17 @@ h2 {
   }
 }
 
-@media (max-width: 1180px) and (min-width: 981px) {
+@media (max-width: 1240px) and (min-width: 981px) {
+  .nav-link,
+  .nav-btn {
+    padding: 10px 7px;
+    font-size: 13.5px;
+  }
+
+  .header-inner {
+    gap: 16px;
+  }
+
   .dropdown-wide.dropdown-3 {
     width: 640px;
     grid-template-columns: 1fr 1fr;
