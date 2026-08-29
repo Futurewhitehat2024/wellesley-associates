@@ -1425,7 +1425,7 @@ pages.push({
   file: "about.html",
   html: layout({
     title: "About | Wellesley Collective",
-    description: "Meet Rasheed Wellesley, principal of Wellesley Collective — a licensed Florida firm for personal, commercial, and life insurance, annuities, and commercial financing.",
+    description: "Meet Rasheed Wellesley, owner of Wellesley Collective — a licensed Florida firm for personal, commercial, and life insurance, annuities, and commercial financing.",
     path: "about.html",
     current: "about",
     content: `
@@ -1442,16 +1442,16 @@ pages.push({
       <div class="container split about-principal">
         ${figurePhoto({
           src: "assets/images/rasheed-wellesley.jpg?v=1",
-          alt: "Rasheed Wellesley, principal of Wellesley Collective",
-          caption: "Rasheed Wellesley · Principal",
+          alt: "Rasheed Wellesley, owner of Wellesley Collective",
+          caption: "Rasheed Wellesley · Owner",
         })}
         <div class="split-copy">
-          <p class="kicker">The principal</p>
+          <p class="kicker">The owner</p>
           <h2>Rasheed Wellesley</h2>
-          <p>You work with Rasheed. He is a Florida-resident licensed insurance agent and the principal of Wellesley Collective LLC. The practice is built for households and operators who want a direct conversation about coverage and capital — not a call center and a new person at every step.</p>
+          <p>You work with Rasheed. He is a Florida-resident licensed insurance agent and the owner of Wellesley Collective LLC. The practice is built for households and operators who want a direct conversation about coverage and capital — not a call center and a new person at every step.</p>
           <p>He has held a Florida agent license since 2021, with authority for general lines (property and casualty) and life including variable annuities. He is also licensed as a non-resident in additional states. Products, appointments, and what can be placed still depend on the state and the file.</p>
           <ul class="about-facts">
-            <li><strong>Role</strong> Principal, Wellesley Collective</li>
+            <li><strong>Role</strong> Owner, Wellesley Collective</li>
             <li><strong>NPN</strong> 19762898</li>
             <li><strong>Resident license</strong> Florida · Agent</li>
             <li><strong>Phone</strong> <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a></li>
