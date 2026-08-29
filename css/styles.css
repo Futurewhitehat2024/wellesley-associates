@@ -268,6 +268,11 @@ ul {
   gap: 8px 28px;
 }
 
+.dropdown-wide.dropdown-3 {
+  width: min(920px, calc(100vw - 32px));
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .nav-item:hover > .dropdown,
 .nav-item:focus-within > .dropdown,
 .nav-item.open > .dropdown {
@@ -1555,6 +1560,13 @@ h2 {
   .nav-btn {
     padding: 10px 8px;
     font-size: 13.5px;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 981px) {
+  .dropdown-wide.dropdown-3 {
+    width: 640px;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

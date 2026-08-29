@@ -208,6 +208,139 @@ const commercialLines = [
   },
 ];
 
+const lifeLines = [
+  {
+    slug: "term-life-insurance",
+    name: "Term Life Insurance",
+    kind: "life",
+    image: "hero-home.jpg",
+    summary: "A set death benefit for a set number of years — usually 10, 15, 20, or 30 — at a premium that is typically the lowest among life products.",
+    simple: "Term life pays a lump sum to the people you name if you die during the term. If you outlive the term, the coverage ends unless you convert or renew it. There is usually no cash value.",
+    details: "Term is the policy most families buy first because the job is simple: replace income, pay off a mortgage, or cover a defined obligation while the need is largest. You choose a face amount and a term. Premiums are typically level for that period. If you die while the policy is in force, the carrier pays the death benefit to your beneficiaries. When the term ends, you can often convert to a permanent policy without a new medical exam, renew at a much higher rate, or let it expire. Return-of-premium (ROP) term is a more expensive design that can give premiums back if you outlive the term. We quote standard cases and impaired-risk cases — health history is part of underwriting, not a reason to stay silent.",
+    who: ["Parents who need income replacement while children are young", "Homeowners who want the mortgage paid if they die", "Anyone who needs a large death benefit at the lowest current premium", "People with a health history who still need a quote, not a brush-off"],
+    covers: ["A death benefit paid to your beneficiaries if you die during the term", "Level premiums for the period you choose", "Conversion to permanent coverage, when the contract allows it", "Return-of-premium designs, when you want premiums back if you outlive the term"],
+    example: "A 38-year-old with a 30-year mortgage and two children buys a 20-year, $1 million term policy. If they die in year 12, the beneficiaries receive the benefit. If they live past year 20, the policy ends unless it was converted.",
+    notes: ["Term is not a savings account. If you need cash value or coverage that lasts a lifetime, look at whole life or universal life.", "We work cases that are not straightforward. Tell us the health history up front.", "Return-of-premium term costs more than standard term. We will show both."],
+  },
+  {
+    slug: "whole-life-insurance",
+    name: "Whole Life Insurance",
+    kind: "life",
+    image: "hero-home.jpg",
+    summary: "Permanent coverage with guaranteed premiums, a guaranteed death benefit, and cash value that grows on a schedule set in the contract.",
+    simple: "Whole life is built to last your entire life as long as you pay the premiums. Part of each premium funds the death benefit. Part builds cash value you can borrow against later.",
+    details: "Unlike term, whole life does not expire at year 20. The contract guarantees the death benefit, the premium, and a minimum cash-value schedule if you keep the policy in force. Dividends, when declared, can buy paid-up additions, reduce premiums, or be taken in cash — they are not guaranteed. People use whole life for lifelong protection, estate liquidity, and a conservative cash-value component next to a term layer. It is the wrong tool if you only need coverage until the kids are grown and you want the cheapest premium. It is the right tool when the need does not have an end date, or when you want a policy that can still be there at 80. For estate and business succession, we coordinate with your attorney and CPA. We do not replace legal or tax advice.",
+    who: ["People who want coverage that does not expire at a term date", "Families planning for estate liquidity or final expenses with a permanent policy", "Owners who want cash value they can access, subject to the contract", "Anyone building a base of permanent coverage under a larger term layer"],
+    covers: ["A death benefit designed to stay in force for life, if premiums are paid", "Guaranteed cash value that grows on the policy schedule", "Policy loans and withdrawals, as the contract allows", "Dividend options, when the carrier declares a dividend"],
+    example: "A 45-year-old buys a whole life policy to leave a tax-efficient death benefit and to have cash value in 20 years. Term would have been cheaper for 20 years and then gone. This policy is still there.",
+    notes: ["Premiums are higher than term for the same face amount. That is the cost of a guarantee that does not expire.", "Loans and withdrawals reduce the death benefit if they are not repaid.", "Dividends are not guaranteed and are not a reason to buy the policy by themselves."],
+  },
+  {
+    slug: "universal-life-insurance",
+    name: "Universal Life Insurance",
+    kind: "life",
+    image: "hero-home.jpg",
+    summary: "Flexible permanent life insurance — including guaranteed UL (GUL) and indexed UL (IUL) — with adjustable premiums and a cash-value account.",
+    simple: "Universal life is permanent coverage with a flexible premium. You can often pay more, pay less, or skip a payment if the cash value can carry the cost of insurance. The tradeoff is that the policy has to be managed.",
+    details: "There is more than one design. Traditional UL credits a declared interest rate. Guaranteed UL (GUL) is built mainly for a no-lapse death benefit to a stated age, with little emphasis on cash value. Indexed UL (IUL) credits interest using a formula tied to an index, with a cap, floor, and participation rate — it is not a direct investment in the market. Variable UL (VUL) uses separate accounts and can lose value; it requires a prospectus and is not the right first conversation for most households. We start with the job: lifelong death benefit at the lowest sustainable premium, cash-value accumulation, or a guarantee to a specific age. Then we match GUL, IUL, or another UL form. Large premium cases, older ages, and impaired-risk files are in appetite. Illustrations are hypothetical. We will walk the guaranteed column, not only the illustrated one.",
+    who: ["People who want permanent coverage with more premium flexibility than whole life", "Buyers who need a no-lapse guarantee to a stated age (GUL)", "Clients considering indexed UL for accumulation plus a death benefit", "Business and estate cases that need a designed permanent policy"],
+    covers: ["A death benefit that can last for life if the policy is funded as designed", "A cash-value account that earns a declared, guaranteed, or indexed credit", "Flexible premiums within the limits of the contract", "Riders such as overloan protection or a long-term care rider, when added"],
+    example: "A 52-year-old wants a $1 million death benefit to age 121 and does not care about cash value. A GUL priced to the no-lapse guarantee is usually the cleaner fit than an IUL illustrated at a high cap.",
+    notes: ["IUL is not a stock market investment. Caps, floors, and participation rates can change.", "Underfunded UL is how policies lapse. We review funding, not only the year-1 premium.", "Variable UL involves market risk and a prospectus. Ask whether it is even available for your situation."],
+  },
+  {
+    slug: "final-expense-insurance",
+    name: "Final Expense Insurance",
+    kind: "life",
+    image: "hero-home.jpg",
+    summary: "A smaller whole-life policy designed to pay funeral costs, medical bills, and other last expenses — often with simplified underwriting.",
+    simple: "Final expense is life insurance sized for burial, a funeral, and leftover bills. Face amounts are smaller than a typical term policy, and the application is usually shorter.",
+    details: "The point is not income replacement. It is so your family is not writing checks for a funeral, a hospital balance, or a small remaining debt while they are also grieving. These policies are typically whole life, so they do not expire at year 10. Many use simplified issue or graded death benefits, which means the full face amount may not pay in the first two years if death is from natural causes — the contract says so in plain language, and we will too. Final expense is a fit for older applicants, people who were declined for larger coverage, or anyone who wants a modest permanent benefit without a full medical exam. It is not a substitute for a $1 million term policy if the household still needs income replacement.",
+    who: ["People who want funeral and last-expense costs covered", "Older applicants who want a modest permanent benefit", "Anyone who was declined for a larger medically underwritten policy", "Families who do not want relatives paying out of pocket at the worst time"],
+    covers: ["A death benefit sized for funeral, burial, and related bills", "Permanent coverage that does not expire at a term date", "Simplified or graded issue, when the health history calls for it", "A policy that can be assigned to a funeral home, if you choose"],
+    example: "A 68-year-old buys a $15,000 final expense policy so children are not splitting a funeral bill. It will not replace her pension. It will pay the costs that come due in the first weeks.",
+    notes: ["Read the graded-benefit period. A two-year wait on natural-cause death is common on simplified issue.", "This is not income-replacement term. If the household still depends on your paycheck, start with term.", "We will not oversell a $50,000 policy when a $15,000 policy is the actual need."],
+  },
+  {
+    slug: "business-life-insurance",
+    name: "Business Life Insurance",
+    kind: "life",
+    image: "hero-commercial.jpg",
+    summary: "Key-person coverage and buy-sell funding so a death does not leave the company, the bank, or the surviving owners without a plan.",
+    simple: "If a partner or key employee dies, the business still has payroll, debt, and customers. Business life insurance is the cash that lets the remaining owners keep operating — or buy out the estate — without a fire sale.",
+    details: "Two designs do most of the work. Key-person insurance is owned by the company on someone whose death would hurt revenue, credit, or operations. The benefit gives the firm time and cash. Buy-sell insurance funds an agreement that says how ownership transfers when an owner dies (and often at disability or retirement). Term can fund a loan or a short remaining obligation. Permanent coverage is more common when the buy-sell is meant to last. We also look at larger premium and estate-planning cases — including when the death benefit is meant for estate liquidity rather than operations. The legal documents are not the policy. We work next to your attorney and CPA so the insured, the owner, and the beneficiary match the agreement. We do not draft the buy-sell ourselves.",
+    who: ["Partners who have a buy-sell agreement, or need one funded", "Companies that would stall if a rainmaker, operator, or founder died", "Owners whose bank or investor expects key-person coverage on a loan", "Closely held firms planning for estate liquidity or succession"],
+    covers: ["Key-person death benefit payable to the company", "Funding for a buy-sell so the estate can be paid and the firm can continue", "Term or permanent designs matched to how long the need lasts", "Coordination with loans, estate plans, and ownership documents"],
+    example: "Two partners each own 50%. They agree the survivor will buy the deceased’s shares. Policies on each life, owned as the agreement requires, are what produce the cash at the worst moment — instead of a conversation with the widow and the bank at the same time.",
+    notes: ["An unfunded buy-sell is a letter of intent, not a plan.", "The owner, insured, and beneficiary have to match the agreement or you create a tax and title mess.", "This is insurance, not legal or tax advice. Bring the attorney into the same conversation."],
+  },
+  {
+    slug: "fixed-annuities",
+    name: "Fixed Annuities",
+    kind: "annuity",
+    image: "hero-city.jpg",
+    summary: "Insurance contracts that credit a declared rate — including multi-year guaranteed annuities (MYGAs) — for principal protection and tax-deferred growth.",
+    simple: "A fixed annuity is a contract with an insurance company. You give them a premium. They credit a stated interest rate for a period. Your principal is not supposed to move with the stock market.",
+    details: "A declared-rate fixed annuity credits interest set by the carrier. A MYGA (multi-year guaranteed annuity) locks a rate for a set term, often 3, 5, or 7 years, then you can renew, withdraw, or move the value, subject to surrender charges and tax rules. These are insurance products, not bank CDs. They are not FDIC insured. Guarantees depend on the claims-paying ability of the issuing insurer. People use them when they want a known rate, tax deferral, and less market path-risk than a brokerage account — and they can live with limited liquidity during the surrender period. We look at the rate, the term, free-withdrawal provisions, and what happens at the end of the guarantee. We will not treat a MYGA as a checking account.",
+    who: ["People who want a stated rate without stock-market path risk", "Retirees and pre-retirees parking a portion of savings for a defined term", "Anyone comparing a MYGA to leaving cash in a low-yield account", "Owners rolling a CD-like need into a tax-deferred insurance contract"],
+    covers: ["A credited rate declared by the insurer, or guaranteed for a multi-year term", "Tax-deferred growth while the money stays in the contract", "Principal protection from market decline, subject to the insurer’s strength", "Limited penalty-free withdrawals, as the contract allows"],
+    example: "A 62-year-old does not need $200,000 for five years and does not want it in equities. A 5-year MYGA credits a guaranteed rate. If they need the whole sum in year two, surrender charges likely apply.",
+    notes: ["Not FDIC insured. The guarantee is only as strong as the issuing carrier.", "Surrender charges and tax on gains apply if you pull money early. This is not a savings account.", "We do not pick a MYGA only because the year-1 rate is the highest quote on a sheet."],
+  },
+  {
+    slug: "indexed-annuities",
+    name: "Indexed Annuities",
+    kind: "annuity",
+    image: "hero-city.jpg",
+    summary: "Fixed indexed annuities that credit interest using a market-index formula — with a floor that is typically zero — rather than putting your premium directly in stocks.",
+    simple: "An indexed annuity does not buy the S&P 500. It uses an index to calculate an interest credit, usually with a cap, a participation rate, and a floor. In a down year you typically earn nothing for that period — you are not supposed to lose premium to the market.",
+    details: "Fixed indexed annuities (FIAs) sit between a declared-rate annuity and a market account. Your premium stays with the insurer. Credits are based on an index formula the carrier controls. Caps, spreads, and participation rates can change. That is why we read the contract, not the illustration. Some contracts add a lifetime-income rider for a fee. That rider is a separate decision from the accumulation story. Indexed annuities are insurance products, not securities. They are not FDIC insured. They have surrender charges and limited liquidity. They are a fit when you want some link to index performance, a floor against market loss of principal, and you can leave the money for the term. They are a poor fit if you need the money next year or you want uncapped equity returns.",
+    who: ["Pre-retirees who want a floor under a portion of savings", "People who will not sleep if the account can fall 20%", "Clients considering a lifetime-income rider in addition to accumulation", "Anyone who was shown only the illustrated cap and wants the real contract terms"],
+    covers: ["Interest credits tied to an index formula, not direct stock ownership", "A floor that is typically 0% for the crediting period", "Optional lifetime-income riders, when you add them and pay for them", "Tax-deferred growth while funds remain in the contract"],
+    example: "A 58-year-old moves a portion of savings into an FIA with a 0% floor. In a strong index year the credit is capped. In a down year that slice does not take the market loss. The rest of the portfolio can stay invested elsewhere.",
+    notes: ["Caps and participation rates are not guaranteed at today’s levels for the life of the contract.", "An income rider has a cost. The rider value is not the same as the cash-surrender value.", "This is not a variable annuity and not a mutual fund. Do not buy it as one."],
+  },
+  {
+    slug: "income-annuities",
+    name: "Income Annuities",
+    kind: "annuity",
+    image: "hero-city.jpg",
+    summary: "SPIAs and DIAs that turn a lump sum into a paycheck — starting now, or starting later — for a period of years or for life.",
+    simple: "An income annuity is how you convert savings into a stream of checks. A SPIA starts almost immediately. A DIA (deferred income annuity) starts on a future date you choose, often as longevity insurance.",
+    details: "A single-premium immediate annuity (SPIA) is funded with a lump sum and begins payments within a year, often within a month. You choose life-only, life with cash refund, joint life, or a period certain. A deferred income annuity (DIA) is purchased now so payments start at a later age — a way to cover the risk of living past 85 without managing a drawdown yourself. Once you annuitize, you generally cannot get the lump sum back. That is the point and the trade. These contracts are for people who value a check they cannot outlive more than they value remaining control of the principal. We quote the payout, the payment option, and what happens if you die early. We will not put money you may need for a house or a health shock into a SPIA.",
+    who: ["Retirees who want a paycheck they cannot outlive", "People covering essential expenses with guaranteed income and investing the rest", "Buyers of a DIA as longevity insurance starting at a later age", "Surviving spouses who want a simple, defined income stream"],
+    covers: ["A contractual income stream starting now (SPIA) or later (DIA)", "Life-only, joint-life, cash-refund, and period-certain options", "Payments that do not depend on this year’s market return", "A defined amount you can plan household bills around"],
+    example: "A 70-year-old uses part of a rollover to buy a SPIA that covers housing and groceries for life. The remaining portfolio stays invested. A DIA purchased at 60 to start at 80 is a different job: insurance against living a very long time.",
+    notes: ["Annuitization is usually irreversible. Do not fund it with money you might need as a lump sum.", "Inflation can erode a level payment. Ask about increasing options and what they cost in starting income.", "Guarantees depend on the issuing insurer, not on the stock market and not on FDIC insurance."],
+  },
+  {
+    slug: "disability-insurance",
+    name: "Disability Insurance",
+    kind: "disability",
+    image: "hero-home.jpg",
+    summary: "Short-term and long-term disability coverage that replaces a portion of income if you cannot work because of illness or injury.",
+    simple: "Life insurance pays if you die. Disability insurance pays if you are alive and cannot work. For many people in their 30s and 40s, that is the larger financial risk.",
+    details: "Short-term disability (STD) covers a weeks-to-months gap, often until long-term disability starts. Long-term disability (LTD) is the policy that can pay for years — sometimes to retirement age — if you meet the definition of disability. Own-occupation versus any-occupation language is the clause that decides claims. Benefit amount, elimination period, and whether the policy is individual or group all change the outcome. Employer group LTD is a start. It is often capped, taxable if the employer paid the premium, and not portable if you leave. We quote individual disability for professionals and owners who cannot live on the group benefit, and we look at business overhead or disability buy-out when a firm would stall if an owner could not work.",
+    who: ["Professionals and owners whose income stops if they cannot work", "Employees whose group LTD is too small, too short, or not portable", "Households that could not keep the mortgage on one income through a long illness", "Partners who need a disability trigger inside a buy-sell"],
+    covers: ["A monthly benefit if you meet the policy’s definition of disability", "Short-term coverage for a brief gap, long-term coverage for an extended one", "Own-occupation definitions, when the contract includes them", "Optional riders such as residual or cost-of-living, when added"],
+    example: "A surgeon injures a hand and cannot operate for 18 months. Own-occupation LTD is designed to pay even if they could work in another job. A weak any-occupation definition might not.",
+    notes: ["Group LTD from work is not the same as an individual policy. Read the definition, the cap, and the tax treatment.", "Waiting periods and pre-existing-condition rules apply. Buy this while you are healthy.", "This is not workers’ compensation. Workers’ comp is for on-the-job injuries; disability is broader."],
+  },
+  {
+    slug: "long-term-care-insurance",
+    name: "Long-Term Care Insurance",
+    kind: "ltc",
+    image: "hero-home.jpg",
+    summary: "Traditional LTC, linked-benefit policies, and life insurance with an LTC rider — coverage for care at home or in a facility when you cannot perform daily activities.",
+    simple: "Health insurance and Medicare do not pay for years of help bathing, dressing, or living with cognitive decline. Long-term care coverage is the policy built for that cost.",
+    details: "Traditional long-term care insurance pays a daily or monthly benefit when you cannot perform a set number of activities of daily living, or when you have a severe cognitive impairment. Linked-benefit (hybrid) policies combine life insurance or an annuity with long-term care: if you never need care, a death benefit remains. A life policy with an LTC rider accelerates or adds benefits for care. Each design trades premium, flexibility, and what happens if you never file a care claim. We start with how you would actually pay for care — savings, family, a traditional policy, or a hybrid — then quote the form that matches. This is not a nursing-home-only product anymore. Home care is often the first use.",
+    who: ["People who do not want care costs to land on a spouse or children", "Households with assets to protect but not enough to self-fund a long claim", "Buyers who want a hybrid so unused benefits become a death benefit", "Anyone whose parents’ care already showed what the bill looks like"],
+    covers: ["Benefits for qualifying home care, assisted living, or facility care", "Traditional reimbursement or indemnity designs", "Linked-benefit life or annuity contracts that keep a death benefit if care is never used", "Life insurance with an LTC rider, when that is the cleaner structure"],
+    example: "A 58-year-old couple does not want a $9,000 monthly care bill to spend down what they meant to leave. A linked-benefit policy pays if care is needed; if it is not, the children still receive a death benefit.",
+    notes: ["Medicare does not pay for custodial long-term care. That surprise is expensive.", "Underwriting gets harder with age and health. Waiting until a diagnosis is usually too late.", "Hybrids cost more than term life. You are buying two jobs in one contract."],
+  },
+];
+
 const loanProducts = [
   {
     slug: "working-capital",
@@ -373,7 +506,7 @@ function header(root, current) {
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>Insurance · Commercial Financing</span>
+      <span>Insurance · Life &amp; Annuities · Commercial Financing</span>
       <span class="topbar-contact">
         <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
         <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a>
@@ -395,7 +528,7 @@ function header(root, current) {
             Insurance
             <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
           </a>
-          <div class="dropdown dropdown-wide">
+          <div class="dropdown dropdown-wide dropdown-3">
             <div>
               <p class="dropdown-label">Personal Lines</p>
               <a href="${r}insurance/index.html#personal"><strong>View all personal lines</strong></a>
@@ -405,6 +538,11 @@ function header(root, current) {
               <p class="dropdown-label">Commercial Lines</p>
               <a href="${r}insurance/index.html#commercial"><strong>View all commercial lines</strong></a>
               ${commercialLines.map((item) => `<a href="${r}insurance/${item.slug}.html">${esc(item.name)}</a>`).join("")}
+            </div>
+            <div>
+              <p class="dropdown-label">Life &amp; Annuities</p>
+              <a href="${r}insurance/index.html#life"><strong>View all life &amp; annuities</strong></a>
+              ${lifeLines.map((item) => `<a href="${r}insurance/${item.slug}.html">${esc(item.name)}</a>`).join("")}
             </div>
           </div>
         </div>
@@ -444,11 +582,12 @@ function footer(root) {
           <a class="logo" href="${r}index.html">
             ${logoImg(r, "light")}
           </a>
-          <p>Insurance and commercial financing — together in one place.</p>
+          <p>Insurance, life &amp; annuities, and commercial financing — together in one place.</p>
         </div>
         <div>
           <h4>Services</h4>
           <a href="${r}insurance/index.html">Insurance</a>
+          <a href="${r}insurance/index.html#life">Life &amp; Annuities</a>
           <a href="${r}commercial-loans/index.html">Commercial Financing</a>
           <a href="${r}get-started.html">Get Started</a>
         </div>
@@ -471,7 +610,7 @@ function footer(root) {
       </div>
       <div class="footer-legal">
         <p>© ${new Date().getFullYear()} Wellesley Collective. All rights reserved.</p>
-        <p>Insurance · Commercial Financing</p>
+        <p>Insurance · Life &amp; Annuities · Commercial Financing</p>
       </div>
     </div>
   </footer>`;
@@ -480,7 +619,7 @@ function footer(root) {
 const SITE = "https://wellesleycollective.com";
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=9`;
+  const css = `${root}css/styles.css?v=10`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -490,7 +629,7 @@ function layout({ title, description, root = "", current, content, extraScripts 
     url: SITE,
     email: FIRM_EMAIL,
     telephone: FIRM_PHONE,
-    description: "Licensed firm providing personal and commercial insurance and commercial financing.",
+    description: "Licensed firm providing personal, commercial, and life insurance, annuities, and commercial financing.",
     areaServed: "US",
     sameAs: [SITE],
   };
@@ -545,6 +684,16 @@ const AKA = {
   "sba-loans": "SBA",
   "commercial-real-estate": "CRE",
   "business-lines-of-credit": "LOC",
+  "term-life-insurance": "Term",
+  "whole-life-insurance": "Whole Life",
+  "universal-life-insurance": "UL / IUL",
+  "final-expense-insurance": "Final Expense",
+  "business-life-insurance": "Key Person",
+  "fixed-annuities": "MYGA",
+  "indexed-annuities": "FIA",
+  "income-annuities": "SPIA",
+  "disability-insurance": "LTD",
+  "long-term-care-insurance": "LTC",
 };
 
 function productTitle(item) {
@@ -611,6 +760,7 @@ function whoBlock(text) {
 function leadForm({ root = "", product = "", need = "" }) {
   const needOptions = [
     ["insurance", "Insurance"],
+    ["life", "Life & Annuities"],
     ["financing", "Financing"],
     ["both", "Both"],
   ]
@@ -637,7 +787,7 @@ function leadForm({ root = "", product = "", need = "" }) {
         <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" required></div>
         <div class="field"><label for="lead-need">Need</label>
           <select id="lead-need" name="need" required>
-            <option value="">Insurance / Financing / Both</option>
+            <option value="">Insurance / Life / Financing / Both</option>
             ${needOptions}
           </select>
         </div>
@@ -682,7 +832,7 @@ function convertBand({ root, product = "", need = "" }) {
         <div>
           <p class="kicker">Next step</p>
           <h2>We’ll follow up within one business day.</h2>
-          <p class="subhead">Name, phone, email, and whether you need insurance, financing, or both. That is enough to start.</p>
+          <p class="subhead">Name, phone, email, and whether you need insurance, life &amp; annuities, financing, or both. That is enough to start.</p>
         </div>
         <div class="panel">${leadForm({ root, product, need })}</div>
       </div>
@@ -693,6 +843,7 @@ function interestOptions(selected = "") {
   const groups = [
     ["Personal Insurance", personalLines],
     ["Commercial Insurance", commercialLines],
+    ["Life & Annuities", lifeLines],
     ["Commercial Financing", loanProducts],
   ];
   let html = `<option value="">Select a service</option>`;
@@ -920,6 +1071,60 @@ const guides = [
       <p>Liability limits on the auto policy should match the rest of the program. If GL and auto are $1 million and a contract wants $5 million, the next conversation is a <a href="../insurance/commercial-umbrella.html">commercial umbrella</a>, not a hope that the auto policy will be enough. Pair this with <a href="renewing-commercial-liability.html">the commercial liability renewal checklist</a> before the next certificate request.</p>
     `,
   },
+  {
+    slug: "term-vs-permanent-life",
+    title: "Term life vs. whole life and universal life",
+    summary: "A cheap 20-year death benefit, a policy that lasts a lifetime, or a flexible UL/IUL design. Which job you are actually hiring.",
+    description: "How Wellesley Collective compares term, whole life, guaranteed UL, and indexed UL — including when return-of-premium term is worth the extra cost.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "Term, whole life, and universal life all pay a death benefit. They are not interchangeable. The right policy is the one that still makes sense if you live, not only if you die.",
+    ctaLabel: "Get a life insurance quote",
+    ctaHref: "../insurance/term-life-insurance.html",
+    body: `
+      <p><a href="../insurance/term-life-insurance.html">Term life</a> is a lease. You buy a large death benefit for 10, 15, 20, or 30 years at the lowest premium of the three. If you die during the term, the people you named are paid. If you outlive it, the coverage ends unless you convert or renew. There is usually no cash value. That is the right product for income replacement, a mortgage, or a defined obligation with an end date.</p>
+      <p><a href="../insurance/whole-life-insurance.html">Whole life</a> is a purchase. Premiums, death benefit, and a minimum cash-value schedule are in the contract. It costs more because it is built to still be there at 80. People use it for lifelong protection, estate liquidity, and a conservative cash-value component — not because a dividend illustration looked attractive.</p>
+      <p><a href="../insurance/universal-life-insurance.html">Universal life</a> is the flexible permanent form. Traditional UL credits a declared rate. Guaranteed UL (GUL) is mainly a no-lapse death benefit to a stated age. Indexed UL (IUL) uses an index formula with a cap and a floor; it is not a stock purchase. Variable UL is a different product with market risk and a prospectus. Underfunded UL is how policies lapse. Read the guaranteed column, not only the illustrated one.</p>
+      <h2>Use term when</h2>
+      <ul>
+        <li>The need ends — kids grown, mortgage paid, a loan retired.</li>
+        <li>You want the most death benefit per dollar today.</li>
+        <li>You may convert later. Conversion, when it is in the contract, is how term becomes permanent without a new exam.</li>
+      </ul>
+      <h2>Use permanent when</h2>
+      <ul>
+        <li>The need has no end date: estate liquidity, a special-needs dependent, a buy-sell that should outlast a 20-year term.</li>
+        <li>You want cash value you can borrow against, understanding that loans reduce the death benefit if they are not repaid.</li>
+        <li>A GUL priced to a no-lapse guarantee is cheaper than whole life for a death-benefit-only job.</li>
+      </ul>
+      <p>Return-of-premium term costs more than standard term and can give premiums back if you outlive the period. <a href="../insurance/final-expense-insurance.html">Final expense</a> is a small whole-life policy for funeral costs, not a substitute for a $1 million term policy. <a href="../insurance/business-life-insurance.html">Key-person and buy-sell coverage</a> is the business version of the same decision: match the duration of the policy to the duration of the need.</p>
+      <p>Health history is underwriting, not a reason to stay silent. Wellesley Collective quotes standard and impaired-risk cases and will tell you if a file is outside what we can place. We will follow up within one business day.</p>
+    `,
+  },
+  {
+    slug: "annuity-types-explained",
+    title: "Fixed, indexed, and income annuities — which is which",
+    summary: "MYGAs, fixed indexed annuities, SPIAs, and DIAs. What each contract actually does, and what it is not.",
+    description: "A plain-English comparison of fixed annuities, MYGAs, indexed annuities, SPIAs, and deferred income annuities from Wellesley Collective.",
+    kicker: "Guide",
+    date: "August 2026",
+    lede: "Annuities are insurance contracts, not bank accounts and not mutual funds. The type you buy decides whether you get a stated rate, an index formula, or a paycheck.",
+    ctaLabel: "Ask about annuities",
+    ctaHref: "../insurance/fixed-annuities.html",
+    body: `
+      <p>People say “annuity” as if it were one product. It is four different jobs wearing the same word.</p>
+      <p>A <a href="../insurance/fixed-annuities.html">fixed annuity</a> credits a declared rate. A MYGA (multi-year guaranteed annuity) locks that rate for a set term, often 3, 5, or 7 years. It is an insurance contract, not a CD. It is not FDIC insured. Guarantees depend on the issuing carrier. Liquidity is limited by surrender charges. Tax on gains usually waits until you take the money out.</p>
+      <p>An <a href="../insurance/indexed-annuities.html">indexed annuity</a> (FIA) does not buy the index. It uses an index to calculate a credit, typically with a cap, a participation rate, and a 0% floor for that period. In a down year that slice is not supposed to take the market loss. Caps change. An optional lifetime-income rider is a separate, paid-for decision. Do not buy an FIA because an illustration showed last year’s cap forever.</p>
+      <p>An <a href="../insurance/income-annuities.html">income annuity</a> turns a lump sum into checks. A SPIA starts almost immediately. A DIA (deferred income annuity) starts later — longevity insurance for the years you might live past 85. Once you annuitize, you generally cannot get the principal back. That is the trade for a paycheck you cannot outlive.</p>
+      <h2>Match the contract to the job</h2>
+      <ul>
+        <li><strong>Park money for a defined term at a stated rate.</strong> Start with a MYGA or declared-rate fixed annuity.</li>
+        <li><strong>Want a floor under a portion of savings, and can leave it for the surrender period.</strong> An FIA can be the slice — not the whole portfolio.</li>
+        <li><strong>Need a paycheck for life, and can give up the lump sum.</strong> A SPIA (now) or a DIA (later).</li>
+      </ul>
+      <p>None of these is a checking account, a growth-equity substitute, or a replacement for <a href="../insurance/term-life-insurance.html">life insurance</a>. If the household still needs a death benefit, buy life insurance for that job. If a spouse would need care, look at <a href="../insurance/long-term-care-insurance.html">long-term care coverage</a> separately. Wellesley Collective will quote the contract that matches the use of funds and tell you when an annuity is the wrong box.</p>
+    `,
+  },
 ];
 
 function guidesFor(...slugs) {
@@ -954,6 +1159,16 @@ const PRODUCT_GUIDES = {
   "bridge-financing": ["bridge-vs-permanent-cre"],
   "construction-development": ["bridge-vs-permanent-cre"],
   "sba-loans": ["sba-7a-what-lenders-review", "bridge-vs-permanent-cre"],
+  "term-life-insurance": ["term-vs-permanent-life", "annuity-types-explained"],
+  "whole-life-insurance": ["term-vs-permanent-life"],
+  "universal-life-insurance": ["term-vs-permanent-life", "annuity-types-explained"],
+  "final-expense-insurance": ["term-vs-permanent-life"],
+  "business-life-insurance": ["term-vs-permanent-life"],
+  "fixed-annuities": ["annuity-types-explained", "term-vs-permanent-life"],
+  "indexed-annuities": ["annuity-types-explained"],
+  "income-annuities": ["annuity-types-explained"],
+  "disability-insurance": ["term-vs-permanent-life"],
+  "long-term-care-insurance": ["annuity-types-explained", "term-vs-permanent-life"],
 };
 
 const pages = [];
@@ -961,8 +1176,8 @@ const pages = [];
 pages.push({
   file: "index.html",
   html: layout({
-    title: "Wellesley Collective | Insurance & Commercial Financing",
-    description: "Wellesley Collective provides insurance and commercial financing in one place.",
+    title: "Wellesley Collective | Insurance, Life & Annuities, Commercial Financing",
+    description: "Wellesley Collective quotes personal and commercial insurance, life insurance, annuities, and commercial financing in one licensed firm.",
     path: "index.html",
     current: "home",
     content: `
@@ -971,7 +1186,7 @@ pages.push({
       <div class="container hero-content">
         <p class="eyebrow">Wellesley Collective</p>
         <h1>One relationship for protection and capital.</h1>
-        <p class="lede">Insurance and commercial financing — handled by one licensed team, with a clear path from first conversation to close.</p>
+        <p class="lede">Insurance, life &amp; annuities, and commercial financing — handled by one licensed team, with a clear path from first conversation to close.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
@@ -981,9 +1196,9 @@ pages.push({
 
     <section class="trust-bar">
       <div class="container trust-row">
-        <div class="trust-item"><strong>One relationship</strong><span>Insurance and commercial financing with a single point of contact.</span></div>
-        <div class="trust-item"><strong>Licensed team</strong><span>Coverage and capital handled by professionals who know the work.</span></div>
-        <div class="trust-item"><strong>Personal &amp; commercial</strong><span>Household protection and business financing in one firm.</span></div>
+        <div class="trust-item"><strong>One relationship</strong><span>Insurance, life &amp; annuities, and commercial financing with a single point of contact.</span></div>
+        <div class="trust-item"><strong>Licensed team</strong><span>Coverage, life, and capital handled by professionals who know the work.</span></div>
+        <div class="trust-item"><strong>Personal, commercial, life</strong><span>Household, business, and life coverage — plus financing — in one firm.</span></div>
         <div class="trust-item"><strong>Clear next steps</strong><span>A quote, an application, or a conversation — then a defined path forward.</span></div>
       </div>
     </section>
@@ -993,7 +1208,7 @@ pages.push({
         <div class="section-head">
           <p class="kicker">What we do</p>
           <h2>Two practices. One standard of care.</h2>
-          <p>Insure a business or household, and raise capital for operations and commercial property — without starting over at a different firm each time.</p>
+          <p>Insure a household or a business, quote life and annuities, and raise capital for operations and commercial property — without starting over at a different firm each time.</p>
         </div>
         <div class="grid-2">
           <article class="card">
@@ -1001,7 +1216,7 @@ pages.push({
             <div class="card-body">
               <p class="card-tag">Protection</p>
               <h3>Insurance</h3>
-              <p>Commercial coverage first — general liability, property, fleets, contractors, and cyber — plus personal lines for households.</p>
+              <p>Commercial coverage, personal lines, and life insurance we can quote and place — term, whole life, universal life, final expense, and annuities.</p>
               <a class="btn btn-navy" href="insurance/index.html">Explore Insurance</a>
             </div>
           </article>
@@ -1091,7 +1306,7 @@ pages.push({
           </div>
           <div class="pillar">
             <h3>Breadth without noise</h3>
-            <p>Personal lines, commercial lines, and business capital live in one firm so related decisions can be coordinated.</p>
+            <p>Personal lines, commercial lines, life and annuities, and business capital live in one firm so related decisions can be coordinated.</p>
           </div>
           <div class="pillar">
             <h3>Direct accountability</h3>
@@ -1123,9 +1338,9 @@ pages.push({
           </article>
           <article class="product-card">
             <p class="card-tag">Guide</p>
-            <h3>What to review before a homeowners insurance renewal</h3>
-            <p>Rebuild cost, roof, deductibles, and the flood gap a standard policy never fills.</p>
-            <a class="btn btn-outline" href="blog/homeowners-renewal-checklist.html">Read guide</a>
+            <h3>Term life vs. whole life and universal life</h3>
+            <p>A cheap 20-year death benefit, a policy that lasts a lifetime, or a flexible UL/IUL design.</p>
+            <a class="btn btn-outline" href="blog/term-vs-permanent-life.html">Read guide</a>
           </article>
         </div>
         <div class="hero-actions mt-32">
@@ -1138,7 +1353,7 @@ pages.push({
       <div class="container">
         <p class="eyebrow" style="justify-content:center">Begin a conversation</p>
         <h2>Ready to protect what you own or fund what you are building?</h2>
-        <p>Get started on insurance or commercial financing.</p>
+        <p>Get started on insurance, life &amp; annuities, or commercial financing.</p>
         <div class="hero-actions" style="justify-content:center">
           <a class="btn btn-gold" href="get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="contact.html">Contact Us</a>
@@ -1152,7 +1367,7 @@ pages.push({
   file: "about.html",
   html: layout({
     title: "About | Wellesley Collective",
-    description: "Wellesley Collective is a licensed firm providing insurance and commercial financing.",
+    description: "Wellesley Collective is a licensed firm providing insurance, life insurance, annuities, and commercial financing.",
     path: "about.html",
     current: "about",
     content: `
@@ -1161,7 +1376,7 @@ pages.push({
       <div class="container page-hero-content">
         <p class="eyebrow">The firm</p>
         <h1>Built for clients who value judgment as much as access.</h1>
-        <p class="lede">Wellesley Collective brings insurance and commercial financing into a single relationship.</p>
+        <p class="lede">Wellesley Collective brings insurance, life &amp; annuities, and commercial financing into a single relationship.</p>
       </div>
     </section>
     <section class="section">
@@ -1170,7 +1385,7 @@ pages.push({
           <p class="kicker">Our approach</p>
           <h2>One licensed team for protection and capital.</h2>
           <p>Households and businesses rarely experience risk and capital as separate problems. A growing company needs liability coverage and a line of credit. A property owner needs the building insured and the financing structured. We were formed to sit at that intersection.</p>
-          <p>We quote insurance, structure commercial financing, and stay with you from first conversation through close.</p>
+          <p>We quote property, casualty, life, and annuities, structure commercial financing, and stay with you from first conversation through close.</p>
         </div>
         ${figurePhoto({ src: "assets/images/texture-stone.jpg", alt: "Architectural stone and bronze detail", caption: "Materials that last: stone, bronze, and a file handled with care." })}
       </div>
@@ -1203,8 +1418,8 @@ pages.push({
     <section class="section">
       <div class="container" style="max-width:760px">
         <p class="kicker">The work</p>
-        <h2>Insurance and commercial financing under one roof.</h2>
-        <p class="mt-16" style="color:var(--slate)">Wellesley Collective provides personal and commercial insurance and commercial financing. Products, pricing, and terms vary by state and underwriting.</p>
+        <h2>Insurance, life &amp; annuities, and commercial financing under one roof.</h2>
+        <p class="mt-16" style="color:var(--slate)">Wellesley Collective provides personal and commercial insurance, life insurance, annuities, disability, long-term care, and commercial financing. Products, pricing, and terms vary by state and underwriting.</p>
         <a class="btn btn-navy mt-32" href="contact.html">Contact the Firm</a>
       </div>
     </section>`,
@@ -1216,7 +1431,7 @@ pages.push({
   html: layout({
     title: "Contact | Wellesley Collective",
     path: "contact.html",
-    description: "Contact Wellesley Collective about insurance or commercial financing.",
+    description: "Contact Wellesley Collective about insurance, life insurance, annuities, or commercial financing.",
     current: "contact",
     content: `
     <section class="page-hero">
@@ -1241,9 +1456,9 @@ pages.push({
           <div class="mt-32">
             <p class="card-tag">Typical inquiries</p>
             <ul class="feature-list">
-              <li>Personal or commercial insurance quotes</li>
+              <li>Personal, commercial, or life insurance quotes</li>
+              <li>Annuities, disability, and long-term care</li>
               <li>Working capital and commercial real estate financing</li>
-              <li>Existing-client service and document coordination</li>
             </ul>
           </div>
           <div class="hero-actions mt-32">
@@ -1283,7 +1498,7 @@ pages.push({
   html: layout({
     title: "Get Started | Wellesley Collective",
     path: "get-started.html",
-    description: "Get started with Wellesley Collective for insurance or commercial financing.",
+    description: "Get started with Wellesley Collective for insurance, life insurance, annuities, or commercial financing.",
     current: "contact",
     content: `
     <section class="page-hero">
@@ -1379,7 +1594,7 @@ pages.push({
   file: "insurance/index.html",
   html: layout({
     title: "Insurance | Wellesley Collective",
-    description: "Quote GL, BOP, workers’ comp, commercial auto, cyber, inland marine, homeowners, auto, umbrella, and flood with Wellesley Collective.",
+    description: "Quote personal and commercial insurance, term and whole life, universal life, final expense, annuities, disability, and long-term care with Wellesley Collective.",
     root: "../",
     path: "insurance/index.html",
     current: "insurance",
@@ -1388,15 +1603,15 @@ pages.push({
       <div class="page-hero-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", root: "../", lazy: false })}</div>
       <div class="container page-hero-content">
         <p class="eyebrow">Insurance</p>
-        <h1>GL, BOP, workers’ comp, commercial auto, cyber, homeowners, auto, umbrella.</h1>
-        <p class="lede">We quote the actual policy — not a category. Personal lines and commercial lines, named the way you search for them.</p>
+        <h1>Property, casualty, life, and annuities — quoted by one licensed team.</h1>
+        <p class="lede">We quote the actual policy — not a category. Personal lines, commercial lines, term and permanent life, and annuities, named the way you search for them.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="#start">Get Started</a>
-          <a class="btn btn-ghost" href="#products">View products</a>
+          <a class="btn btn-ghost" href="#life">Life &amp; annuities</a>
         </div>
       </div>
     </section>
-    ${whoBlock("Homeowners, drivers, landlords, contractors, and business owners who need a licensed quote on a specific policy — general liability, BOP, workers’ compensation, commercial auto, cyber, inland marine, homeowners, auto, or umbrella.")}
+    ${whoBlock("Homeowners, drivers, landlords, contractors, and business owners — plus families and owners who need a life, annuity, disability, or long-term care quote. Term, whole life, universal life, final expense, key-person, MYGAs, indexed and income annuities.")}
     <section class="section" id="products">
       <div class="container">
         <div class="section-head">
@@ -1433,8 +1648,31 @@ pages.push({
         ${productIndex(commercialLines, "insurance", "../")}
       </div>
     </section>
+    <section class="section section-cream anchor" id="life">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Life &amp; annuities</p>
+          <h2>Term, whole life, UL, final expense, key-person, annuities, disability, LTC.</h2>
+          <p>We quote and place life insurance and annuities — including return-of-premium term, guaranteed and indexed UL, MYGAs, SPIAs, and DIAs. Impaired-risk and larger premium cases are in appetite.</p>
+        </div>
+        <div class="grid-3">${productCards(
+          bySlug(lifeLines, [
+            "term-life-insurance",
+            "whole-life-insurance",
+            "universal-life-insurance",
+            "final-expense-insurance",
+            "indexed-annuities",
+            "income-annuities",
+          ]),
+          "insurance",
+          "Get Started",
+          "../"
+        )}</div>
+        ${productIndex(lifeLines, "insurance", "../")}
+      </div>
+    </section>
     ${relatedReading(
-      guidesFor("renewing-commercial-liability", "bop-vs-gl-and-property", "homeowners-renewal-checklist"),
+      guidesFor("term-vs-permanent-life", "annuity-types-explained", "homeowners-renewal-checklist"),
       "../"
     )}
     <div id="start">${convertBand({ root: "../", product: "Insurance", need: "insurance" })}</div>`
@@ -1557,7 +1795,13 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
             <p class="card-tag">Good to know</p>
             <ul class="feature-list">${item.notes.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
           </div>
-          <p class="disclaimer mt-32">Coverage, eligibility, and terms vary by location and underwriting.</p>
+          <p class="disclaimer mt-32">${
+            item.kind === "annuity"
+              ? "Annuities are insurance contracts, not bank deposits and not FDIC insured. Guarantees depend on the issuing insurer. Surrender charges, limited liquidity, and tax on gains can apply. This is not investment, tax, or legal advice."
+              : item.kind
+                ? "Coverage, eligibility, premiums, and underwriting vary by age, health, state, and carrier. Illustrations are not guarantees. This is not tax, legal, or investment advice."
+                : "Coverage, eligibility, and terms vary by location and underwriting."
+          }</p>
         </div>
         <aside class="panel sticky-card" id="start">
           ${leadForm({ root, product: item.name, need })}
@@ -1927,7 +2171,7 @@ pages.push({
   file: "blog/index.html",
   html: layout({
     title: "Blog | Wellesley Collective",
-    description: "Guides and briefings from Wellesley Collective on insurance, commercial financing, rates, and commercial real estate.",
+    description: "Guides and briefings from Wellesley Collective on insurance, life insurance, annuities, commercial financing, rates, and commercial real estate.",
     root: "../",
     path: "blog/index.html",
     current: "blog",
@@ -2222,6 +2466,33 @@ for (const item of commercialLines) {
       relatedExtra: personalLines,
       image: "hero-commercial.jpg",
       need: "insurance",
+      guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
+    }),
+  });
+}
+
+const lifeEyebrow = {
+  life: "Life Insurance",
+  annuity: "Annuities",
+  disability: "Disability",
+  ltc: "Long-Term Care",
+};
+
+for (const item of lifeLines) {
+  const isBusiness = item.slug === "business-life-insurance";
+  pages.push({
+    file: `insurance/${item.slug}.html`,
+    html: productPage({
+      item,
+      folder: "insurance",
+      current: "insurance",
+      eyebrow: lifeEyebrow[item.kind] || "Life & Annuities",
+      cta: "Get Started",
+      siblingLabel: "Insurance",
+      siblings: lifeLines,
+      relatedExtra: isBusiness ? commercialLines : personalLines,
+      image: item.image || "hero-home.jpg",
+      need: "life",
       guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
