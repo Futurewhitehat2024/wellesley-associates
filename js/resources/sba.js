@@ -1,4 +1,4 @@
-import { bindForm, setStatus, parseNumber, formatMoney, inquireUrl, fetchJson } from "./core.js";
+import { bindForm, setStatus, parseNumber, formatMoney, inquireUrl } from "./core.js";
 
 const RULES = {
   asOf: "July 4, 2026",
@@ -46,15 +46,6 @@ export function initSba() {
   const form = document.getElementById("sba-form");
   const out = document.getElementById("sba-result");
   const status = document.getElementById("sba-status");
-
-  async function pingOpenData() {
-    try {
-      await fetchJson("https://data.sba.gov/api/3/action/package_search?q=7(a)%20504");
-      setStatus(status, "SBA open-data catalog reached. Program math uses published 7(a)/504 rules as of " + RULES.asOf + ".", "live");
-    } catch (err) {
-      setStatus(status, "SBA open-data catalog did not load. Using published 7(a)/504 program rules as of " + RULES.asOf + ".", "error");
-    }
-  }
 
   bindForm(form, function () {
     const amount = parseNumber(form.querySelector("[name='amount']").value);
@@ -124,7 +115,8 @@ export function initSba() {
       "'>Request an SBA / commercial financing review</a>" +
       "</article>";
     out.hidden = false;
+    setStatus(status, "Snapshot uses published SBA 7(a) and 504 rules as of " + RULES.asOf + ".", "live");
   });
 
-  pingOpenData();
+  setStatus(status, "Published SBA 7(a) and 504 program rules as of " + RULES.asOf + ".");
 }

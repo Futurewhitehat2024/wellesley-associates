@@ -162,7 +162,7 @@ export function initRisk() {
         "'>Request a full insurance review</a>" +
         "</article>";
       out.hidden = false;
-      setStatus(status, "Using fallback guidance. Live feeds did not complete.", "error");
+      setStatus(status, "Could not map that location. Try a 5-digit ZIP.", "error");
     }
   });
 }

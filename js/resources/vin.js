@@ -54,7 +54,8 @@ export function initVin() {
     try {
       const data = await fetchJson("https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/" + vin + "?format=json");
       const map = resultMap(data.Results);
-      const error = map["Error Code"] && map["Error Code"] !== "0" ? map["Error Text"] : "";
+      const decoded = Boolean(map["Make"] && map["Model Year"]);
+      const error = !decoded && map["Error Text"] ? map["Error Text"] : "";
       const specs = FIELDS.map(function (pair) {
         return { label: pair[0], key: pair[1], value: map[pair[0]] || "—" };
       });
@@ -115,7 +116,7 @@ export function initVin() {
         "'>Request a full auto quote</a>" +
         "</article>";
       out.hidden = false;
-      setStatus(status, "Using fallback. NHTSA did not complete.", "error");
+      setStatus(status, "Decoder timed out. Send the VIN with your inquiry.", "error");
     }
   }
 

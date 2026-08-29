@@ -41,8 +41,8 @@ export function initInflation() {
     } catch (err) {
       inflation = FALLBACK_CPI;
       asOf = "published fallback";
-      if (cpiLabel) cpiLabel.textContent = "2.9% trailing 12 months · fallback (BLS did not load)";
-      setStatus(status, "BLS did not load. Using a 2.9% fallback inflation rate.", "error");
+      if (cpiLabel) cpiLabel.textContent = "2.9% trailing 12-month inflation (published baseline)";
+      setStatus(status, "Ready. Using a 2.9% published inflation rate.");
     }
   }
 

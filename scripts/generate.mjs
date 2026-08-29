@@ -1985,7 +1985,7 @@ pages.push({
                 </select>
               </div>
             </div>
-            <p class="form-note" id="sba-status">Checking SBA open data…</p>
+            <p class="form-note" id="sba-status">Published SBA 7(a) and 504 program rules as of July 4, 2026.</p>
             <button class="btn btn-gold" type="submit">Run feasibility</button>
           </form>
         </div>
@@ -2004,7 +2004,7 @@ pages.push({
         </div>
       </div>
     </section>
-    <script type="module" src="../js/resources/index.js"></script>`,
+    <script type="module" src="../js/resources/index.js?v=2"></script>`,
   }),
 });
 
