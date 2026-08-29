@@ -1195,6 +1195,30 @@ h2 {
   border: 1px solid var(--line-soft);
 }
 
+.quote-apply {
+  width: 100%;
+}
+
+.quote-apply-frame {
+  width: 100%;
+  min-width: 0;
+}
+
+.quote-cta-panel {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.quote-cta-panel p {
+  color: var(--slate);
+  margin: 8px 0 16px;
+}
+
+.card-body .hero-actions {
+  margin-top: 8px;
+}
+
 .coming-soon {
   min-height: 70vh;
   display: grid;

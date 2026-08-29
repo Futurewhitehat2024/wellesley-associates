@@ -481,7 +481,21 @@ const FIRM_EMAIL = "rasheed@wellesleycollective.com";
 const FIRM_PHONE = "954-295-1210";
 const FIRM_TEL = "+19542951210";
 const CALENDLY_URL = "https://calendly.com/rasheed-wellesleycollective/30min";
+const STRIFE_KEY = "YYCdK-ApEWu_fth9";
 const ZOHO_FORM_HTML = fs.readFileSync(path.join(rootDir, "partials", "zoho-lead-form.html"), "utf8");
+
+function isSelfQuote(item) {
+  return Boolean(item && item.kind && item.kind !== "annuity");
+}
+
+function quoteApplyEmbed() {
+  return `
+    <div class="quote-apply">
+      <div id="life-quote-widget" class="quote-apply-frame"></div>
+      <script id="strife" src="https://cdn.quoteandapply.io/widget.js" data-strife-key="${STRIFE_KEY}" data-strife-container-id="life-quote-widget"></script>
+      <p class="disclaimer mt-24">Quotes and applications are subject to underwriting and do not bind coverage. You can finish online or stop and talk with us first.</p>
+    </div>`;
+}
 
 function zohoForm() {
   return `<div class="zoho-embed">${ZOHO_FORM_HTML}</div>`;
@@ -541,7 +555,8 @@ function header(root, current) {
             </div>
             <div>
               <p class="dropdown-label">Life &amp; Annuities</p>
-              <a href="${r}insurance/index.html#life"><strong>View all life &amp; annuities</strong></a>
+              <a href="${r}insurance/quote.html"><strong>Get a life insurance quote</strong></a>
+              <a href="${r}insurance/index.html#life">View all life &amp; annuities</a>
               ${lifeLines.map((item) => `<a href="${r}insurance/${item.slug}.html">${esc(item.name)}</a>`).join("")}
             </div>
           </div>
@@ -588,6 +603,7 @@ function footer(root) {
           <h4>Services</h4>
           <a href="${r}insurance/index.html">Insurance</a>
           <a href="${r}insurance/index.html#life">Life &amp; Annuities</a>
+          <a href="${r}insurance/quote.html">Life insurance quote</a>
           <a href="${r}commercial-loans/index.html">Commercial Financing</a>
           <a href="${r}get-started.html">Get Started</a>
         </div>
@@ -619,7 +635,7 @@ function footer(root) {
 const SITE = "https://wellesleycollective.com";
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=11`;
+  const css = `${root}css/styles.css?v=12`;
   const js = `${root}js/main.js?v=6`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -719,19 +735,22 @@ function pickRelated(item, primary, secondary = [], count = 6) {
 
 function productCards(items, folder, cta, root) {
   return items
-    .map(
-      (item) => `
+    .map((item) => {
+      const selfQuote = isSelfQuote(item);
+      const goldHref = selfQuote ? `${root}insurance/quote.html` : `${root}get-started.html?product=${item.slug}`;
+      const goldLabel = selfQuote ? "Get a quote" : cta;
+      return `
       <article class="product-card">
         <div class="icon-dot" aria-hidden="true">+</div>
         <h3>${productTitle(item)}</h3>
         <p class="who-line">${esc(whoLine(item))}</p>
         <p>${esc(item.summary)}</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn btn-gold" href="${root}get-started.html?product=${item.slug}">${esc(cta)}</a>
+          <a class="btn btn-gold" href="${goldHref}">${esc(goldLabel)}</a>
           <a class="btn btn-outline" href="${root}${folder}/${item.slug}.html">Learn More</a>
         </div>
-      </article>`
-    )
+      </article>`;
+    })
     .join("");
 }
 
@@ -1217,7 +1236,10 @@ pages.push({
               <p class="card-tag">Protection</p>
               <h3>Insurance</h3>
               <p>Commercial coverage, personal lines, and life insurance we can quote and place — term, whole life, universal life, final expense, and annuities.</p>
-              <a class="btn btn-navy" href="insurance/index.html">Explore Insurance</a>
+              <div class="hero-actions">
+                <a class="btn btn-navy" href="insurance/index.html">Explore Insurance</a>
+                <a class="btn btn-outline" href="insurance/quote.html">Quote life insurance</a>
+              </div>
             </div>
           </article>
           <article class="card">
@@ -1510,6 +1532,7 @@ pages.push({
             <li>We confirm the product, location, and a few basic facts.</li>
             <li>We review what you need and outline next steps.</li>
             <li>You stay with our team if questions come up along the way.</li>
+            <li>For life insurance, you can also <a href="insurance/quote.html">quote yourself online</a>.</li>
           </ul>
           <div class="hero-actions mt-32">
             <a class="btn btn-navy" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
@@ -1598,7 +1621,7 @@ pages.push({
         <h1>Property, casualty, life, and annuities — quoted by one licensed team.</h1>
         <p class="lede">We quote the actual policy — not a category. Personal lines, commercial lines, term and permanent life, and annuities, named the way you search for them.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#start">Get Started</a>
+          <a class="btn btn-gold" href="quote.html">Get a life quote</a>
           <a class="btn btn-ghost" href="#life">Life &amp; annuities</a>
         </div>
       </div>
@@ -1645,7 +1668,10 @@ pages.push({
         <div class="section-head">
           <p class="kicker">Life &amp; annuities</p>
           <h2>Term, whole life, UL, final expense, key-person, annuities, disability, LTC.</h2>
-          <p>We quote and place life insurance and annuities — including return-of-premium term, guaranteed and indexed UL, MYGAs, SPIAs, and DIAs. Impaired-risk and larger premium cases are in appetite.</p>
+          <p>We quote and place life insurance and annuities — including return-of-premium term, guaranteed and indexed UL, MYGAs, SPIAs, and DIAs. Impaired-risk and larger premium cases are in appetite. For term, whole life, UL, and similar products, you can also quote yourself online.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="quote.html">Get a life insurance quote</a>
+          </div>
         </div>
         <div class="grid-3">${productCards(
           bySlug(lifeLines, [
@@ -1668,6 +1694,55 @@ pages.push({
       "../"
     )}
     <div id="start">${convertBand({ root: "../", product: "Insurance", need: "insurance" })}</div>`
+  }),
+});
+
+pages.push({
+  file: "insurance/quote.html",
+  html: layout({
+    title: "Life Insurance Quote | Wellesley Collective",
+    description: "Get a life insurance quote online — term, whole life, universal life, final expense, and related products. Apply yourself or talk with Wellesley Collective.",
+    root: "../",
+    path: "insurance/quote.html",
+    current: "insurance",
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", root: "../", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Life insurance</p>
+        <h1>Get a life insurance quote.</h1>
+        <p class="lede">This is for you to run. Answer a few questions, compare options, and apply online if you want to. If you would rather talk first, book a call or leave your details.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#quote">Start a quote</a>
+          <a class="btn btn-ghost" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+        </div>
+      </div>
+    </section>
+    ${whoBlock("People who want term, whole life, universal life, final expense, or related life coverage and would like to see numbers before talking to an agent — or who want to apply online now.")}
+    <section class="section" id="quote">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Quote yourself</p>
+          <h2>See options in a few minutes.</h2>
+          <p>Use the form below. Coverage still has to be underwritten. If something looks off or you want a second set of eyes, we will review it.</p>
+        </div>
+        ${quoteApplyEmbed()}
+      </div>
+    </section>
+    <section class="section section-cream">
+      <div class="container quote-layout">
+        <div>
+          <p class="kicker">Prefer a person</p>
+          <h2>We will follow up within one business day.</h2>
+          <p class="subhead">Annuities, key-person, buy-sell, disability, and some larger or impaired-risk cases are often cleaner with a conversation.</p>
+          <div class="hero-actions mt-32">
+            <a class="btn btn-navy" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+            <a class="btn btn-outline" href="../contact.html">Contact us</a>
+          </div>
+        </div>
+        <div class="panel">${leadForm({ root: "../", product: "Life insurance quote", need: "life" })}</div>
+      </div>
+    </section>`,
   }),
 });
 
@@ -1733,9 +1808,20 @@ pages.push({
   }),
 });
 
-function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "", guides = [] }) {
+function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblings, relatedExtra = [], image, need = "", guides = [], quoteHref = "" }) {
   const root = "../";
   const related = pickRelated(item, siblings, relatedExtra, 6);
+  const primaryHref = quoteHref || "#start";
+  const primaryLabel = quoteHref ? "Get a quote" : cta;
+  const quotePanel = quoteHref
+    ? `<div class="quote-cta-panel">
+        <p class="card-tag">Quote yourself</p>
+        <h3 class="lead-heading">Get a life insurance quote now.</h3>
+        <p>Answer a few questions and see options. You can apply online or stop and talk with us.</p>
+        <a class="btn btn-gold" href="${quoteHref}">Get a quote</a>
+        <p class="form-note">Prefer we follow up instead? Use the form below.</p>
+      </div>`
+    : "";
   return layout({
     title: `${item.name} | Wellesley Collective`,
     description: item.summary,
@@ -1750,7 +1836,7 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
         <h1>${productTitle(item)}</h1>
         <p class="lede">${esc(item.summary)}</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#start">${esc(cta)}</a>
+          <a class="btn btn-gold" href="${primaryHref}">${esc(primaryLabel)}</a>
           <a class="btn btn-ghost" href="#related">Related products</a>
         </div>
       </div>
@@ -1796,6 +1882,7 @@ function productPage({ item, folder, current, eyebrow, cta, siblingLabel, siblin
           }</p>
         </div>
         <aside class="panel sticky-card" id="start">
+          ${quotePanel}
           ${leadForm({ root, product: item.name, need })}
         </aside>
       </div>
@@ -2485,6 +2572,7 @@ for (const item of lifeLines) {
       relatedExtra: isBusiness ? commercialLines : personalLines,
       image: item.image || "hero-home.jpg",
       need: "life",
+      quoteHref: isSelfQuote(item) ? "quote.html" : "",
       guides: guidesFor(...(PRODUCT_GUIDES[item.slug] || [])),
     }),
   });
