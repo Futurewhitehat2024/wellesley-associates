@@ -4,6 +4,7 @@
   "description": "Website for Wellesley Collective",
   "scripts": {
     "build": "node scripts/generate.mjs",
-    "start": "npx --yes serve ."
+    "start": "npx --yes serve .",
+    "backup": "node scripts/backup.mjs"
   }
 }

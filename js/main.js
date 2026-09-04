@@ -159,7 +159,7 @@
         .catch(function () {
           if (error) {
             error.textContent =
-              "We could not send that just now. Please email rasheed@wellesleycollective.com or call 954-295-1210.";
+              "We could not send that just now. Please email rasheed@wellesleycollective.com or call 239-350-5227.";
           }
           if (submitBtn) submitBtn.disabled = false;
         });

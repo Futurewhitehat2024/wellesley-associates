@@ -481,8 +481,8 @@ function figurePhoto({ src, alt, caption, root = "", lazy = true }) {
 }
 
 const FIRM_EMAIL = "rasheed@wellesleycollective.com";
-const FIRM_PHONE = "954-295-1210";
-const FIRM_TEL = "+19542951210";
+const FIRM_PHONE = "239-350-5227";
+const FIRM_TEL = "+12393505227";
 const CALENDLY_URL = "https://calendly.com/rasheed-wellesleycollective/30min";
 const STRIFE_KEY = "YYCdK-ApEWu_fth9";
 const ZOHO_FORM_HTML = fs.readFileSync(path.join(rootDir, "partials", "zoho-lead-form.html"), "utf8");
@@ -780,7 +780,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
     root,
     path: `intake/${kind}.html`,
     current: "insurance",
-    extraScripts: ["js/intake.js?v=5"],
+    extraScripts: ["js/intake.js?v=6"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({
@@ -870,7 +870,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
   const css = `${root}css/styles.css?v=22`;
-  const js = `${root}js/main.js?v=7`;
+  const js = `${root}js/main.js?v=8`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
     "@context": "https://schema.org",

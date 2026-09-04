@@ -233,7 +233,7 @@
       form.hidden = true;
       if (success) success.hidden = false;
     } catch (err) {
-      setNote("We could not send that just now. Email " + FIRM_EMAIL + " or call 954-295-1210.", "error");
+      setNote("We could not send that just now. Email " + FIRM_EMAIL + " or call 239-350-5227.", "error");
       if (submitBtn) submitBtn.disabled = false;
     }
   });
