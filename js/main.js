@@ -15,15 +15,14 @@
     if (!button) return;
 
     button.addEventListener("click", function (event) {
-      if (window.matchMedia("(max-width: 980px)").matches) {
-        const open = item.classList.contains("open");
-        if (!open) {
-          event.preventDefault();
-          items.forEach(function (other) {
-            other.classList.remove("open");
-          });
-          item.classList.add("open");
-        }
+      const open = item.classList.contains("open");
+      if (!open) {
+        event.preventDefault();
+        items.forEach(function (other) {
+          other.classList.remove("open");
+        });
+        item.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
       }
     });
   });

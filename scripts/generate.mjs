@@ -895,8 +895,8 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=24`;
-  const js = `${root}js/main.js?v=8`;
+  const css = `${root}css/styles.css?v=25`;
+  const js = `${root}js/main.js?v=9`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
     "@context": "https://schema.org",
