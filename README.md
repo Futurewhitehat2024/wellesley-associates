@@ -1,12 +1,13 @@
 # Wellesley Collective
 
-Professional marketing website for Wellesley Collective — a licensed firm providing **insurance** and **commercial financing** in one place.
+Professional marketing website for Wellesley Collective — a licensed firm providing **insurance**, **commercial financing**, and **real estate** in one place.
 
 ## Pages
 
 - Home
 - Insurance hub (Personal Lines + Commercial Lines) and individual product pages
 - Commercial Financing hub and individual product pages
+- Real Estate hub (Buy, Sell, Invest) with live listings on Rasheed’s London Foster Realty site
 - About, Contact, Get Started
 - Blog
 - Privacy Policy and Terms of Use
@@ -34,4 +35,5 @@ node scripts/generate.mjs
 
 - Forms submit to `rasheed@wellesleycollective.com` via FormSubmit.
 - Product pages are informational and route inquiries to Get Started.
-- No standalone Real Estate practice is included. Commercial real estate financing lives under Commercial Financing.
+- Real estate brokerage is offered through London Foster Realty. MLS search lives at https://rasheedwellesley.londonfosternaples.com/ (Lofty blocks iframes, so the site links out).
+- Commercial real estate financing lives under Commercial Financing. Do not market residential mortgages.

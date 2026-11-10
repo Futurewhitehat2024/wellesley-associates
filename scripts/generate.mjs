@@ -484,8 +484,18 @@ const FIRM_EMAIL = "rasheed@wellesleycollective.com";
 const FIRM_PHONE = "239-350-5227";
 const FIRM_TEL = "+12393505227";
 const CALENDLY_URL = "https://calendly.com/rasheed-wellesleycollective/30min";
+const RE_SITE = "https://rasheedwellesley.londonfosternaples.com/";
+const TAGLINE = "Insurance · Financial Services · Commercial Financing · Real Estate";
 const STRIFE_KEY = "YYCdK-ApEWu_fth9";
 const ZOHO_FORM_HTML = fs.readFileSync(path.join(rootDir, "partials", "zoho-lead-form.html"), "utf8");
+
+function extA(href, label, className = "btn btn-gold") {
+  return `<a class="${className}" href="${esc(href)}" target="_blank" rel="noopener">${label}</a>`;
+}
+
+function reMlsNote() {
+  return `<p class="disclaimer mt-32">Search, listings, and valuations open on Rasheed’s London Foster Realty site. Listing information is for consumers’ personal, non-commercial use and is deemed reliable but not guaranteed. Real estate brokerage is offered through London Foster Realty. Insurance and commercial financing are offered through Wellesley Collective. Wellesley Collective does not originate residential mortgages.</p>`;
+}
 
 function isSelfQuote(item) {
   return Boolean(item && item.kind && item.kind !== "annuity");
@@ -530,7 +540,7 @@ function header(root, current) {
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>Insurance · Financial Services · Commercial Financing</span>
+      <span>${TAGLINE}</span>
       <span class="topbar-contact">
         <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
         <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a>
@@ -601,6 +611,20 @@ function header(root, current) {
             </div>
           </div>
         </div>
+        <div class="nav-item">
+          <a class="nav-btn${active("real-estate")}" href="${r}real-estate/index.html">
+            Real Estate
+            <svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <div class="dropdown">
+            <p class="dropdown-label">Naples &amp; Southwest Florida</p>
+            <a href="${r}real-estate/index.html"><strong>Real estate overview</strong></a>
+            <a href="${r}real-estate/buy.html">Buy a home</a>
+            <a href="${r}real-estate/sell.html">Sell a home</a>
+            <a href="${r}real-estate/invest.html">Investment property</a>
+            <a href="${RE_SITE}" target="_blank" rel="noopener">Search listings</a>
+          </div>
+        </div>
         <a class="nav-link${active("rates")}" href="${r}rates.html">Rates</a>
         <div class="nav-item">
           <a class="nav-btn${active("resources")}" href="${r}resources/index.html">
@@ -647,7 +671,7 @@ function footer(root) {
           <a class="logo" href="${r}index.html">
             ${logoImg(r, "light")}
           </a>
-          <p>Insurance, financial services, and commercial financing — together in one place.</p>
+          <p>Insurance, financial services, commercial financing, and real estate — together in one place.</p>
         </div>
         <div>
           <h4>Services</h4>
@@ -658,6 +682,8 @@ function footer(root) {
           <a href="${r}intake/commercial.html">Commercial quote intake</a>
           <a href="${r}financial-services/index.html">Financial Services</a>
           <a href="${r}commercial-loans/index.html">Commercial Financing</a>
+          <a href="${r}real-estate/index.html">Real Estate</a>
+          <a href="${RE_SITE}" target="_blank" rel="noopener">Search listings</a>
           <a href="${r}rates.html">Market rates</a>
           <a href="${r}resources/index.html">Resource Center</a>
           <a href="${r}get-started.html">Get Started</a>
@@ -681,7 +707,7 @@ function footer(root) {
       </div>
       <div class="footer-legal">
         <p>© ${new Date().getFullYear()} Wellesley Collective. All rights reserved.</p>
-        <p>Insurance · Financial Services · Commercial Financing</p>
+        <p>${TAGLINE}</p>
       </div>
     </div>
   </footer>`;
@@ -869,7 +895,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=22`;
+  const css = `${root}css/styles.css?v=24`;
   const js = `${root}js/main.js?v=8`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -879,9 +905,9 @@ function layout({ title, description, root = "", current, content, extraScripts 
     url: SITE,
     email: FIRM_EMAIL,
     telephone: FIRM_PHONE,
-    description: "Licensed firm providing personal, commercial, and life insurance, annuities, and commercial financing.",
+    description: "Licensed firm providing personal, commercial, and life insurance, annuities, commercial financing, and real estate services in Naples and Southwest Florida.",
     areaServed: "US",
-    sameAs: [SITE],
+    sameAs: [SITE, RE_SITE],
   };
   return `<!DOCTYPE html>
 <html lang="en">
@@ -1021,6 +1047,7 @@ function leadForm({ root = "", product = "", need = "" }) {
     ["life", "Life insurance"],
     ["annuities", "Annuities"],
     ["financing", "Financing"],
+    ["real-estate", "Real estate"],
     ["both", "More than one"],
   ]
     .map(
@@ -1046,7 +1073,7 @@ function leadForm({ root = "", product = "", need = "" }) {
         <div class="field"><label for="lead-email">Email</label><input id="lead-email" name="email" type="email" required></div>
         <div class="field"><label for="lead-need">Need</label>
           <select id="lead-need" name="need" required>
-            <option value="">Insurance / Annuities / Financing</option>
+            <option value="">Insurance / Annuities / Financing / Real Estate</option>
             ${needOptions}
           </select>
         </div>
@@ -1091,7 +1118,7 @@ function convertBand({ root, product = "", need = "" }) {
         <div>
           <p class="kicker">Next step</p>
           <h2>We’ll follow up within one business day.</h2>
-          <p class="subhead">Name, phone, email, and whether you need insurance, annuities, financing, or more than one. That is enough to start.</p>
+          <p class="subhead">Name, phone, email, and whether you need insurance, annuities, financing, real estate, or more than one. That is enough to start.</p>
         </div>
         <div class="panel">${leadForm({ root, product, need })}</div>
       </div>
@@ -1105,6 +1132,14 @@ function interestOptions(selected = "") {
     ["Life Insurance", lifeProducts],
     ["Financial Services", annuityLines],
     ["Commercial Financing", loanProducts],
+    [
+      "Real Estate",
+      [
+        { slug: "buy", name: "Buy a home" },
+        { slug: "sell", name: "Sell a home" },
+        { slug: "invest", name: "Investment property" },
+      ],
+    ],
   ];
   let html = `<option value="">Select a service</option>`;
   for (const [label, items] of groups) {
@@ -1436,8 +1471,8 @@ const pages = [];
 pages.push({
   file: "index.html",
   html: layout({
-    title: "Wellesley Collective | Insurance, Financial Services & Commercial Financing",
-    description: "Wellesley Collective quotes personal, commercial, and life insurance, annuities, and commercial financing in one licensed firm.",
+    title: "Wellesley Collective | Insurance, Financing & Real Estate",
+    description: "Wellesley Collective quotes insurance, annuities, and commercial financing, and represents buyers and sellers in Naples and Southwest Florida.",
     path: "index.html",
     current: "home",
     content: `
@@ -1445,8 +1480,8 @@ pages.push({
       <div class="hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "Evening city skyline over a commercial district", lazy: false, priority: true })}</div>
       <div class="container hero-content">
         <p class="eyebrow">Wellesley Collective</p>
-        <h1>One relationship for protection and capital.</h1>
-        <p class="lede">Insurance and commercial financing, handled by one licensed team. You stay with the same people from the first conversation through placement or funding.</p>
+        <h1>One relationship for protection, capital, and property.</h1>
+        <p class="lede">Insurance, commercial financing, and real estate — handled by one licensed team. You stay with the same people from the first conversation through placement, funding, or closing.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
@@ -1456,10 +1491,10 @@ pages.push({
 
     <section class="trust-bar">
       <div class="container trust-row">
-        <div class="trust-item"><strong>One relationship</strong><span>Insurance, financial services, and commercial financing with a single point of contact.</span></div>
-        <div class="trust-item"><strong>Licensed team</strong><span>Coverage and capital handled by professionals who know the work.</span></div>
-        <div class="trust-item"><strong>Personal &amp; commercial</strong><span>Household, business, and life coverage — plus financing — in one firm.</span></div>
-        <div class="trust-item"><strong>Clear next steps</strong><span>A quote, an application, or a conversation — then a defined path forward.</span></div>
+        <div class="trust-item"><strong>One relationship</strong><span>Insurance, financial services, commercial financing, and real estate with a single point of contact.</span></div>
+        <div class="trust-item"><strong>Licensed team</strong><span>Coverage, capital, and property handled by professionals who know the work.</span></div>
+        <div class="trust-item"><strong>Personal &amp; commercial</strong><span>Household, business, and life coverage — plus financing and real estate — in one firm.</span></div>
+        <div class="trust-item"><strong>Clear next steps</strong><span>A quote, an application, a listing search, or a conversation — then a defined path forward.</span></div>
       </div>
     </section>
 
@@ -1467,10 +1502,10 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">What we do</p>
-          <h2>Protection, income, and capital. One standard of care.</h2>
-          <p>Insure a household or a business, including life coverage. Place annuities when the job is income or accumulation. Raise capital for operations and commercial property — without starting over at a different firm each time.</p>
+          <h2>Protection, income, capital, and property. One standard of care.</h2>
+          <p>Insure a household or a business, including life coverage. Place annuities when the job is income or accumulation. Raise capital for operations and commercial property. Buy, sell, or invest in Southwest Florida real estate — without starting over at a different firm each time.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-2">
           <article class="card">
             <div class="card-media">${photo({ src: "assets/images/service-insurance.jpg", alt: "Commercial building and work fleet, representing commercial insurance" })}</div>
             <div class="card-body">
@@ -1500,6 +1535,18 @@ pages.push({
               <h3>Commercial Financing</h3>
               <p>Working capital, equipment, asset-based lending, commercial real estate, bridge, construction, and SBA financing for operators and investors.</p>
               <a class="btn btn-navy" href="commercial-loans/index.html">Explore Financing</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk, representing Naples real estate" })}</div>
+            <div class="card-body">
+              <p class="card-tag">Property</p>
+              <h3>Real Estate</h3>
+              <p>Buy, sell, or invest in Naples and Southwest Florida. Search live listings on Rasheed’s London Foster Realty site, then stay with the same relationship for coverage and capital.</p>
+              <div class="hero-actions">
+                <a class="btn btn-navy" href="real-estate/index.html">Explore Real Estate</a>
+                ${extA(RE_SITE, "Search listings", "btn btn-outline")}
+              </div>
             </div>
           </article>
         </div>
@@ -1555,8 +1602,8 @@ pages.push({
         ${figurePhoto({ src: "assets/images/about-office.jpg", alt: "Private conference room with city views", caption: "A quiet room for coverage, capital, and the facts of the file." })}
         <div class="split-copy">
           <p class="kicker">How we work</p>
-          <h2>One firm. Coverage and capital in the same conversation.</h2>
-          <p>Wellesley Collective is built for clients who want a composed, professional process. We listen first, then quote the coverage or structure the financing that fits.</p>
+          <h2>One firm. Coverage, capital, and property in the same conversation.</h2>
+          <p>Wellesley Collective is built for clients who want a composed, professional process. We listen first, then quote the coverage, structure the financing, or represent the purchase or sale that fits.</p>
           <p>You stay with one relationship from the first conversation through quote, close, or placement.</p>
           <div class="hero-actions">
             <a class="btn btn-navy" href="about.html">About the Firm</a>
@@ -1615,7 +1662,7 @@ pages.push({
           </div>
           <div class="pillar">
             <h3>Breadth without noise</h3>
-            <p>Personal lines, commercial lines, life insurance, annuities, and business capital live in one firm so related decisions can be coordinated.</p>
+            <p>Personal lines, commercial lines, life insurance, annuities, business capital, and real estate live in one firm so related decisions can be coordinated.</p>
           </div>
           <div class="pillar">
             <h3>Direct accountability</h3>
@@ -1661,8 +1708,8 @@ pages.push({
     <section class="cta-band">
       <div class="container">
         <p class="eyebrow" style="justify-content:center">Begin a conversation</p>
-        <h2>Ready to protect what you own or fund what you are building?</h2>
-        <p>Get started on insurance, annuities, or commercial financing.</p>
+        <h2>Ready to protect what you own, fund what you are building, or move on a property?</h2>
+        <p>Get started on insurance, annuities, commercial financing, or real estate.</p>
         <div class="hero-actions" style="justify-content:center">
           <a class="btn btn-gold" href="get-started.html">Get Started</a>
           <a class="btn btn-ghost" href="contact.html">Contact Us</a>
@@ -1676,7 +1723,7 @@ pages.push({
   file: "about.html",
   html: layout({
     title: "About | Wellesley Collective",
-    description: "Meet Rasheed Wellesley, owner of Wellesley Collective — a licensed Florida firm for personal, commercial, and life insurance, annuities, and commercial financing.",
+    description: "Meet Rasheed Wellesley, owner of Wellesley Collective — a licensed Florida firm for insurance, annuities, commercial financing, and real estate.",
     path: "about.html",
     current: "about",
     content: `
@@ -1685,7 +1732,7 @@ pages.push({
       <div class="container page-hero-content">
         <p class="eyebrow">The firm</p>
         <h1>A licensed practice with one person accountable for the file.</h1>
-        <p class="lede">Wellesley Collective is the independent firm of Rasheed Wellesley. Insurance, annuities, and commercial financing sit in one relationship — not three handoffs.</p>
+        <p class="lede">Wellesley Collective is the independent firm of Rasheed Wellesley. Insurance, annuities, commercial financing, and real estate sit in one relationship — not four handoffs.</p>
       </div>
     </section>
 
@@ -1699,8 +1746,8 @@ pages.push({
         <div class="split-copy">
           <p class="kicker">The owner</p>
           <h2>Rasheed Wellesley</h2>
-          <p>You work with Rasheed. He is a Florida-resident licensed insurance agent and the owner of Wellesley Collective LLC. The practice is built for households and operators who want a direct conversation about coverage and capital — not a call center and a new person at every step.</p>
-          <p>He has held a Florida agent license since 2021, with authority for general lines (property and casualty) and life including variable annuities. He is also licensed as a non-resident in additional states. Products, appointments, and what can be placed still depend on the state and the file.</p>
+          <p>You work with Rasheed. He is a Florida-resident licensed insurance agent, a real estate professional with London Foster Realty in Naples, and the owner of Wellesley Collective LLC. The practice is built for households and operators who want a direct conversation about coverage, capital, and property — not a call center and a new person at every step.</p>
+          <p>He has held a Florida insurance agent license since 2021, with authority for general lines (property and casualty) and life including variable annuities. He is also licensed as a non-resident in additional states. Products, appointments, and what can be placed still depend on the state and the file. Real estate brokerage is offered through London Foster Realty.</p>
           <ul class="about-facts">
             <li><strong>Role</strong> Owner, Wellesley Collective</li>
             <li><strong>NPN</strong> 19762898</li>
@@ -1720,10 +1767,10 @@ pages.push({
       <div class="container">
         <div class="section-head">
           <p class="kicker">How the firm is built</p>
-          <h2>Protection, income, and capital in one practice.</h2>
-          <p>Households and businesses rarely experience risk and money as separate problems. A growing company needs liability coverage and a line of credit. A family needs the house insured and a life policy that actually fits. Wellesley Collective was formed to sit at that intersection.</p>
+          <h2>Protection, income, capital, and property in one practice.</h2>
+          <p>Households and businesses rarely experience risk, money, and property as separate problems. A growing company needs liability coverage and a line of credit. A family needs the house insured, a life policy that actually fits, and someone who can also represent the purchase or sale. Wellesley Collective was formed to sit at that intersection.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-2">
           <article class="product-card">
             <p class="card-tag">Insurance</p>
             <h3>Personal, commercial, and life</h3>
@@ -1741,6 +1788,12 @@ pages.push({
             <h3>Commercial financing</h3>
             <p>Working capital, equipment, CRE, SBA, bridge, and lines of credit for operators and commercial property — subject to credit and documentation.</p>
             <a class="btn btn-outline" href="commercial-loans/index.html">Explore financing</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Property</p>
+            <h3>Real estate</h3>
+            <p>Buy, sell, or invest in Naples and Southwest Florida through London Foster Realty. Live listings stay on Rasheed’s agent site so MLS search stays current.</p>
+            <a class="btn btn-outline" href="real-estate/index.html">Explore real estate</a>
           </article>
         </div>
         <div class="hero-actions mt-32">
@@ -1781,7 +1834,7 @@ pages.push({
           <article class="product-card">
             <div class="icon-dot">02</div>
             <h3>Coordinated advice</h3>
-            <p>Insurance and financing decisions inform one another. When both are in play, we keep the conversation connected rather than fragmented.</p>
+            <p>Insurance, financing, and real estate decisions inform one another. When more than one is in play, we keep the conversation connected rather than fragmented.</p>
           </article>
           <article class="product-card">
             <div class="icon-dot">03</div>
@@ -1821,7 +1874,7 @@ pages.push({
     <section class="cta-band">
       <div class="container">
         <p class="eyebrow" style="justify-content:center">Begin a conversation</p>
-        <h2>Ready to talk through coverage or capital?</h2>
+        <h2>Ready to talk through coverage, capital, or a property?</h2>
         <p>Book a 30-minute intro call, or send a few details and we will follow up.</p>
         <div class="hero-actions" style="justify-content:center">
           <a class="btn btn-gold" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
@@ -1837,7 +1890,7 @@ pages.push({
   html: layout({
     title: "Contact | Wellesley Collective",
     path: "contact.html",
-    description: "Contact Wellesley Collective about insurance, life insurance, annuities, or commercial financing.",
+    description: "Contact Wellesley Collective about insurance, life insurance, annuities, commercial financing, or real estate.",
     current: "contact",
     content: `
     <section class="page-hero">
@@ -1865,6 +1918,7 @@ pages.push({
               <li>Personal, commercial, or life insurance quotes</li>
               <li>Annuities, disability, and long-term care</li>
               <li>Working capital and commercial real estate financing</li>
+              <li>Buying, selling, or investing in Naples-area real estate</li>
             </ul>
           </div>
           <div class="hero-actions mt-32">
@@ -1904,9 +1958,9 @@ pages.push({
   html: layout({
     title: "Get Started | Wellesley Collective",
     path: "get-started.html",
-    description: "Choose insurance, annuities, or commercial financing — then go to the right quote, or book a call.",
+    description: "Choose insurance, annuities, commercial financing, or real estate — then go to the right next step, or book a call.",
     current: "contact",
-    extraScripts: ["js/start.js?v=1"],
+    extraScripts: ["js/start.js?v=2"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({ src: "assets/images/hero-commercial.jpg", alt: "Commercial building facade", lazy: false })}</div>
@@ -1930,6 +1984,7 @@ pages.push({
               <option value="insurance">Insurance</option>
               <option value="annuities">Annuities / financial services</option>
               <option value="financing">Commercial financing</option>
+              <option value="real-estate">Real estate — buy, sell, or invest</option>
               <option value="unsure">Not sure yet</option>
               <option value="call">Book a 30-minute call</option>
             </select>
@@ -1973,6 +2028,17 @@ pages.push({
                   { value: "details", href: "intake/personal.html", label: "Send details instead" },
                 ]
               )}
+            </select>
+          </fieldset>
+
+          <fieldset class="start-step" data-panel="real-estate" hidden>
+            <legend>What kind of real estate help?</legend>
+            <select id="start-re-kind" name="re_kind">
+              <option value="">Select</option>
+              <option value="buy" data-href="real-estate/buy.html">Buy a home</option>
+              <option value="sell" data-href="real-estate/sell.html">Sell a home</option>
+              <option value="invest" data-href="real-estate/invest.html">Investment property</option>
+              <option value="search" data-href="${RE_SITE}">Search live listings</option>
             </select>
           </fieldset>
 
@@ -2575,8 +2641,8 @@ pages.push({
       <div class="container" style="max-width:760px">
         <p class="kicker">Legal</p>
         <h1>Terms of Use</h1>
-        <p class="subhead">The materials on this website are for general information. They do not constitute an offer of insurance, a commitment to lend, legal advice, or a guarantee of any product, rate, or coverage term.</p>
-        <p class="mt-16" style="color:var(--slate)">Any insurance policy or loan is subject to eligibility, underwriting, and documentation.</p>
+        <p class="subhead">The materials on this website are for general information. They do not constitute an offer of insurance, a commitment to lend, legal advice, an offer to sell real estate, or a guarantee of any product, rate, or coverage term.</p>
+        <p class="mt-16" style="color:var(--slate)">Any insurance policy or loan is subject to eligibility, underwriting, and documentation. Real estate brokerage is offered through London Foster Realty. MLS search, listings, and home valuations live on Rasheed’s London Foster agent site. Wellesley Collective does not originate residential mortgages.</p>
         <p class="mt-16" style="color:var(--slate)">Content may change without notice. For a specific request, get started or contact us and speak with our team.</p>
       </div>
     </section>`,
@@ -2828,6 +2894,288 @@ pages.push({
       "../"
     )}
     <div id="start">${convertBand({ root: "../", product: "Commercial Financing", need: "financing" })}</div>`
+  }),
+});
+
+function realEstateCtas() {
+  return `<div class="hero-actions">
+          ${extA(RE_SITE, "Search listings")}
+          <a class="btn btn-outline" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+        </div>`;
+}
+
+pages.push({
+  file: "real-estate/index.html",
+  html: layout({
+    title: "Real Estate | Wellesley Collective",
+    description: "Buy, sell, or invest in Naples and Southwest Florida with Rasheed Wellesley. Search live listings on his London Foster Realty site, then stay with Wellesley Collective for insurance and commercial financing.",
+    root: "../",
+    path: "real-estate/index.html",
+    current: "real-estate",
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", root: "../", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Real Estate</p>
+        <h1>Buy, sell, or invest in Naples and Southwest Florida.</h1>
+        <p class="lede">Rasheed Wellesley represents buyers and sellers through London Foster Realty. Live MLS search stays on his listings site. Coverage and commercial capital stay here — one relationship across the transaction.</p>
+        ${realEstateCtas()}
+      </div>
+    </section>
+    ${whoBlock("Households relocating to or moving within Southwest Florida, owners ready to list, and investors buying rental or commercial property who also need insurance or financing in the same conversation.")}
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">How this is set up</p>
+          <h2>Listings live on the brokerage site. The relationship lives here.</h2>
+          <p>London Foster’s platform holds the MLS search, featured listings, and home valuation tools. Wellesley Collective is where you start the conversation, coordinate homeowners or flood coverage, and — for investment property — look at commercial financing. You do not rebuild a search on this site.</p>
+        </div>
+        <div class="grid-3">
+          <article class="product-card">
+            <p class="card-tag">Buy</p>
+            <h3>Find the house. Close with a plan.</h3>
+            <p>Search live inventory, tour, and write the offer. We also quote the homeowners, condo, or flood policy the lender will ask for at closing.</p>
+            <a class="btn btn-navy" href="buy.html">Buying with Wellesley</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Sell</p>
+            <h3>Price it, list it, and stay in the file.</h3>
+            <p>A valuation, a listing plan, and a single point of contact through inspections and closing — including the coverage conversation if you are buying next.</p>
+            <a class="btn btn-navy" href="sell.html">Selling with Wellesley</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Invest</p>
+            <h3>The property, the policy, and the capital.</h3>
+            <p>Investment purchases sit next to rental insurance, DSCR math, and commercial real estate financing — without a handoff to a stranger.</p>
+            <a class="btn btn-navy" href="invest.html">Investment property</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section section-cream">
+      <div class="container split">
+        ${figurePhoto({ src: "assets/images/hero-home.jpg", alt: "Southwest Florida home at dusk", caption: "Search, valuation, and listings open on the London Foster site.", root: "../" })}
+        <div class="split-copy">
+          <p class="kicker">Live listings</p>
+          <h2>Open Rasheed’s London Foster site to search.</h2>
+          <p>That site is the MLS desk: homes for sale, featured listings, and a home valuation. It cannot be embedded here, so we send you there in a new tab and keep this site for the rest of the file.</p>
+          <p>When you are ready to tour, write an offer, or list, come back or book a call. You work with Rasheed on both sides of that handoff.</p>
+          ${realEstateCtas()}
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Connected to the rest of the firm</p>
+          <h2>The house is rarely only a real estate problem.</h2>
+        </div>
+        <div class="grid-3">
+          <article class="product-card">
+            <p class="card-tag">Insurance</p>
+            <h3>Homeowners, condo, flood</h3>
+            <p>A purchase contract usually requires proof of coverage. Start the quote while the search is still open.</p>
+            <a class="btn btn-outline" href="../insurance/homeowners-insurance.html">Homeowners</a>
+            <a class="btn btn-outline" href="../insurance/flood-insurance.html">Flood</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Tools</p>
+            <h3>Flood zone and DSCR</h3>
+            <p>Look up the FEMA flood zone on an address, or run DSCR on an investment property, in the Resource Center.</p>
+            <a class="btn btn-outline" href="../resources/index.html#flood">Flood lookup</a>
+            <a class="btn btn-outline" href="../resources/index.html#dscr">DSCR calculator</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Capital</p>
+            <h3>Commercial property financing</h3>
+            <p>Wellesley originates commercial financing, including CRE, bridge, and SBA — not residential mortgages.</p>
+            <a class="btn btn-outline" href="../commercial-loans/commercial-real-estate.html">CRE loans</a>
+          </article>
+        </div>
+        ${reMlsNote()}
+      </div>
+    </section>
+    <div id="start">${convertBand({ root: "../", product: "Real Estate", need: "real-estate" })}</div>`
+  }),
+});
+
+pages.push({
+  file: "real-estate/buy.html",
+  html: layout({
+    title: "Buy a Home | Real Estate | Wellesley Collective",
+    description: "Buy a home in Naples and Southwest Florida with Rasheed Wellesley. Search live listings on his London Foster Realty site, then coordinate coverage through Wellesley Collective.",
+    root: "../",
+    path: "real-estate/buy.html",
+    current: "real-estate",
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", root: "../", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Buy</p>
+        <h1>Search the market. Close with the same person.</h1>
+        <p class="lede">Start on Rasheed’s listings site for live inventory. When a property is worth a tour or an offer, you stay with Wellesley Collective through negotiations, inspections, and the insurance the closing will require.</p>
+        ${realEstateCtas()}
+      </div>
+    </section>
+    ${whoBlock("Primary-home buyers, second-home buyers, and relocating households who want one licensed contact for the purchase and the coverage that follows it.")}
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">The process</p>
+          <h2>Simple, considered, and direct.</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" aria-hidden="true">01</div>
+            <h3>Search live listings</h3>
+            <p>Open the London Foster site to filter Naples and Southwest Florida inventory, save homes, and request a showing.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">02</div>
+            <h3>Tour and write the offer</h3>
+            <p>We review comps, contingencies, and timing, then negotiate. You are not handed to a new agent after the first call.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">03</div>
+            <h3>Insure the close</h3>
+            <p>Homeowners, condo, and flood coverage are quoted here so the binder is ready when the lender or title company asks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-cream">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">What this is — and is not</p>
+          <h2>Brokerage and insurance in one relationship. Residential mortgages are separate.</h2>
+          <p>A purchase loan for a primary or second home is arranged with a residential lender. Wellesley Collective does not originate residential mortgages. If the property is an investment or commercial asset, commercial financing may belong in the same conversation.</p>
+          <div class="hero-actions">
+            ${extA(RE_SITE, "Search listings")}
+            <a class="btn btn-outline" href="../intake/personal.html">Start a homeowners quote</a>
+            <a class="btn btn-outline" href="invest.html">Buying as an investment</a>
+          </div>
+        </div>
+        ${reMlsNote()}
+      </div>
+    </section>
+    <div id="start">${convertBand({ root: "../", product: "Buy a home", need: "real-estate" })}</div>`
+  }),
+});
+
+pages.push({
+  file: "real-estate/sell.html",
+  html: layout({
+    title: "Sell a Home | Real Estate | Wellesley Collective",
+    description: "List and sell a home in Naples and Southwest Florida with Rasheed Wellesley at London Foster Realty. Valuation, listing, and closing with one point of contact.",
+    root: "../",
+    path: "real-estate/sell.html",
+    current: "real-estate",
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-home.jpg", alt: "A well-kept home at dusk", root: "../", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Sell</p>
+        <h1>A listing plan, a valuation, and one person on the file.</h1>
+        <p class="lede">Price it against the current Naples market, prepare the house, and list it through London Foster Realty. If you are buying next, the search and the coverage stay in the same relationship.</p>
+        ${realEstateCtas()}
+      </div>
+    </section>
+    ${whoBlock("Owners ready to list a primary home, second home, or condo in Naples and Southwest Florida who want a clear pricing conversation before the sign goes up.")}
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">The process</p>
+          <h2>From the first number to the keys.</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" aria-hidden="true">01</div>
+            <h3>Value the property</h3>
+            <p>Start with a home valuation on the listings site, then a conversation about condition, timing, and what the comps actually support.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">02</div>
+            <h3>Prepare and list</h3>
+            <p>We agree the work that is worth doing, the list price, and the marketing. The listing is published through London Foster Realty.</p>
+          </div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">03</div>
+            <h3>Negotiate and close</h3>
+            <p>Offers, inspections, and repairs stay with Rasheed. If you are purchasing next, we open the search and the insurance file in parallel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-cream">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Next property</p>
+          <h2>Selling one house often means buying another.</h2>
+          <p>When the next address is in Southwest Florida, the buy-side search is already on the same listings desk. Homeowners and flood coverage for the new property can be quoted here while the sale is still in process.</p>
+          <div class="hero-actions">
+            ${extA(RE_SITE, "Open the listings site")}
+            <a class="btn btn-outline" href="buy.html">Buying next</a>
+            <a class="btn btn-outline" href="../intake/personal.html">Quote coverage</a>
+          </div>
+        </div>
+        ${reMlsNote()}
+      </div>
+    </section>
+    <div id="start">${convertBand({ root: "../", product: "Sell a home", need: "real-estate" })}</div>`
+  }),
+});
+
+pages.push({
+  file: "real-estate/invest.html",
+  html: layout({
+    title: "Investment Property | Real Estate | Wellesley Collective",
+    description: "Buy or sell investment property in Naples and Southwest Florida with Rasheed Wellesley — brokerage, rental insurance, DSCR, and commercial financing in one firm.",
+    root: "../",
+    path: "real-estate/invest.html",
+    current: "real-estate",
+    content: `
+    <section class="page-hero">
+      <div class="page-hero-media">${photo({ src: "assets/images/hero-commercial.jpg", alt: "Commercial campus at twilight", root: "../", lazy: false })}</div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Invest</p>
+        <h1>The property, the policy, and the capital — in one file.</h1>
+        <p class="lede">Investment purchases are where Wellesley Collective is built to sit. Rasheed can represent the deal through London Foster Realty, quote the rental or commercial coverage, and look at commercial financing when the asset supports it.</p>
+        ${realEstateCtas()}
+      </div>
+    </section>
+    ${whoBlock("Investors buying or selling rentals, small multifamily, or commercial property in Southwest Florida who want brokerage, insurance, and capital treated as one conversation.")}
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">What sits in the same conversation</p>
+          <h2>A purchase is not only a listing search.</h2>
+        </div>
+        <div class="grid-3">
+          <article class="product-card">
+            <p class="card-tag">Brokerage</p>
+            <h3>Find or list the asset</h3>
+            <p>Search live inventory on the London Foster site, or list a rental you already own. Representation is through London Foster Realty.</p>
+            ${extA(RE_SITE, "Search listings", "btn btn-navy")}
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Insurance</p>
+            <h3>Insure the use, not the brochure</h3>
+            <p>Landlord, condo, commercial property, and flood coverage depend on occupancy and construction. Quote them on this site.</p>
+            <a class="btn btn-navy" href="../intake/personal.html">Rental / personal quote</a>
+            <a class="btn btn-outline" href="../intake/commercial.html">Commercial quote</a>
+          </article>
+          <article class="product-card">
+            <p class="card-tag">Capital</p>
+            <h3>Commercial financing, not a house loan</h3>
+            <p>CRE, bridge, and SBA are in appetite for qualifying investment and commercial property. Wellesley does not originate residential mortgages.</p>
+            <a class="btn btn-navy" href="../commercial-loans/commercial-real-estate.html">CRE loans</a>
+            <a class="btn btn-outline" href="../resources/index.html#dscr">DSCR calculator</a>
+          </article>
+        </div>
+        ${reMlsNote()}
+      </div>
+    </section>
+    <div id="start">${convertBand({ root: "../", product: "Investment property", need: "real-estate" })}</div>`
   }),
 });
 

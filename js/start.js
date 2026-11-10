@@ -15,6 +15,7 @@
     personal: form.querySelector("[data-panel='personal']"),
     commercial: form.querySelector("[data-panel='commercial']"),
     life: form.querySelector("[data-panel='life']"),
+    realestate: form.querySelector("[data-panel='real-estate']"),
     talk: document.querySelector("[data-panel='talk']"),
   };
 
@@ -47,12 +48,14 @@
     show(panels.personal, n === "insurance" && k === "personal");
     show(panels.commercial, n === "insurance" && k === "commercial");
     show(panels.life, n === "insurance" && k === "life");
+    show(panels.realestate, n === "real-estate");
     const talk = n === "annuities" || n === "financing" || n === "unsure";
     show(panels.talk, talk);
     if (talk && talkTitle) talkTitle.textContent = talkCopy[n] || talkCopy.unsure;
     if (continueBtn) {
       if (n === "call") continueBtn.textContent = "Open calendar";
       else if (n === "insurance") continueBtn.textContent = "Continue to quote";
+      else if (n === "real-estate") continueBtn.textContent = "Continue";
       else continueBtn.textContent = "Continue";
     }
     setNote("");
@@ -68,6 +71,12 @@
     if (!n) return { error: "Choose what you need to continue." };
     if (n === "call") return { href: calendly, external: true };
     if (n === "annuities" || n === "financing" || n === "unsure") return { panel: "talk" };
+    if (n === "real-estate") {
+      const reSelect = form.querySelector("[name='re_kind']");
+      const href = selectedHref(reSelect);
+      if (!href) return { error: "Choose buy, sell, invest, or search listings." };
+      return { href: href, external: /^https?:\/\//i.test(href) };
+    }
     if (n !== "insurance") return { error: "Choose what you need to continue." };
     const k = kind.value;
     if (!k) return { error: "Choose the kind of insurance." };
@@ -106,6 +115,12 @@
   const params = new URLSearchParams(window.location.search);
   const product = params.get("product") || "";
   if (params.get("type") === "loan") need.value = "financing";
+  if (params.get("type") === "real-estate" || product === "real-estate") need.value = "real-estate";
+  if (product === "buy" || product === "sell" || product === "invest") {
+    need.value = "real-estate";
+    const reSelect = form.querySelector("[name='re_kind']");
+    if (reSelect) reSelect.value = product;
+  }
   if (product) {
     const line = form.querySelector('option[data-slug="' + escapeAttr(product) + '"]');
     if (line && line.closest("select")) {
