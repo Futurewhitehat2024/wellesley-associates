@@ -3,8 +3,7 @@
   if (!dashboard) return;
 
   const TIMEOUT_MS = 8000;
-  const FRED_API_KEY = "";
-  const FRED_BASE = "https://api.stlouisfed.org/fred/series/observations";
+  const RATES_URL = "data/rates.json";
 
   const FALLBACK = {
     FEDFUNDS: { value: 3.62, date: "2026-07-31" },
@@ -85,16 +84,6 @@
     return date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
   }
 
-  function latestObservation(rows) {
-    if (!rows || !rows.length) return null;
-    for (let i = rows.length - 1; i >= 0; i -= 1) {
-      const row = rows[i];
-      const value = parseNumber(row.value);
-      if (value != null) return { value: value, date: row.date };
-    }
-    return null;
-  }
-
   function fetchTimeout(url, ms) {
     const ctrl = new AbortController();
     const timer = setTimeout(function () {
@@ -106,73 +95,46 @@
   }
 
   async function fetchText(url) {
-    const attempts = [
-      url,
-      "https://api.allorigins.win/raw?url=" + encodeURIComponent(url),
-      "https://corsproxy.io/?" + encodeURIComponent(url),
-    ];
-    let lastError;
-    for (let i = 0; i < attempts.length; i += 1) {
-      try {
-        const res = await fetchTimeout(attempts[i], TIMEOUT_MS);
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const text = await res.text();
-        if (!text || /access denied|blocked|just a moment/i.test(text.slice(0, 200))) {
-          throw new Error("blocked");
-        }
-        return text;
-      } catch (err) {
-        lastError = err;
+    const res = await fetchTimeout(url, TIMEOUT_MS);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const text = await res.text();
+    if (!text || /access denied|blocked|just a moment/i.test(text.slice(0, 200))) {
+      throw new Error("blocked");
+    }
+    return text;
+  }
+
+  function applyFredPoint(id, value, date) {
+    const card = FRED_TO_CARD[id];
+    if (card && !(state[card] && state[card].live && state[card].source === "treasury")) {
+      setPoint(card, value, date, "fred");
+    }
+    if (id === "DGS5" || id === "DGS10" || id === "DGS30") {
+      const curveKey = id === "DGS5" ? "YC_5Y" : id === "DGS10" ? "YC_10Y" : "YC_30Y";
+      if (!(state[curveKey] && state[curveKey].live && state[curveKey].source === "treasury")) {
+        setPoint(curveKey, value, date, "fred");
       }
     }
-    throw lastError || new Error("unavailable");
+  }
+
+  async function loadPublishedRates() {
+    const res = await fetchTimeout(RATES_URL, TIMEOUT_MS);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const series = data && data.series;
+    if (!series) return;
+    FRED_SERIES.forEach(function (id) {
+      const row = series[id];
+      if (!row) return;
+      const value = parseNumber(row.value);
+      if (value == null || !row.date) return;
+      applyFredPoint(id, value, String(row.date).slice(0, 10));
+    });
   }
 
   function setPoint(key, value, date, source) {
     if (value == null || !key) return;
     state[key] = { value: value, date: date, live: true, source: source };
-  }
-
-  async function loadFredSeries(id) {
-    const start = "2024-01-01";
-    const csvUrl = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=" + encodeURIComponent(id) + "&cosd=" + start;
-    const apiUrl =
-      FRED_BASE +
-      "?series_id=" +
-      encodeURIComponent(id) +
-      "&file_type=json&sort_order=asc&limit=24&observation_start=" +
-      start +
-      (FRED_API_KEY ? "&api_key=" + encodeURIComponent(FRED_API_KEY) : "");
-
-    const urls = FRED_API_KEY ? [apiUrl, csvUrl] : [csvUrl, apiUrl];
-    for (let i = 0; i < urls.length; i += 1) {
-      try {
-        const text = await fetchText(urls[i]);
-        const parsed = text.trim().charAt(0) === "{" ? parseFredJson(text) : parseFredCsv(text);
-        const latest = latestObservation(parsed);
-        if (latest) return latest;
-      } catch (err) {}
-    }
-    return null;
-  }
-
-  function parseFredJson(text) {
-    const data = JSON.parse(text);
-    const rows = data.observations || [];
-    return rows.map(function (row) {
-      return { date: row.date, value: row.value };
-    });
-  }
-
-  function parseFredCsv(text) {
-    const lines = text.trim().split(/\r?\n/);
-    const rows = [];
-    for (let i = 1; i < lines.length; i += 1) {
-      const parts = lines[i].split(",");
-      if (parts.length < 2) continue;
-      rows.push({ date: parts[0], value: parts[1] });
-    }
-    return rows;
   }
 
   function ds(node, name) {
@@ -238,14 +200,6 @@
     return Object.keys(out.points).length ? out : null;
   }
 
-  async function loadFiscalData() {
-    const url =
-      "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&page[size]=20";
-    const text = await fetchText(url);
-    const data = JSON.parse(text);
-    return Array.isArray(data.data) ? data.data : [];
-  }
-
   function paint() {
     document.querySelectorAll("[data-rate]").forEach(function (el) {
       const key = el.getAttribute("data-rate");
@@ -306,44 +260,21 @@
     dashboard.classList.add("is-loading");
     paint();
 
-    const jobs = [
-      loadTreasuryCurve()
-        .then(function (curve) {
-          if (!curve) return;
-          Object.keys(curve.points).forEach(function (key) {
-            setPoint(key, curve.points[key], curve.date, "treasury");
-          });
-          setPoint("DGS5", curve.points.YC_5Y, curve.date, "treasury");
-          setPoint("DGS10", curve.points.YC_10Y, curve.date, "treasury");
-          setPoint("DGS30", curve.points.YC_30Y, curve.date, "treasury");
-        })
-        .catch(function () {}),
-      loadFiscalData().catch(function () {
-        return [];
-      }),
-    ];
+    try {
+      await loadPublishedRates();
+    } catch (err) {}
 
-    FRED_SERIES.forEach(function (id) {
-      jobs.push(
-        loadFredSeries(id)
-          .then(function (latest) {
-            if (!latest) return;
-            const card = FRED_TO_CARD[id];
-            if (card && !(state[card] && state[card].live && state[card].source === "treasury")) {
-              setPoint(card, latest.value, latest.date, "fred");
-            }
-            if (id === "DGS5" || id === "DGS10" || id === "DGS30") {
-              const curveKey = id === "DGS5" ? "YC_5Y" : id === "DGS10" ? "YC_10Y" : "YC_30Y";
-              if (!(state[curveKey] && state[curveKey].live && state[curveKey].source === "treasury")) {
-                setPoint(curveKey, latest.value, latest.date, "fred");
-              }
-            }
-          })
-          .catch(function () {})
-      );
-    });
-
-    await Promise.allSettled(jobs);
+    try {
+      const curve = await loadTreasuryCurve();
+      if (curve) {
+        Object.keys(curve.points).forEach(function (key) {
+          setPoint(key, curve.points[key], curve.date, "treasury");
+        });
+        setPoint("DGS5", curve.points.YC_5Y, curve.date, "treasury");
+        setPoint("DGS10", curve.points.YC_10Y, curve.date, "treasury");
+        setPoint("DGS30", curve.points.YC_30Y, curve.date, "treasury");
+      }
+    } catch (err) {}
     dashboard.classList.remove("is-loading");
     paint();
   }

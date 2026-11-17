@@ -2185,7 +2185,7 @@ pages.push({
     path: "rates.html",
     description: "Live federal funds, SOFR, prime, Treasury par yields, and mortgage rates from FRED and the U.S. Treasury.",
     current: "rates",
-    extraScripts: ["js/rates.js?v=1"],
+    extraScripts: ["js/rates.js?v=2"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "Evening city skyline over a commercial district", lazy: false })}</div>
