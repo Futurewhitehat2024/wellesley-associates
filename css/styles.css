@@ -429,6 +429,32 @@ ul {
   border-color: var(--navy);
 }
 
+/* Real-estate "Book a call" only. Opaque fill so the label is not drawn on the hero photo.
+   Focus uses two rings because the control sits on both the dark hero and the cream band. */
+.btn-book {
+  background: var(--navy-deep);
+  color: var(--cream);
+  border-color: var(--gold);
+  border-width: 2px;
+}
+
+.btn-book:hover {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-color: var(--navy-deep);
+}
+
+.btn-book:focus-visible {
+  outline: 3px solid var(--navy-deep);
+  outline-offset: 5px;
+  box-shadow: 0 0 0 4px var(--gold);
+}
+
+.btn-book:hover:focus-visible {
+  outline-color: var(--cream);
+  box-shadow: 0 0 0 4px var(--navy-deep);
+}
+
 .btn-block {
   width: 100%;
 }

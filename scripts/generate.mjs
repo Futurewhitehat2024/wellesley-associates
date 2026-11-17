@@ -900,7 +900,7 @@ function intakePage({ kind, title, description, lede, who, extraFields, coverage
 }
 
 function layout({ title, description, root = "", current, content, extraScripts = [], path = "" }) {
-  const css = `${root}css/styles.css?v=25`;
+  const css = `${root}css/styles.css?v=26`;
   const js = `${root}js/main.js?v=9`;
   const url = path ? `${SITE}/${path}` : SITE;
   const jsonLd = {
@@ -2905,7 +2905,7 @@ pages.push({
 function realEstateCtas() {
   return `<div class="hero-actions">
           ${extA(RE_SITE, "Search listings")}
-          <a class="btn btn-outline" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
+          <a class="btn btn-book" href="${CALENDLY_URL}" target="_blank" rel="noopener">Book a call</a>
         </div>`;
 }
 
