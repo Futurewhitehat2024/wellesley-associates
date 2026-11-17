@@ -661,8 +661,13 @@ function header(root, current) {
   </header>`;
 }
 
-function footer(root) {
+function footer(root, path = "") {
   const r = root;
+  const showAddress = !String(path).startsWith("real-estate/");
+  const addressLine = showAddress
+    ? `          <p class="footer-address">2367 Vanderbilt Beach Road, Suite 812, Naples, FL 34109</p>
+`
+    : "";
   return `
   <footer class="site-footer">
     <div class="container">
@@ -698,7 +703,7 @@ function footer(root) {
         </div>
         <div>
           <h4>Contact</h4>
-          <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
+${addressLine}          <a href="tel:${FIRM_TEL}">${FIRM_PHONE}</a>
           <a href="mailto:${FIRM_EMAIL}">${FIRM_EMAIL}</a>
           <a href="https://calendly.com/rasheed-wellesleycollective/30min" target="_blank" rel="noopener">Book a call</a>
           <a href="${r}get-started.html">Get Started</a>
@@ -934,7 +939,7 @@ ${header(root, current)}
 <main id="main">
 ${content}
 </main>
-${footer(root)}
+${footer(root, path)}
 <script src="${js}"></script>
 ${extraScripts.map((src) => `<script src="${root}${src}"></script>`).join("\n")}
 </body>
