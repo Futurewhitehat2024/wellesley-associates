@@ -665,7 +665,7 @@ function footer(root, path = "") {
   const r = root;
   const showAddress = !String(path).startsWith("real-estate/");
   const addressLine = showAddress
-    ? `          <p class="footer-address">2367 Vanderbilt Beach Road, Suite 812, Naples, FL 34109</p>
+    ? `          <p class="footer-address">3823 Tamiami Trail East, Unit #275, Naples, FL 34112</p>
 `
     : "";
   return `
