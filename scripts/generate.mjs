@@ -3638,7 +3638,7 @@ pages.push({
     root: "../",
     path: "blog/index.html",
     current: "blog",
-    extraScripts: ["js/blog.js?v=5"],
+    extraScripts: ["js/blog.js?v=6"],
     content: `
     <section class="page-hero">
       <div class="page-hero-media">${photo({ src: "assets/images/hero-city.jpg", alt: "City skyline at dusk", root: "../", lazy: false })}</div>
