@@ -1,12 +1,78 @@
 {
-  "updated": "2026-11-18T21:28:21.380Z",
+  "updated": "2026-11-19T21:39:40.051Z",
   "items": [
     {
-      "title": "Why 2027 may turn into a land negotiation year for homebuilders",
-      "link": "https://www.housingwire.com/articles/2027-land-negotiations-builders/",
+      "title": "New CEO at Villa eyes manufactured housing, ADU opportunity",
+      "link": "https://www.housingwire.com/articles/villas-new-ceo-growth-strategy/",
       "source": "HousingWire",
-      "date": "2026-11-18T19:52:49.000Z",
-      "summary": "Scott Cox expects re-trades, softer takedowns, and more price discovery as incentives shift for land bankers and sellers",
+      "date": "2026-11-19T21:38:30.000Z",
+      "summary": "Villa aims to build larger manufactured home communities, targeting finished, entitled land to limit entitlement risk",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Why some regional brokerages are avoiding ancillary services",
+      "link": "https://www.housingwire.com/articles/brokerages-ancillary-services-strategy/",
+      "source": "HousingWire",
+      "date": "2026-11-19T21:30:46.000Z",
+      "summary": "Regional firms cite agent choice, compliance risk, and marketing partnerships over joint ventures",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Housing groups urge FHFA to delay condo reserve rule until 2028",
+      "link": "https://www.housingwire.com/articles/fhfa-condo-reserve-rule-delay/",
+      "source": "HousingWire",
+      "date": "2026-11-19T20:40:03.000Z",
+      "summary": "Coalition wants Fannie and Freddie rule shift to be pushed to 2028 as reserves rise from 10% to 15%",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Peterson: The Fed's chairman sees an AI revolution coming. Now he has to figure out what it means",
+      "link": "https://www.cnbc.com/2026/11/16/kevin-warsh-fed-ai-jobs-productivity-interest-rateshtml.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-19T20:18:47.000Z",
+      "summary": "Kevin Warsh sees AI at a turning point. He faces tough questions on jobs and interest rates.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "The stock market could be headed for more turbulence. How one investor is preparing",
+      "link": "https://www.cnbc.com/2026/11/19/the-stock-market-could-be-headed-for-more-turbulence-how-one-investor-is-preparing.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-19T19:12:12.000Z",
+      "summary": "With stocks approaching critical support levels, investor Todd Gordon is taking a more defensive approach.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "This tech stock has been nearly cut in half this year. I think Wall Street is getting it wrong",
+      "link": "https://www.cnbc.com/2026/11/19/applovin-app-paul-meeks-buying.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-19T19:08:20.000Z",
+      "summary": "AppLovin's accelerating revenue growth and expansion into e-commerce make the AI advertising company an attractive investment opportunity, says analyst Paul Meeks.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Mortgage delinquencies rise to 4.42% in Q3 2026",
+      "link": "https://www.housingwire.com/articles/mortgage-delinquencies-q3-2026/",
+      "source": "HousingWire",
+      "date": "2026-11-19T17:14:06.000Z",
+      "summary": "Foreclosure starts rose to 0.21%, while loans in foreclosure increased to 0.71%",
       "tags": [
         "homeowners",
         "rates",
@@ -14,14 +80,152 @@
       ]
     },
     {
-      "title": "Guild’s Nora Guerra on helping baby boomers buy and rehab homes with reverse mortgages",
-      "link": "https://www.housingwire.com/articles/baby-boomers-reverse-mortgages/",
+      "title": "Zoning reform is remaking parking lots into a housing paradise",
+      "link": "https://www.housingwire.com/articles/parking-lot-redevelopment-zoning/",
       "source": "HousingWire",
-      "date": "2026-11-18T19:46:16.000Z",
-      "summary": "At NRMLA Annual, Guerra targeted the factors causing lenders to miss boomers in today’s mortgage market",
+      "date": "2026-11-19T17:03:54.000Z",
+      "summary": "Commercial parking makes up a 26% median share of downtown land in large U.S. cities, creating infill capacity",
       "tags": [
         "homeowners",
         "rates"
+      ]
+    },
+    {
+      "title": "Exclusive: ICE Mortgage Technology appoints AI strategy, product leaders",
+      "link": "https://www.housingwire.com/articles/ice-mortgage-technology-vice-presidents/",
+      "source": "HousingWire",
+      "date": "2026-11-19T16:54:11.000Z",
+      "summary": "Kiran Sahota and Leslie Peeler are joining the company",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Mike Lynch Yacht Crew Unaware of Wind Risks, UK Probe Finds",
+      "link": "https://www.insurancejournal.com/news/international/2026/11/19/893171.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-19T16:47:49.000Z",
+      "summary": "Crew members aboard Mike Lynch’s yacht off the coast of Sicily, Italy, were unaware of a safety risk that left it vulnerable to powerful winds, according to UK investigators probin",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "Boyd, First Insurance Agent Elected President of Florida Senate, Not Specific on Plans",
+      "link": "https://www.insurancejournal.com/news/southeast/2026/11/19/893153.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-19T16:43:57.000Z",
+      "summary": "For the first time, the Florida Senate will be led by an insurance agent. State Sen. Jim Boyd, head of Boyd Insurance & Investments, a family-owned insurance agency in Bradenton, t",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "AM Best Upgrades Credit Rating for Kansas Medical Mutual Group",
+      "link": "https://www.insurancejournal.com/news/midwest/2026/11/19/893172.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-19T16:43:16.000Z",
+      "summary": "AM Best has upgraded the Financial Strength Rating to A- (Excellent) from B++ (Good) and the Long-Term Issuer Credit Ratings to “a-” (Excellent) from “bbb+” (Good) of Kansas Medica",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "Rocket, Mr. Cooper to pay $6.75M over cybersecurity lapses in New York",
+      "link": "https://www.housingwire.com/articles/rocket-mr-cooper-nydfs-cybersecurity-settlement/",
+      "source": "HousingWire",
+      "date": "2026-11-19T16:29:31.000Z",
+      "summary": "Regulator cites data exposure, 72-hour rule violations in cyber cases",
+      "tags": [
+        "homeowners",
+        "rates",
+        "insurance"
+      ]
+    },
+    {
+      "title": "EU Executive Branch Suffered AI-Driven Cyberattack in October",
+      "link": "https://www.insurancejournal.com/news/international/2026/11/19/893157.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-19T16:27:20.000Z",
+      "summary": "The European Commission suffered a cyberattack in late October that involved the misuse of an artificial intelligence tool, according to a spokesman for the EU’s executive branch. ",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "German Authorities Lift Threat Level to IT Security to ‘Tense to Critical’",
+      "link": "https://www.insurancejournal.com/news/international/2026/11/19/893146.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-19T16:03:40.000Z",
+      "summary": "German authorities have raised their assessment of the threat to information technology systems to “tense to critical,” noting that agentic artificial intelligence systems are prov",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "Federal Reserve Board issues enforcement action with former employee of First Security Bancorp",
+      "link": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261119a.htm",
+      "source": "Federal Reserve",
+      "date": "2026-11-19T16:00:00.000Z",
+      "summary": "Federal Reserve Board issues enforcement action with former employee of First Security Bancorp",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Don’t buy Anthropic right away. Wait for a discount",
+      "link": "https://www.cnbc.com/2026/11/19/dont-buy-anthropic-right-away-wait-for-a-discount.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-19T15:15:06.000Z",
+      "summary": "Anthropic investor Steve Grasso on why he bought into the Claude creator's blockbuster IPO, and the risks that could weigh on the stock.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Here are Thursday's biggest analyst calls: Nvidia, Anthropic, SpaceX, Apple, Abbott Labs, Box, Strategy & more",
+      "link": "https://www.cnbc.com/2026/11/19/thursday-biggest-analyst-calls-like-anthropic.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-19T13:21:17.000Z",
+      "summary": "Here are Thursday's biggest calls on Wall Street.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Box has been on fire this year. UBS says AI will drive even more gains",
+      "link": "https://www.cnbc.com/2026/11/19/ubs-upgrades-box-ai-growth.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-19T12:41:59.000Z",
+      "summary": "The bank upgraded its rating on the content management stock to buy from neutral.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Thursday's big stock stories: What’s likely to move the market in the next trading session",
+      "link": "https://www.cnbc.com/2026/11/18/thursdays-big-stock-stories-whats-likely-to-move-the-market.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-19T00:14:21.000Z",
+      "summary": "The S&P 500 fell for a fifth consecutive session on Wednesday, notching its longest losing streak since June.",
+      "tags": [
+        "rates",
+        "business"
       ]
     },
     {
@@ -30,123 +234,6 @@
       "source": "CNBC Finance",
       "date": "2026-11-18T19:41:59.000Z",
       "summary": "The Federal Reserve on Wednesday released minutes from its October policy meeting at which it voted to hold its benchmark interest rate in a range between 3.75%-4%.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Strike Risk Grows at Busiest US Ports as Contract Talks Stall",
-      "link": "https://www.insurancejournal.com/news/west/2026/11/18/893064.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T19:30:31.000Z",
-      "summary": "Contract negotiations between security workers at the Ports of Los Angeles and Long Beach and their employers have stalled, setting up a “real potential” for a strike starting on S",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "The mortgage industry was built to help Americans buy homes. An aging America needs more from it.",
-      "link": "https://www.housingwire.com/articles/mortgage-industry-aging-in-place/",
-      "source": "HousingWire",
-      "date": "2026-11-18T18:30:00.000Z",
-      "summary": "Survey of 2,000 homeowners 55 plus shows 88% prioritize staying home and 90% prioritize independence",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "Florida Mayor Declares Emergency as More Flooding Expected on East Coast",
-      "link": "https://www.insurancejournal.com/news/southeast/2026/11/18/893055.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T17:13:29.000Z",
-      "summary": "The mayor of Hollywood, Florida, declared a state of emergency as southeast parts of the state endured a new round of flooding after more than a foot of rain fell in just a few hou",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "State Farm to Pay $45M After Oklahoma Insurance Investigation",
-      "link": "https://www.insurancejournal.com/news/southcentral/2026/11/18/893043.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T16:45:06.000Z",
-      "summary": "State Farm Fire and Casualty Co. will pay a $45 million settlement after a state insurance department investigation found it failed to properly pay roof damage claims by Oklahoma c",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "EU Moving Too Slowly to Tackle Health Risks From ‘Forever Chemicals,’ Auditors Say",
-      "link": "https://www.insurancejournal.com/news/international/2026/11/18/893035.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T16:41:40.000Z",
-      "summary": "The European Union is moving too slowly to protect people from the health risks posed by “forever chemicals,” with many substances still untested and unrestricted and legal limits ",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "Senators Warn White House That AI-Enabled Cyber Threats Outpace Defenses",
-      "link": "https://www.insurancejournal.com/news/national/2026/11/18/893008.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T16:41:21.000Z",
-      "summary": "A pair of US senators on Wednesday warned the Trump administration that “rapidly escalating” AI-enabled cyber threats were outpacing the country’s defenses, amid broader concerns a",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "Bonds are causing trouble again — here's where to invest now",
-      "link": "https://www.cnbc.com/2026/11/17/bond-yields-where-to-invest.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T16:36:54.000Z",
-      "summary": "Rising bond yields and Federal Reserve rate hikes are making for a tricky environment for bond investors. Here's how to play it.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Investor Kevin Simpson urges caution on Nvidia, says one quarter doesn’t mean ‘all systems go'",
-      "link": "https://www.cnbc.com/2026/11/18/kevin-simpson-urges-caution-on-nvidia-says-one-quarter-doesnt-mean-all-systems-go.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T16:33:44.000Z",
-      "summary": "Kevin Simpson says Nvidia's blowout earnings confirm strong AI demand, but leadership uncertainty and growing investments remain risks for the stock.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "People Moves: Sunstar Insurance Group Names Samuel as COO",
-      "link": "https://www.insurancejournal.com/news/midwest/2026/11/18/893018.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T15:43:25.000Z",
-      "summary": "Sunstar Insurance Group LLC, headquartered in St. Louis, Missouri, hired Kyle Samuel as chief operating officer (COO). Samuel brings more than three decades of experience, most rec",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business",
-        "cre"
-      ]
-    },
-    {
-      "title": "The key S&P 500 level Wall Street is watching",
-      "link": "https://www.cnbc.com/2026/11/18/sp-500-falls-below-200-day-moving-average.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T15:16:13.000Z",
-      "summary": "The benchmark ended Tuesday's session at 7,340.53, just under its 200-day average of 7,346.64. The next move may be lower.",
       "tags": [
         "rates",
         "business"
@@ -164,30 +251,6 @@
       ]
     },
     {
-      "title": "Root Auto Insurance Is Now Available in Maine",
-      "link": "https://www.insurancejournal.com/news/east/2026/11/18/892999.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T14:45:42.000Z",
-      "summary": "Technology-driven insurer Root, Inc. is making its personal auto insurance available to drivers in Maine. Using mobile telematics, Root calculates its rates primarily on actual dri",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "Commercial Property Premium Decreases of 6.2% Drive Overall Soft Q3: CIAB",
-      "link": "https://www.insurancejournal.com/news/national/2026/11/18/892982.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-18T14:43:15.000Z",
-      "summary": "Soft market conditions remain stubborn, with no “meaningful” change for average commercial insurance premiums in the third quarter 2026 compared with the prior quarter. The Council",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
       "title": "Southeast Asia’s data center boom leaned on Chinese demand. New U.S. rules put that pipeline at risk",
       "link": "https://www.cnbc.com/2026/11/18/nvidia-us-ai-chip-export-controls-data-centers-.html",
       "source": "CNBC Economy",
@@ -199,77 +262,11 @@
       ]
     },
     {
-      "title": "Here are Wednesday's biggest analyst calls: Nvidia, SpaceX, Tesla, Apple, Microsoft, Oracle, Coca-Cola & more",
-      "link": "https://www.cnbc.com/2026/11/18/top-wednesday-stocks-by-analyst-calls-like-nvidia.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T13:26:13.000Z",
-      "summary": "Here are Wednesday's biggest calls on Wall Street.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Here's what every major Wall Street analyst is saying about Nvidia after its earnings report",
-      "link": "https://www.cnbc.com/2026/11/18/analysts-react-to-nvidias-first-earnings-without-ceo-jensen-huang.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T12:10:25.000Z",
-      "summary": "Nvidia posted another big beat in its first earnings report following the resignation of its long-time CEO Jensen Huang.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
       "title": "Record diesel prices drive UK inflation to 1-year high of 3.6%",
       "link": "https://www.cnbc.com/2026/11/18/uk-inflation-cpi-fuel-prices.html",
       "source": "CNBC Economy",
       "date": "2026-11-18T07:57:37.000Z",
       "summary": "It put the U.K.'s annual inflation rate at a 1-year high.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Analysts are cautiously optimistic on Nvidia after earnings call",
-      "link": "https://www.cnbc.com/2026/11/17/nvidia-q3-earnings-analyst-reaction.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T02:08:47.000Z",
-      "summary": "A raise in revenue guidance and a clear decision on leadership sat well with the Street, though dealmaking scrutiny could temper enthusiasm.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Wednesday's big stock stories: What’s likely to move the market in the next trading session",
-      "link": "https://www.cnbc.com/2026/11/17/wednesdays-big-stock-stories-whats-likely-to-move-the-market.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-18T00:09:24.000Z",
-      "summary": "The S&P 500 extended its losing run to four sessions on Tuesday, as the broad market index posted its lowest closing level since late July.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Analysis: The Fed's chairman sees an AI revolution coming. Now he has to figure out what it means",
-      "link": "https://www.cnbc.com/2026/11/16/kevin-warsh-fed-ai-jobs-productivity-interest-rateshtml.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-17T15:35:13.000Z",
-      "summary": "Kevin Warsh sees AI at a turning point. He faces tough questions on jobs and interest rates.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "St. Louis Fed's Musalem says four more rate hikes may be needed in coming months",
-      "link": "https://www.cnbc.com/2026/11/17/alberto-musalem-fed-interest-rates.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-17T13:40:54.000Z",
-      "summary": "The forecast represents one of the most hawkish views among policymakers.",
       "tags": [
         "rates",
         "business"
