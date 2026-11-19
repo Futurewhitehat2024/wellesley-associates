@@ -117,10 +117,13 @@ function elementText(block, name) {
   return match ? match[1].trim() : "";
 }
 
-export function treasuryMonthUrl(now) {
+export function treasuryMonthUrl(now, monthOffset) {
   const date = now instanceof Date ? now : new Date(now);
-  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
-  return TREASURY_XML + date.getUTCFullYear() + month;
+  const offset = monthOffset == null ? 0 : monthOffset;
+  // UTC, same calendar the rates page uses. Offset -1 crosses the year boundary.
+  const shifted = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + offset, 1));
+  const month = String(shifted.getUTCMonth() + 1).padStart(2, "0");
+  return TREASURY_XML + shifted.getUTCFullYear() + month;
 }
 
 export function parseTreasuryXml(text) {
@@ -146,28 +149,77 @@ export function parseTreasuryXml(text) {
   return sessions;
 }
 
+async function readTreasuryMonth(fetchImpl, url) {
+  const response = await fetchImpl(url, {
+    headers: {
+      "User-Agent": USER_AGENT,
+      Accept: "application/xml,text/xml,*/*",
+    },
+  });
+  if (!response.ok) throw new Error("HTTP " + response.status);
+  const text = await response.text();
+  if (!text || /<html|access denied|just a moment/i.test(String(text).slice(0, 500))) {
+    throw new Error("Treasury did not return XML");
+  }
+  return parseTreasuryXml(text);
+}
+
+function sessionsByDate(sessions) {
+  const ordered = new Map();
+  (sessions || []).forEach(function (session) {
+    if (!session || !/^\d{4}-\d{2}-\d{2}$/.test(session.date || "")) return;
+    const prior = ordered.get(session.date);
+    const values = prior ? Object.assign({}, prior.values) : {};
+    Object.keys(session.values || {}).forEach(function (id) {
+      const value = cleanNumber(session.values[id]);
+      if (value == null) return;
+      values[id] = value;
+    });
+    if (!Object.keys(values).length) return;
+    ordered.set(session.date, { date: session.date, values: values });
+  });
+  return Array.from(ordered.values()).sort(function (a, b) {
+    if (a.date < b.date) return -1;
+    if (a.date > b.date) return 1;
+    return 0;
+  });
+}
+
 export async function fetchTreasurySessions(options) {
   const settings = options || {};
   const fetchImpl = settings.fetchImpl || fetch;
-  const url = treasuryMonthUrl(settings.now || new Date());
-  try {
-    const response = await fetchImpl(url, {
-      headers: {
-        "User-Agent": USER_AGENT,
-        Accept: "application/xml,text/xml,*/*",
-      },
-    });
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const text = await response.text();
-    if (!text || /<html|access denied|just a moment/i.test(String(text).slice(0, 500))) {
-      throw new Error("Treasury did not return XML");
+  const now = settings.now || new Date();
+  // The current-month file is empty on the first mornings of a month. The FRED
+  // lag on those days is still in the previous month, which is what js/rates.js
+  // already falls back to. Read previous first so a date in both files keeps
+  // the current month's print.
+  const urls = settings.urls || [treasuryMonthUrl(now, -1), treasuryMonthUrl(now)];
+  const collected = [];
+  const failures = [];
+  for (let i = 0; i < urls.length; i += 1) {
+    const url = urls[i];
+    try {
+      const sessions = await readTreasuryMonth(fetchImpl, url);
+      sessions.forEach(function (session) {
+        collected.push(session);
+      });
+    } catch (error) {
+      const message = error && error.message ? error.message : String(error);
+      failures.push(url + " (" + message + ")");
     }
-    return parseTreasuryXml(text);
-  } catch (error) {
-    const message = error && error.message ? error.message : String(error);
-    console.log("Treasury yield curve unavailable (" + message + "). Keeping FRED observations.");
+  }
+  if (failures.length === urls.length) {
+    console.log(
+      "Treasury yield curve unavailable (" + failures.join("; ") + "). Keeping FRED observations."
+    );
     return [];
   }
+  if (failures.length) {
+    console.log(
+      "Treasury yield curve missing a month (" + failures.join("; ") + "). Using the months that responded."
+    );
+  }
+  return sessionsByDate(collected);
 }
 
 export function mergeTreasuryRows(rowsById, sessions) {

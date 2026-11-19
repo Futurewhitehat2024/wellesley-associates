@@ -127,18 +127,24 @@ test("Treasury fetch failure leaves no sessions to merge", async function () {
       return { ok: false, status: 503, text: async function () { return ""; } };
     },
   });
-  let called = "";
+  const called = [];
   const parsed = await fetchTreasurySessions({
     now: now,
     fetchImpl: async function (url) {
-      called = url;
+      called.push(url);
       return { ok: true, text: async function () { return fixtureXml; } };
     },
   });
 
   assert.deepEqual(network, []);
   assert.deepEqual(http, []);
-  assert.equal(called, expectedUrl);
+  assert.deepEqual(called, [treasuryMonthUrl(now, -1), expectedUrl]);
+  assert.deepEqual(
+    parsed.map(function (session) {
+      return session.date;
+    }),
+    ["2026-11-16", "2026-11-17", "2026-11-18"]
+  );
   assert.equal(parsed[parsed.length - 1].date, "2026-11-18");
   assert.deepEqual(
     await fetchTreasurySessions({
@@ -181,6 +187,118 @@ test("merged history keeps the rates.json point schema and the last 90 observati
   assert.deepEqual(Object.keys(stored), ["DGS5"]);
   assert.deepEqual(Object.keys(stored.DGS5), ["value", "date", "history"]);
   assert.deepEqual(Object.keys(stored.DGS5.history[0]), ["date", "value"]);
+});
+
+function yieldEntry(date, fields) {
+  const body = Object.keys(fields)
+    .map(function (name) {
+      return "<d:" + name + ' m:type="Edm.Double">' + fields[name] + "</d:" + name + ">";
+    })
+    .join("");
+  return (
+    '<entry><content type="application/xml"><m:properties>' +
+    '<d:NEW_DATE m:type="Edm.DateTime">' +
+    date +
+    "T00:00:00</d:NEW_DATE>" +
+    body +
+    "</m:properties></content></entry>"
+  );
+}
+
+function yieldFeed(entries) {
+  return "<feed>" + entries.join("") + "</feed>";
+}
+
+test("an empty current month still fills the FRED lag from the previous month", async function () {
+  const now = new Date("2026-12-01T11:17:00Z");
+  const current = treasuryMonthUrl(now);
+  const previous = treasuryMonthUrl(now, -1);
+  assert.equal(current.endsWith("=202612"), true);
+  assert.equal(previous.endsWith("=202611"), true);
+  assert.equal(treasuryMonthUrl(new Date("2026-01-02T21:47:00Z"), -1).endsWith("=202512"), true);
+
+  const urls = [];
+  const sessions = await fetchTreasurySessions({
+    now: now,
+    fetchImpl: async function (url) {
+      urls.push(url);
+      if (url === current) {
+        return { ok: true, text: async function () { return "<feed></feed>"; } };
+      }
+      return { ok: true, text: async function () { return fixtureXml; } };
+    },
+  });
+
+  assert.deepEqual(urls, [previous, current]);
+  const merged = mergeTreasuryRows(
+    {
+      DGS10: [
+        { date: "2026-11-18", value: 9.99 },
+        { date: "2026-11-16", value: 4.11 },
+      ],
+    },
+    sessions
+  );
+  assert.deepEqual(merged.DGS10, [
+    { date: "2026-11-16", value: 4.11 },
+    { date: "2026-11-17", value: 5.1 },
+    { date: "2026-11-18", value: 9.99 },
+  ]);
+});
+
+test("a failed current month keeps the previous month, and the later month wins a duplicate date", async function () {
+  const now = new Date("2026-12-01T21:47:00Z");
+  const current = treasuryMonthUrl(now);
+  const previous = treasuryMonthUrl(now, -1);
+  const failedCurrent = await fetchTreasurySessions({
+    now: now,
+    fetchImpl: async function (url) {
+      if (url === current) throw new Error("HTTP 503");
+      return { ok: true, text: async function () { return fixtureXml; } };
+    },
+  });
+  assert.equal(failedCurrent[0].date, "2026-11-16");
+  assert.equal(failedCurrent[failedCurrent.length - 1].date, "2026-11-18");
+
+  const sessions = await fetchTreasurySessions({
+    now: now,
+    fetchImpl: async function (url) {
+      if (url === previous) {
+        return {
+          ok: true,
+          text: async function () {
+            return yieldFeed([
+              yieldEntry("2026-11-30", { BC_10YEAR: "4.00", BC_2YEAR: "4.20" }),
+              yieldEntry("2026-11-28", { BC_10YEAR: "3.00" }),
+            ]);
+          },
+        };
+      }
+      return {
+        ok: true,
+        text: async function () {
+          return yieldFeed([
+            yieldEntry("2026-12-01", { BC_10YEAR: "6.00" }),
+            yieldEntry("2026-11-30", { BC_10YEAR: "4.50" }),
+          ]);
+        },
+      };
+    },
+  });
+  assert.deepEqual(sessions, [
+    { date: "2026-11-28", values: { DGS10: 3 } },
+    { date: "2026-11-30", values: { DGS2: 4.2, DGS10: 4.5 } },
+    { date: "2026-12-01", values: { DGS10: 6 } },
+  ]);
+  const merged = mergeTreasuryRows(
+    { DGS10: [{ date: "2026-11-28", value: 9.99 }] },
+    sessions
+  );
+  assert.deepEqual(merged.DGS10, [
+    { date: "2026-11-28", value: 9.99 },
+    { date: "2026-11-30", value: 4.5 },
+    { date: "2026-12-01", value: 6 },
+  ]);
 });
 
 test("FRED csv parsing still skips blanks and missing observations", function () {
