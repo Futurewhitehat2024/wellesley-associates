@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node scripts/generate.mjs",
     "start": "npx --yes serve .",
-    "backup": "node scripts/backup.mjs"
+    "backup": "node scripts/backup.mjs",
+    "test": "node --test scripts/update-rates.test.mjs"
   }
 }
