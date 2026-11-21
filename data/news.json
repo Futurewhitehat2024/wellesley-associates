@@ -1,6 +1,73 @@
 {
-  "updated": "2026-11-20T21:15:07.236Z",
+  "updated": "2026-11-21T20:09:27.612Z",
   "items": [
+    {
+      "title": "Tech outages are fueling a new doomsday economy",
+      "link": "https://www.cnbc.com/2026/11/21/emergency-prep-spending-tech-outages.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-21T15:04:56.000Z",
+      "summary": "Recent technology outages have left some worried about AI cyberattacks and the U.S. electricity grid. The doomsday economy is heating up as a result.",
+      "tags": [
+        "rates",
+        "business",
+        "insurance"
+      ]
+    },
+    {
+      "title": "From trash to treasure: Most hated stocks are winning as AI bull market rolls over",
+      "link": "https://www.cnbc.com/2026/11/21/from-trash-to-treasure-these-hated-stocks-are-winning-as-ai-flounders.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-21T13:10:40.000Z",
+      "summary": "Several stocks that are unpopular on Wall Street, including Clorox, Boston Beer and Campbell's, are poised to be winners as the AI trade loses steam.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "The five best stocks to buy before year-end, according to Bank of America",
+      "link": "https://www.cnbc.com/2026/11/21/five-best-stocks-to-buy-before-year-end-according-to-bank-of-america.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-21T13:04:17.000Z",
+      "summary": "Bank of America said there are several stocks that all investors should own by the end of 2026.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Why aren’t mortgage rates lower after massive stock sell-off?",
+      "link": "https://www.housingwire.com/articles/10-year-yield-mortgage-rates-fed/",
+      "source": "HousingWire",
+      "date": "2026-11-20T23:45:39.000Z",
+      "summary": "The Fed is still staying very hawkish, even with lower energy prices",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Stakeholder relations director Meredith Wimbrow departs FHFA",
+      "link": "https://www.housingwire.com/articles/stakeholder-director-meredith-wimbrow-to-depart-fhfa/",
+      "source": "HousingWire",
+      "date": "2026-11-20T21:30:11.000Z",
+      "summary": "Wimbrow, a Pulte aide, will become VP at Federal Hall",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Federal Reserve announces College Fed Challenge winners",
+      "link": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120b.htm",
+      "source": "Federal Reserve",
+      "date": "2026-11-20T21:15:00.000Z",
+      "summary": "Federal Reserve announces College Fed Challenge winners",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
     {
       "title": "Peterson: The Fed's chairman sees an AI revolution coming. Now he has to figure out what it means",
       "link": "https://www.cnbc.com/2026/11/16/kevin-warsh-fed-ai-jobs-productivity-interest-rateshtml.html",
@@ -40,29 +107,6 @@
       "source": "HousingWire",
       "date": "2026-11-20T19:39:12.000Z",
       "summary": "Case renews scrutiny of LO hiring and pay models",
-      "tags": [
-        "homeowners",
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Does your brokerage need a mortgage servicing arm to keep past clients engaged?",
-      "link": "https://www.housingwire.com/articles/brokerages-retention-without-servicing/",
-      "source": "HousingWire",
-      "date": "2026-11-20T18:27:10.000Z",
-      "summary": "Firms highlighted tactics from home value tools and seasonal reminders to branded home handbooks and education driven content partnerships",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "House bill takes on judicial foreclosure requirements for FHA loans in non-judicial states",
-      "link": "https://www.housingwire.com/articles/housing-process-parity-act-fha/",
-      "source": "HousingWire",
-      "date": "2026-11-20T17:42:05.000Z",
-      "summary": "Representatives say bill would cut federal red tape and increase the supply of available homes",
       "tags": [
         "homeowners",
         "rates",
@@ -112,18 +156,6 @@
       "date": "2026-11-20T17:16:14.000Z",
       "summary": "The composition of the bull market is taking a new shape. Here's where Wall Street is eyeing opportunities outside of AI",
       "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Better, NEXA, MBA announce leadership and hiring changes",
-      "link": "https://www.housingwire.com/articles/mortgage-industry-leadership-hiring/",
-      "source": "HousingWire",
-      "date": "2026-11-20T17:14:27.000Z",
-      "summary": "First Horizon and Credit Union ONE also announce leadership changes",
-      "tags": [
-        "homeowners",
         "rates",
         "business"
       ]
@@ -241,39 +273,6 @@
       "source": "CNBC Markets",
       "date": "2026-11-20T14:26:16.000Z",
       "summary": "Here are Friday's biggest calls on Wall Street.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Anthropic just had its record-smashing IPO. Seaport is 'cautious' on the stock",
-      "link": "https://www.cnbc.com/2026/11/20/anthropic-just-debuted-its-ipo-seaport-is-cautious-on-the-stock.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-20T12:58:35.000Z",
-      "summary": "Anthropic made its historic Wall Street debut on Thursday. But one research firm is taken a cautious stance on the stock.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "UnitedHealth has tumbled over the past three months. Why TD Cowen sees a recovery",
-      "link": "https://www.cnbc.com/2026/11/20/unitedhealth-td-cowen-upgrade-recovery.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-20T12:11:16.000Z",
-      "summary": "UnitedHealth could benefit from an Optum Health recovery and stronger earnings growth, according to TD Cowen, according to TD Cowen.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Japan core inflation soars to highest this year as energy subsidy expiry pushes up consumer prices",
-      "link": "https://www.cnbc.com/2026/11/20/japan-inflation-cpi-october.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-20T01:49:03.000Z",
-      "summary": "The core inflation figure — which strips out prices of food — was lower than the 2.3% expected by Reuters-polled economists.",
       "tags": [
         "rates",
         "business"
