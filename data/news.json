@@ -1,15 +1,240 @@
 {
-  "updated": "2026-11-24T23:04:28.805Z",
+  "updated": "2026-11-25T22:36:31.604Z",
   "items": [
     {
-      "title": "As cities act to shred housing’s red-tape, Boston homes in on parking",
-      "link": "https://www.housingwire.com/articles/local-housing-reforms-parking/",
+      "title": "Nvidia's billion-dollar board bet: Who's protected as lawsuits mount?",
+      "link": "https://www.cnbc.com/2026/11/25/nvidias-billion-dollar-board-bet-whos-protected-as-lawsuits-mount.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-25T22:04:58.000Z",
+      "summary": "Nvidia's board is under investigation, and directors are already defendants in a shareholder lawsuit accusing them of failing to properly oversee the company.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Liesman: Why Greenspan could bet on productivity — and Warsh needs to hike",
+      "link": "https://www.cnbc.com/2026/11/25/kevin-warsh-greenspan-fed-rates-ai-inflation.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-25T21:56:43.000Z",
+      "summary": "Alan Greenspan famously held the line on interest rates because he believed in the productivity promise of the internet boom. Why can't Kevin Warsh do the same?",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions",
+      "link": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125b.htm",
+      "source": "Federal Reserve",
+      "date": "2026-11-25T20:00:00.000Z",
+      "summary": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Agencies announce dollar thresholds for smaller loan exemption from appraisal requirements for higher-priced mortgage loans",
+      "link": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125a.htm",
+      "source": "Federal Reserve",
+      "date": "2026-11-25T20:00:00.000Z",
+      "summary": "Agencies announce dollar thresholds for smaller loan exemption from appraisal requirements for higher-priced mortgage loans",
+      "tags": [
+        "rates",
+        "business",
+        "homeowners"
+      ]
+    },
+    {
+      "title": "New home sales surge in October, but demand signals remain soft",
+      "link": "https://www.housingwire.com/articles/new-home-sales-october-2026/",
       "source": "HousingWire",
-      "date": "2026-11-24T22:19:01.000Z",
-      "summary": "Boulder set a 90-day deadline, Allentown tied tax breaks to 20% affordability, and Boston is weighing citywide reform",
+      "date": "2026-11-25T18:43:49.000Z",
+      "summary": "Subject to revision, sales rose to 701,000 annual pace, while the median sales price fell 3.2% year over year to $391,000",
       "tags": [
         "homeowners",
         "rates"
+      ]
+    },
+    {
+      "title": "Housing data shocks to the upside: Will we get sub-7% rates for Christmas?",
+      "link": "https://www.housingwire.com/articles/10-year-yield-482-holiday-rates/",
+      "source": "HousingWire",
+      "date": "2026-11-25T18:28:04.000Z",
+      "summary": "We're getting surprisingly positive data right before Thanksgiving",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "This missile maker's stock has fallen on expected U.S. military spending cuts, but its backlog reduces the risk",
+      "link": "https://www.cnbc.com/2026/11/25/rtx-stock-valuation-defense-budget.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-25T17:07:12.000Z",
+      "summary": "Defense stocks have come under pressure since Democrats won control of Congress, but RTX’s record backlog gives it unusual visibility into future demand.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Colorado first responders can now get state home mortgage help",
+      "link": "https://www.housingwire.com/articles/colorado-chfa-mortgage-help/",
+      "source": "HousingWire",
+      "date": "2026-11-25T17:06:16.000Z",
+      "summary": "The new CHFA option follows years of state efforts to expand housing access",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Better signs agreement with mortgage servicer to grow HELOC volume",
+      "link": "https://www.housingwire.com/articles/better-mortgage-servicer-heloc/",
+      "source": "HousingWire",
+      "date": "2026-11-25T17:06:10.000Z",
+      "summary": "The company's Week 7 scorecard cites $38.97M in corporate savings — more than halfway to its $64.2M target",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Luminate Bank buys Real Genius mortgage unit",
+      "link": "https://www.housingwire.com/articles/luminate-bank-acquires-real-genius/",
+      "source": "HousingWire",
+      "date": "2026-11-25T17:05:00.000Z",
+      "summary": "Deal expands Minneapolis bank’s reach in the consumer-direct channel",
+      "tags": [
+        "homeowners",
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "BOXABL financial filing shows cash burn and scaling risk",
+      "link": "https://www.housingwire.com/articles/boxabl-cash-burn-backlog/",
+      "source": "HousingWire",
+      "date": "2026-11-25T16:53:50.000Z",
+      "summary": "Unrestricted cash fell to $14 million, inventory hit $17.6 million, and the 10-Q cites going concern doubt",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Without Citizens Policies, Floridians Likely Dropped Flood Coverage at the Worst Time",
+      "link": "https://www.insurancejournal.com/news/southeast/2026/11/25/893780.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-25T16:53:09.000Z",
+      "summary": "Depopulating Citizens Property Insurance may be good for the free market, but it also has meant that many homeowners likely dropped flood insurance after the coverage was no longer",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "Epique’s ‘Power Agent’ trademark fight could put its branding at risk",
+      "link": "https://www.housingwire.com/articles/power-agent-lawsuit-epique/",
+      "source": "HousingWire",
+      "date": "2026-11-25T16:52:33.000Z",
+      "summary": "SDNY will hear Darryl Davis’s preliminary injunction bid in the first week of December",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Even the price of toys is on the rise. How Americans are scaling back holiday plans",
+      "link": "https://www.cnbc.com/2026/11/25/holiday-inflation-thanksgiving-travel-food-gifts.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-25T16:17:13.000Z",
+      "summary": "U.S. consumers face higher food, travel and gift costs in 2026 as inflation and Iran-war energy shocks pressure holiday budgets.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "These low-volatility stocks are shining in November as markets shudder",
+      "link": "https://www.cnbc.com/2026/11/25/low-volatility-stocks-november-2026.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-25T15:57:55.000Z",
+      "summary": "Volatility on Wall Street hasn’t relented, yet there are some calm stocks that are outperforming.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Mortgage applications rise 6.1% even as 30-year hits 7.38%",
+      "link": "https://www.housingwire.com/articles/mortgage-applications-rise-61/",
+      "source": "HousingWire",
+      "date": "2026-11-25T15:03:53.000Z",
+      "summary": "Purchase index rose 10% week over week, ARM share climbed to 11.5%, the highest in over a year",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Fed’s preferred inflation gauge accelerated to 3.8% in October, raising the 2027 stakes for the central bank",
+      "link": "https://www.cnbc.com/2026/11/25/pce-inflation-report-october-2026.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-25T14:18:45.000Z",
+      "summary": "The personal consumption expenditures price index was expected to show an annual inflation rate of 3.8% in October, according to the Dow Jones consensus.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Qatar LNG Exports Hit Busiest Month Since Start of Iran War, Despite Insurance Costs",
+      "link": "https://www.insurancejournal.com/news/international/2026/11/25/893748.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-25T14:05:21.000Z",
+      "summary": "Qatar’s liquefied natural gas exports are on track for their busiest month since the outbreak of the US-Iran conflict despite a sharp rise in insurance costs, with a record number ",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "Liesman: Nvidia whiplash tests Kevin Warsh’s push to read market signals",
+      "link": "https://www.cnbc.com/2026/11/25/nvidia-kevin-warsh-fed-market-signals.html",
+      "source": "CNBC Finance",
+      "date": "2026-11-25T12:26:41.000Z",
+      "summary": "The extreme market gyrations and the drama surrounding Nvidia this past week have highlighted the dilemma facing Federal Reserve Chairman Kevin Warsh.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "‘Ready for any storm’: UAE minister optimistic on economy as IMF lifts forecast",
+      "link": "https://www.cnbc.com/2026/11/25/uae-iran-war-economy-oil.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-25T04:06:01.000Z",
+      "summary": "The UAE is optimistic about achieving 7%-8% economic growth next year, banking on a \"different\" economic model.",
+      "tags": [
+        "rates",
+        "business",
+        "homeowners"
+      ]
+    },
+    {
+      "title": "Wednesday's big stock stories: What’s likely to move the market in the next trading session",
+      "link": "https://www.cnbc.com/2026/11/24/wednesday-big-stock-stories-whats-likely-to-move-the-market.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-25T00:12:45.000Z",
+      "summary": "The S&P 500 and the Nasdaq Composite slid on Tuesday as Nvidia unwound some of its gains from the previous session.",
+      "tags": [
+        "rates",
+        "business"
       ]
     },
     {
@@ -24,52 +249,6 @@
       ]
     },
     {
-      "title": "BTR sector fears Treasury rules move the goal line on investor ban",
-      "link": "https://www.housingwire.com/articles/btr-treasury-investor-ban/",
-      "source": "HousingWire",
-      "date": "2026-11-24T20:39:00.000Z",
-      "summary": "Industry letters challenged Treasury's proposed 18-month certificate-of-occupancy window and ambiguity on single-plat projects",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "What will Social Security look like in 2027 and beyond?",
-      "link": "https://www.housingwire.com/articles/social-security-3-6-cola-insolvency-debt-risks-senior-housing/",
-      "source": "HousingWire",
-      "date": "2026-11-24T20:24:25.000Z",
-      "summary": "Various factors, including Medicare premium increases, will determine how much of the COLA retirees actually keep, with direct implications for housing affordability and borrowing ",
-      "tags": [
-        "homeowners",
-        "rates",
-        "insurance"
-      ]
-    },
-    {
-      "title": "San Francisco Faces Onslaught of Tidal Floods Juiced by El Niño",
-      "link": "https://www.insurancejournal.com/news/west/2026/11/24/893611.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-24T19:30:59.000Z",
-      "summary": "San Francisco’s waterfront is facing a stretch of near-record “king tides” this week, threatening flooding just as Thanksgiving travel picks up across the region. Related: Companie",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "FHFA maps out FICO 10T rollout with broad eligibility by late 2028",
-      "link": "https://www.housingwire.com/articles/fhfa-fico-10t-classic-fico-sunset-2028/",
-      "source": "HousingWire",
-      "date": "2026-11-24T19:00:19.000Z",
-      "summary": "Agency timeline anticipates retirement of Classic FICO across GSE channels by late 2028",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
       "title": "Consumer confidence shoots up after Democrats' midterm victories — though inflation worries persist",
       "link": "https://www.cnbc.com/2026/11/24/consumer-confidence-november-election-midterm.html",
       "source": "CNBC Economy",
@@ -81,194 +260,11 @@
       ]
     },
     {
-      "title": "FHFA raises conforming loan limit to $855,400 in 2027",
-      "link": "https://www.housingwire.com/articles/fhfa-raises-2027-conforming-loan-limit-855400/",
-      "source": "HousingWire",
-      "date": "2026-11-24T17:42:37.000Z",
-      "summary": "Higher limits keep more loans out of the jumbo market",
-      "tags": [
-        "homeowners",
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "People Moves: XPT Specialty Adds Thomas to Workers’ Comp Team",
-      "link": "https://www.insurancejournal.com/news/midwest/2026/11/24/893655.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-24T17:34:15.000Z",
-      "summary": "XPT Specialty has added Brodie Thomas as vice president to its workers’ compensation team. Based in Des Moines, Iowa, Thomas joins XPT from Pledge Insurance Network, an independent",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "Two Louisiana Men Charged in Separate Insurance Fraud Investigations",
-      "link": "https://www.insurancejournal.com/news/southcentral/2026/11/24/893652.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-24T17:29:54.000Z",
-      "summary": "Two Louisiana men have been arrested for insurance fraud-related charges, the state’s insurance department announced. Michael Jacobs, 68, of Baton Rouge, was arrested on November 5",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "Mortgage rates whiplash is in full effect, with jumbo loans shedding 25 bps this week",
-      "link": "https://www.housingwire.com/articles/mortgage-rates-seesaw-753/",
-      "source": "HousingWire",
-      "date": "2026-11-24T17:24:04.000Z",
-      "summary": "Interest rate traders are pricing a 96% chance of a Fed hike in December, keeping pressure on borrowing costs heading into 2027",
-      "tags": [
-        "homeowners",
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Lower mortgage rates could bring buyers back. What market will they return to?",
-      "link": "https://www.housingwire.com/articles/lower-mortgage-rates-local-housing-market-conditions/",
-      "source": "HousingWire",
-      "date": "2026-11-24T16:37:13.000Z",
-      "summary": "Inventory, asking prices and seller pricing adjustments are creating very different conditions for buyers across major housing markets",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "Mortgage application payments reveal slight homebuyer affordability gain in October",
-      "link": "https://www.housingwire.com/articles/mba-papi-october-affordability/",
-      "source": "HousingWire",
-      "date": "2026-11-24T15:53:08.000Z",
-      "summary": "Median purchase payment rose to $2,236, but the median loan amount fell $8,598 from September",
-      "tags": [
-        "homeowners",
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Liberty Mutual, Security National, Cimarron Auto Must Refund $122M in Excess Profits",
-      "link": "https://www.insurancejournal.com/news/southeast/2026/11/24/893613.htm",
-      "source": "Insurance Journal",
-      "date": "2026-11-24T15:28:57.000Z",
-      "summary": "Florida’s excess profits law has triggered again, forcing Liberty Mutual and two other auto insurers to provide refunds or renewal credits to policyholders, the state’s insurance c",
-      "tags": [
-        "insurance",
-        "homeowners",
-        "business"
-      ]
-    },
-    {
-      "title": "Here are Tuesday's biggest analyst calls: Anthropic, SpaceX, Nvidia, Tesla, Boeing, JetBlue & more",
-      "link": "https://www.cnbc.com/2026/11/24/tuesday-wall-street-calls-like-nvidia-anthropic.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-24T13:35:07.000Z",
-      "summary": "Here are Tuesday's biggest calls on Wall Street.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
       "title": "Fed's John Williams indicates higher interest rates likely 'over time' to address inflation",
       "link": "https://www.cnbc.com/2026/11/23/john-williams-fed-inflation-rate-hikes.html",
       "source": "CNBC Finance",
       "date": "2026-11-24T13:33:26.000Z",
       "summary": "The influential central banker expressed confidence that inflation will get closer to the Fed's 2% target in 2027.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Why France is at risk of recession — and what could keep it out of one",
-      "link": "https://www.cnbc.com/2026/11/24/france-recession-risk-pmi.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-24T11:15:30.000Z",
-      "summary": "Bank of France Governor Emmanuel Moulin told CNBC he still expects growth, pointing to resilience in sectors including defense, aerospace and electricity.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Employees at Eric Trump-backed robot startup lose health benefits as company's cash crunch deepens",
-      "link": "https://www.cnbc.com/2026/11/22/foundation-future-industries-health-benefits-payroll-base-group.html",
-      "source": "CNBC Finance",
-      "date": "2026-11-23T23:28:19.000Z",
-      "summary": "Foundation is pursuing an emergency bridge loan and has been in talks with VC firms as it waits for a $150 million investment from South Korea's Base Group.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Peterson: Here’s what Bessent’s about-face on Jensen Huang reveals about Trump and China",
-      "link": "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-trump-bessent-china.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-23T21:00:59.000Z",
-      "summary": "Treasury Secretary Scott Bessent was becoming the face of an emerging harder line on Nvidia— until he reversed course",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "‘This establishes a bottom’: Jensen Huang’s return seen as likely to stop market sell-off, for now",
-      "link": "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo-market-rally.html",
-      "source": "CNBC Finance",
-      "date": "2026-11-23T18:00:47.000Z",
-      "summary": "Wall Street strategists say Jensen Huang’s return to Nvidia could steady the AI trade, though spending and data-center risks remain.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Tech outages are fueling a new doomsday economy",
-      "link": "https://www.cnbc.com/2026/11/21/emergency-prep-spending-tech-outages.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-21T15:04:56.000Z",
-      "summary": "Recent technology outages have left some worried about AI cyberattacks and the U.S. electricity grid. The doomsday economy is heating up as a result.",
-      "tags": [
-        "rates",
-        "business",
-        "insurance"
-      ]
-    },
-    {
-      "title": "Federal Reserve announces College Fed Challenge winners",
-      "link": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120b.htm",
-      "source": "Federal Reserve",
-      "date": "2026-11-20T21:15:00.000Z",
-      "summary": "Federal Reserve announces College Fed Challenge winners",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Peterson: The Fed's chairman sees an AI revolution coming. Now he has to figure out what it means",
-      "link": "https://www.cnbc.com/2026/11/16/kevin-warsh-fed-ai-jobs-productivity-interest-rateshtml.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-20T21:07:08.000Z",
-      "summary": "Kevin Warsh sees AI at a turning point. He faces tough questions on jobs and interest rates.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Prediction markets outlook for stocks in 2026 dims amid AI sell-off",
-      "link": "https://www.cnbc.com/2026/11/20/sp-500-8000-kalshi-odds-ai-selloff.html",
-      "source": "CNBC Finance",
-      "date": "2026-11-20T19:59:03.000Z",
-      "summary": "Odds that the S&P 500 will cross 8,000, which were once north of 70%, are extremely low on platform Kalshi.",
       "tags": [
         "rates",
         "business"
