@@ -1,6 +1,50 @@
 {
-  "updated": "2026-11-25T22:36:31.604Z",
+  "updated": "2026-11-26T22:24:48.158Z",
   "items": [
+    {
+      "title": "Buyer beware? Nvidia's volatile swings expose risks of single-stock ETFs",
+      "link": "https://www.cnbc.com/2026/11/26/nvidias-volatile-swings-expose-risks-of-single-stock-etfs.html",
+      "source": "CNBC Finance",
+      "date": "2026-11-26T16:00:01.000Z",
+      "summary": "ETF Action founding partner Mike Akins and GraniteShares CEO Will Rhind react to Nvidia's sharp losses and latest comeback.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Spain’s Pablo Hernández de Cos set to lead European Central Bank",
+      "link": "https://www.cnbc.com/2026/11/26/pablo-hernandez-de-cos-ecb-president.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-26T15:28:26.000Z",
+      "summary": "De Cos will lead the ECB into a period of political uncertainty and choppy growth, after winning the backing needed to succeed Christine Lagarde next year.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "U.S. tariff-hike threats pile pressure on partners to sign trade deals",
+      "link": "https://www.cnbc.com/2026/11/26/us-tariffs-hike-trade-agreement.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-26T12:46:55.000Z",
+      "summary": "The U.S. planned a fresh tariff salvo on 14 trading partners, while offering some countries lower rates if they secure trade deals with Washington.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Beware higher correlation but nab high U.S. credit yields, fund managers say",
+      "link": "https://www.cnbc.com/2026/11/26/mispricing-risk-fund-managers-ai-volatility.html",
+      "source": "CNBC Finance",
+      "date": "2026-11-26T05:36:01.000Z",
+      "summary": "The AI boom could trigger a recession, but data centers remain an attractive investment opportunity, a hedge fund manager said.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
     {
       "title": "Nvidia's billion-dollar board bet: Who's protected as lawsuits mount?",
       "link": "https://www.cnbc.com/2026/11/25/nvidias-billion-dollar-board-bet-whos-protected-as-lawsuits-mount.html",
@@ -224,50 +268,6 @@
         "rates",
         "business",
         "homeowners"
-      ]
-    },
-    {
-      "title": "Wednesday's big stock stories: What’s likely to move the market in the next trading session",
-      "link": "https://www.cnbc.com/2026/11/24/wednesday-big-stock-stories-whats-likely-to-move-the-market.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-25T00:12:45.000Z",
-      "summary": "The S&P 500 and the Nasdaq Composite slid on Tuesday as Nvidia unwound some of its gains from the previous session.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "AI debt markets shudder as Nvidia's top 'banker' returns",
-      "link": "https://www.cnbc.com/2026/11/24/nvidia-jensen-huang-ai-credit-markets.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-24T21:52:05.000Z",
-      "summary": "Fears about some companies' AI debt ramped higher Tuesday, a day after Jensen Huang's return as Nvidia CEO.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Consumer confidence shoots up after Democrats' midterm victories — though inflation worries persist",
-      "link": "https://www.cnbc.com/2026/11/24/consumer-confidence-november-election-midterm.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-24T18:34:43.000Z",
-      "summary": "The Conference Board survey released Tuesday showed improvement across the board, with the headline confidence index jumping to 103.3.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Fed's John Williams indicates higher interest rates likely 'over time' to address inflation",
-      "link": "https://www.cnbc.com/2026/11/23/john-williams-fed-inflation-rate-hikes.html",
-      "source": "CNBC Finance",
-      "date": "2026-11-24T13:33:26.000Z",
-      "summary": "The influential central banker expressed confidence that inflation will get closer to the Fed's 2% target in 2027.",
-      "tags": [
-        "rates",
-        "business"
       ]
     }
   ]
