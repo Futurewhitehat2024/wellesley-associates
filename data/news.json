@@ -1,23 +1,138 @@
 {
-  "updated": "2026-11-26T22:24:48.158Z",
+  "updated": "2026-11-27T22:05:01.627Z",
   "items": [
     {
-      "title": "Buyer beware? Nvidia's volatile swings expose risks of single-stock ETFs",
-      "link": "https://www.cnbc.com/2026/11/26/nvidias-volatile-swings-expose-risks-of-single-stock-etfs.html",
-      "source": "CNBC Finance",
-      "date": "2026-11-26T16:00:01.000Z",
-      "summary": "ETF Action founding partner Mike Akins and GraniteShares CEO Will Rhind react to Nvidia's sharp losses and latest comeback.",
+      "title": "Will the Anthropic IPO supercharge San Francisco’s already-hot housing market?",
+      "link": "https://www.housingwire.com/articles/anthropic-ipo-sf-housing/",
+      "source": "HousingWire",
+      "date": "2026-11-27T21:46:48.000Z",
+      "summary": "The median single-family price rose 29% to $2.39M in October, and 86% sold above asking.",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Even the price of toys is on the rise. How Americans are scaling back holiday plans",
+      "link": "https://www.cnbc.com/2026/11/25/holiday-inflation-thanksgiving-travel-food-gifts.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-27T21:45:41.000Z",
+      "summary": "U.S. consumers face higher food, travel and gift costs in 2026 as inflation and Iran-war energy shocks pressure holiday budgets.",
       "tags": [
         "rates",
         "business"
       ]
     },
     {
+      "title": "Josh Brown lost a bet on Disney. It is now on his Best Stocks in the Market list",
+      "link": "https://www.cnbc.com/2026/11/27/josh-brown-lost-a-bet-on-disney-it-is-now-on-his-best-stocks-in-the-market-list.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-27T16:49:35.000Z",
+      "summary": "With a 12.3% total return in 2026, Disney is the 14th-best performing stock in the Dow Jones Industrial Average this year.",
+      "tags": [
+        "rates",
+        "business",
+        "cre"
+      ]
+    },
+    {
+      "title": "Allstate Customer, Agent Access Disrupted by Multiday Tech Outage",
+      "link": "https://www.insurancejournal.com/news/national/2026/11/27/893817.htm",
+      "source": "Insurance Journal",
+      "date": "2026-11-27T16:39:31.000Z",
+      "summary": "Personal lines insurer Allstate continues to experience some disruption to its network systems. Insurance Journal earlier this week began receiving messages about Allstate experien",
+      "tags": [
+        "insurance",
+        "homeowners",
+        "business"
+      ]
+    },
+    {
+      "title": "Nvidia's billion-dollar board bet: Who's protected as lawsuits mount?",
+      "link": "https://www.cnbc.com/2026/11/25/nvidias-billion-dollar-board-bet-whos-protected-as-lawsuits-mount.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-27T14:47:33.000Z",
+      "summary": "Nvidia's board is under investigation, and directors are already defendants in a shareholder lawsuit accusing them of failing to properly oversee the company.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Liesman: Nvidia whiplash tests Kevin Warsh’s push to read market signals",
+      "link": "https://www.cnbc.com/2026/11/25/nvidia-kevin-warsh-fed-market-signals.html",
+      "source": "CNBC Finance",
+      "date": "2026-11-27T13:29:43.000Z",
+      "summary": "The extreme market gyrations and the drama surrounding Nvidia this past week have highlighted the dilemma facing Federal Reserve Chairman Kevin Warsh.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "The S&P 500 is in a correction. Bear markets and recessions don't always follow",
+      "link": "https://www.cnbc.com/2026/11/27/the-sp-500-is-in-a-correction-bear-markets-and-recessions-dont-always-follow.html",
+      "source": "CNBC Finance",
+      "date": "2026-11-27T13:21:56.000Z",
+      "summary": "The November sell-off has so far pushed the S&P 500 into a correction. History shows that a correction doesn't always lead to a bear market, or a recession.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Mortgage hires: Genworth names CEO, FHLB New York elects chair",
+      "link": "https://www.housingwire.com/articles/genworth-ceo-fhlb-chair-hires/",
+      "source": "HousingWire",
+      "date": "2026-11-27T13:00:00.000Z",
+      "summary": "Genworth named a new CEO, while Fannie Mae appointed a director and approved executive retention awards",
+      "tags": [
+        "homeowners",
+        "rates"
+      ]
+    },
+    {
+      "title": "Chase launches Cyber Monday rate sale for purchase, refi loans",
+      "link": "https://www.housingwire.com/articles/chase-rate-sale-cyber-monday/",
+      "source": "HousingWire",
+      "date": "2026-11-27T09:00:00.000Z",
+      "summary": "The limited-time offer runs Nov. 30 through Dec. 13 for purchase and refinance loans locked during the window",
+      "tags": [
+        "homeowners",
+        "rates",
+        "business",
+        "insurance"
+      ]
+    },
+    {
+      "title": "‘Ready for any storm’: UAE minister optimistic on economy as IMF lifts forecast",
+      "link": "https://www.cnbc.com/2026/11/25/uae-iran-war-economy-oil.html",
+      "source": "CNBC Economy",
+      "date": "2026-11-27T08:47:36.000Z",
+      "summary": "The UAE is optimistic about achieving 7%-8% economic growth next year, banking on a \"different\" economic model.",
+      "tags": [
+        "rates",
+        "business",
+        "homeowners"
+      ]
+    },
+    {
       "title": "Spain’s Pablo Hernández de Cos set to lead European Central Bank",
       "link": "https://www.cnbc.com/2026/11/26/pablo-hernandez-de-cos-ecb-president.html",
       "source": "CNBC Economy",
-      "date": "2026-11-26T15:28:26.000Z",
+      "date": "2026-11-27T06:50:38.000Z",
       "summary": "De Cos will lead the ECB into a period of political uncertainty and choppy growth, after winning the backing needed to succeed Christine Lagarde next year.",
+      "tags": [
+        "rates",
+        "business"
+      ]
+    },
+    {
+      "title": "Buyer beware? Nvidia's volatile swings expose risks of single-stock ETFs",
+      "link": "https://www.cnbc.com/2026/11/26/nvidias-volatile-swings-expose-risks-of-single-stock-etfs.html",
+      "source": "CNBC Finance",
+      "date": "2026-11-26T16:00:01.000Z",
+      "summary": "ETF Action founding partner Mike Akins and GraniteShares CEO Will Rhind react to Nvidia's sharp losses and latest comeback.",
       "tags": [
         "rates",
         "business"
@@ -40,17 +155,6 @@
       "source": "CNBC Finance",
       "date": "2026-11-26T05:36:01.000Z",
       "summary": "The AI boom could trigger a recession, but data centers remain an attractive investment opportunity, a hedge fund manager said.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "Nvidia's billion-dollar board bet: Who's protected as lawsuits mount?",
-      "link": "https://www.cnbc.com/2026/11/25/nvidias-billion-dollar-board-bet-whos-protected-as-lawsuits-mount.html",
-      "source": "CNBC Markets",
-      "date": "2026-11-25T22:04:58.000Z",
-      "summary": "Nvidia's board is under investigation, and directors are already defendants in a shareholder lawsuit accusing them of failing to properly oversee the company.",
       "tags": [
         "rates",
         "business"
@@ -91,28 +195,6 @@
       ]
     },
     {
-      "title": "New home sales surge in October, but demand signals remain soft",
-      "link": "https://www.housingwire.com/articles/new-home-sales-october-2026/",
-      "source": "HousingWire",
-      "date": "2026-11-25T18:43:49.000Z",
-      "summary": "Subject to revision, sales rose to 701,000 annual pace, while the median sales price fell 3.2% year over year to $391,000",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "Housing data shocks to the upside: Will we get sub-7% rates for Christmas?",
-      "link": "https://www.housingwire.com/articles/10-year-yield-482-holiday-rates/",
-      "source": "HousingWire",
-      "date": "2026-11-25T18:28:04.000Z",
-      "summary": "We're getting surprisingly positive data right before Thanksgiving",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
       "title": "This missile maker's stock has fallen on expected U.S. military spending cuts, but its backlog reduces the risk",
       "link": "https://www.cnbc.com/2026/11/25/rtx-stock-valuation-defense-budget.html",
       "source": "CNBC Markets",
@@ -121,51 +203,6 @@
       "tags": [
         "rates",
         "business"
-      ]
-    },
-    {
-      "title": "Colorado first responders can now get state home mortgage help",
-      "link": "https://www.housingwire.com/articles/colorado-chfa-mortgage-help/",
-      "source": "HousingWire",
-      "date": "2026-11-25T17:06:16.000Z",
-      "summary": "The new CHFA option follows years of state efforts to expand housing access",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "Better signs agreement with mortgage servicer to grow HELOC volume",
-      "link": "https://www.housingwire.com/articles/better-mortgage-servicer-heloc/",
-      "source": "HousingWire",
-      "date": "2026-11-25T17:06:10.000Z",
-      "summary": "The company's Week 7 scorecard cites $38.97M in corporate savings — more than halfway to its $64.2M target",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "Luminate Bank buys Real Genius mortgage unit",
-      "link": "https://www.housingwire.com/articles/luminate-bank-acquires-real-genius/",
-      "source": "HousingWire",
-      "date": "2026-11-25T17:05:00.000Z",
-      "summary": "Deal expands Minneapolis bank’s reach in the consumer-direct channel",
-      "tags": [
-        "homeowners",
-        "rates",
-        "business"
-      ]
-    },
-    {
-      "title": "BOXABL financial filing shows cash burn and scaling risk",
-      "link": "https://www.housingwire.com/articles/boxabl-cash-burn-backlog/",
-      "source": "HousingWire",
-      "date": "2026-11-25T16:53:50.000Z",
-      "summary": "Unrestricted cash fell to $14 million, inventory hit $17.6 million, and the 10-Q cites going concern doubt",
-      "tags": [
-        "homeowners",
-        "rates"
       ]
     },
     {
@@ -181,28 +218,6 @@
       ]
     },
     {
-      "title": "Epique’s ‘Power Agent’ trademark fight could put its branding at risk",
-      "link": "https://www.housingwire.com/articles/power-agent-lawsuit-epique/",
-      "source": "HousingWire",
-      "date": "2026-11-25T16:52:33.000Z",
-      "summary": "SDNY will hear Darryl Davis’s preliminary injunction bid in the first week of December",
-      "tags": [
-        "homeowners",
-        "rates"
-      ]
-    },
-    {
-      "title": "Even the price of toys is on the rise. How Americans are scaling back holiday plans",
-      "link": "https://www.cnbc.com/2026/11/25/holiday-inflation-thanksgiving-travel-food-gifts.html",
-      "source": "CNBC Economy",
-      "date": "2026-11-25T16:17:13.000Z",
-      "summary": "U.S. consumers face higher food, travel and gift costs in 2026 as inflation and Iran-war energy shocks pressure holiday budgets.",
-      "tags": [
-        "rates",
-        "business"
-      ]
-    },
-    {
       "title": "These low-volatility stocks are shining in November as markets shudder",
       "link": "https://www.cnbc.com/2026/11/25/low-volatility-stocks-november-2026.html",
       "source": "CNBC Markets",
@@ -211,17 +226,6 @@
       "tags": [
         "rates",
         "business"
-      ]
-    },
-    {
-      "title": "Mortgage applications rise 6.1% even as 30-year hits 7.38%",
-      "link": "https://www.housingwire.com/articles/mortgage-applications-rise-61/",
-      "source": "HousingWire",
-      "date": "2026-11-25T15:03:53.000Z",
-      "summary": "Purchase index rose 10% week over week, ARM share climbed to 11.5%, the highest in over a year",
-      "tags": [
-        "homeowners",
-        "rates"
       ]
     },
     {
@@ -248,26 +252,25 @@
       ]
     },
     {
-      "title": "Liesman: Nvidia whiplash tests Kevin Warsh’s push to read market signals",
-      "link": "https://www.cnbc.com/2026/11/25/nvidia-kevin-warsh-fed-market-signals.html",
-      "source": "CNBC Finance",
-      "date": "2026-11-25T12:26:41.000Z",
-      "summary": "The extreme market gyrations and the drama surrounding Nvidia this past week have highlighted the dilemma facing Federal Reserve Chairman Kevin Warsh.",
+      "title": "AI debt markets shudder as Nvidia's top 'banker' returns",
+      "link": "https://www.cnbc.com/2026/11/24/nvidia-jensen-huang-ai-credit-markets.html",
+      "source": "CNBC Markets",
+      "date": "2026-11-24T21:52:05.000Z",
+      "summary": "Fears about some companies' AI debt ramped higher Tuesday, a day after Jensen Huang's return as Nvidia CEO.",
       "tags": [
         "rates",
         "business"
       ]
     },
     {
-      "title": "‘Ready for any storm’: UAE minister optimistic on economy as IMF lifts forecast",
-      "link": "https://www.cnbc.com/2026/11/25/uae-iran-war-economy-oil.html",
+      "title": "Consumer confidence shoots up after Democrats' midterm victories — though inflation worries persist",
+      "link": "https://www.cnbc.com/2026/11/24/consumer-confidence-november-election-midterm.html",
       "source": "CNBC Economy",
-      "date": "2026-11-25T04:06:01.000Z",
-      "summary": "The UAE is optimistic about achieving 7%-8% economic growth next year, banking on a \"different\" economic model.",
+      "date": "2026-11-24T18:34:43.000Z",
+      "summary": "The Conference Board survey released Tuesday showed improvement across the board, with the headline confidence index jumping to 103.3.",
       "tags": [
         "rates",
-        "business",
-        "homeowners"
+        "business"
       ]
     }
   ]
